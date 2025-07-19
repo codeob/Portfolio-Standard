@@ -2,14 +2,14 @@ import React, { useEffect, useRef, useState, useContext } from 'react';
 import { motion } from 'framer-motion';
 import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.168.0/build/three.module.min.js';
 import { Toaster, toast } from 'react-hot-toast';
-import { ThemeContext } from './ThemeContext';
+import  {ThemeContext}  from './ThemeContext';
 
 // Social links
 const socialLinks = [
-  { name: 'GitHub', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/github.svg', url: '#', color: '#181717' },
+  { name: 'GitHub', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/github.svg', url: 'https://github.com/codeob?tab=repositories', color: '#181717' },
   { name: 'LinkedIn', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/linkedin.svg', url: '#', color: '#0A66C2' },
-  { name: 'Email', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/gmail.svg', url: 'mailto:your.email@example.com', color: '#D14836' },
-  { name: 'Phone', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/phone.svg', url: 'tel:+1234567890', color: '#25D366' },
+  { name: 'Email', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/gmail.svg', url: 'https://mail.google.com/mail/?authuser=0', color: '#D14836' },
+  { name: 'Phone', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/phone.svg', url: '', color: '#25D366' },
 ];
 
 // Animation variants

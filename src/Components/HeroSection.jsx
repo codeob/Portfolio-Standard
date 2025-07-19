@@ -33,7 +33,7 @@ function HeroSection() {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.8, ease: 'easeOut', staggerChildren: 0.2, delay: 0.5 }, // Delay for Navbar
+      transition: { duration: 0.8, ease: 'easeOut', staggerChildren: 0.2, delay: 0.5 },
     },
   };
 
@@ -65,7 +65,7 @@ function HeroSection() {
       id="hero"
       className={`relative min-h-[70vh] flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-20 sm:pt-24 lg:pt-28 ${
         theme === 'light' ? 'bg-transparent' : 'bg-transparent'
-      }`} // Transparent to show background
+      }`}
       variants={containerVariants}
       initial="hidden"
       animate="visible"
@@ -74,7 +74,6 @@ function HeroSection() {
         {/* Profile Image */}
         <motion.div
           className="relative w-40 h-40 sm:w-48 sm:h-48 lg:w-56 lg:h-56"
-       
         >
           <motion.img
             src={Profile}
@@ -83,15 +82,13 @@ function HeroSection() {
               theme === 'light'
                 ? 'border border-gradient-to-r from-blue-600 to-gold-500'
                 : 'border border-gradient-to-r from-blue-500 to-silver-500'
-            }`} // Gradient border
-           
+            }`}
           />
           {/* Double Glow Effect */}
           <motion.div
             className={`absolute inset-0 rounded-full ${
               theme === 'light' ? 'bg-blue-300' : 'bg-blue-500'
             } opacity-30 blur-2xl`}
-           
           />
           <motion.div
             className={`absolute inset-0 rounded-full ${
@@ -106,6 +103,7 @@ function HeroSection() {
         <motion.div
           className="text-center lg:text-left max-w-sm sm:max-w-md lg:max-w-lg"
           variants={childVariants}
+          style={{ zIndex: 10 }}
         >
           <motion.h1
             className={`font-serif font-bold text-2xl sm:text-3xl lg:text-4xl mb-3 ${
@@ -144,6 +142,8 @@ function HeroSection() {
               })
             }
             variants={childVariants}
+            onHoverStart={() => console.log('Hover started on Discover My Projects button')}
+            onHoverEnd={() => console.log('Hover ended on Discover My Projects button')}
           >
             Discover My Projects
           </motion.button>

@@ -74,10 +74,11 @@ const cardVariants = {
   hidden: { opacity: 0, scale: 0.85, rotateX: 10 },
   visible: { opacity: 1, scale: 1, rotateX: 0, transition: { duration: 0.6, ease: 'easeOut' } },
   hover: {
-    scale: 1.03,
+    scale: 1.05,
+    y: -10,
     rotateX: 5,
-    boxShadow: '0 0 50px rgba(96, 165, 250, 0.9)',
-    transition: { duration: 0.4 },
+    boxShadow: '0 0 40px rgba(59, 130, 246, 0.8), 0 0 60px rgba(34, 211, 238, 0.6)',
+    transition: { duration: 0.4, ease: 'easeOut' },
   },
 };
 
@@ -91,7 +92,6 @@ const Project = () => {
   const canvasRef = useRef(null);
   const [filter, setFilter] = useState('All');
 
-  // 3D Animation
   useEffect(() => {
     if (!canvasRef.current) {
       console.error('Project: Canvas ref is null');
@@ -108,22 +108,22 @@ const Project = () => {
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-    const particleCount = window.innerWidth < 768 ? 5000 : 10000; // Increased for massive effect
+    const particleCount = window.innerWidth < 768 ? 5000 : 10000;
     const particlesGeometry = new THREE.BufferGeometry();
     const posArray = new Float32Array(particleCount * 3);
     const velocityArray = new Float32Array(particleCount * 3);
     const colorArray = new Float32Array(particleCount * 3);
 
     for (let i = 0; i < particleCount * 3; i += 3) {
-      posArray[i] = (Math.random() - 0.5) * 50; // Wider spread
+      posArray[i] = (Math.random() - 0.5) * 50;
       posArray[i + 1] = (Math.random() - 0.5) * 50;
       posArray[i + 2] = (Math.random() - 0.5) * 50;
-      velocityArray[i] = (Math.random() - 0.5) * 0.04; // Faster movement
+      velocityArray[i] = (Math.random() - 0.5) * 0.04;
       velocityArray[i + 1] = (Math.random() - 0.5) * 0.04;
       velocityArray[i + 2] = (Math.random() - 0.5) * 0.04;
-      colorArray[i] = theme === 'light' ? 59/255 : 96/255;
-      colorArray[i + 1] = theme === 'light' ? 130/255 : 165/255;
-      colorArray[i + 2] = theme === 'light' ? 246/255 : 250/255;
+      colorArray[i] = theme === 'light' ? 59/255 : Math.random() > 0.5 ? 96/255 : 34/255;
+      colorArray[i + 1] = theme === 'light' ? 130/255 : Math.random() > 0.5 ? 165/255 : 211/255;
+      colorArray[i + 2] = theme === 'light' ? 246/255 : Math.random() > 0.5 ? 250/255 : 238/255;
     }
 
     particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
@@ -131,7 +131,7 @@ const Project = () => {
     particlesGeometry.setAttribute('color', new THREE.BufferAttribute(colorArray, 3));
 
     const material = new THREE.PointsMaterial({
-      size: window.innerWidth < 768 ? 0.06 : 0.1, // Larger particles
+      size: window.innerWidth < 768 ? 0.06 : 0.1,
       vertexColors: true,
       blending: THREE.AdditiveBlending,
       transparent: true,
@@ -161,9 +161,9 @@ const Project = () => {
         positions[i + 1] += velocities[i + 1];
         positions[i + 2] += velocities[i + 2];
 
-        if (Math.abs(positions[i]) > 25) velocities[i] *= -1;
-        if (Math.abs(positions[i + 1]) > 25) velocities[i + 1] *= -1;
-        if (Math.abs(positions[i + 2]) > 25) velocities[i + 2] *= -1;
+        if (Math.abs(positions[i]) > 25) velocities[i] *= -0.9;
+        if (Math.abs(positions[i + 1]) > 25) velocities[i + 1] *= -0.9;
+        if (Math.abs(positions[i + 2]) > 25) velocities[i + 2] *= -0.9;
 
         const distance = Math.sqrt(positions[i] ** 2 + positions[i + 1] ** 2 + positions[i + 2] ** 2);
         const pulse = Math.sin(Date.now() * 0.002 + distance * 0.2) * 0.05;
@@ -171,15 +171,15 @@ const Project = () => {
         velocities[i + 1] += pulse * mouseY * 0.015;
 
         const colorShift = Math.sin(Date.now() * 0.0008 + i) * 0.4 + 0.6;
-        colors[i] = (theme === 'light' ? 59/255 : 96/255) * colorShift;
-        colors[i + 1] = (theme === 'light' ? 130/255 : 165/255) * colorShift;
-        colors[i + 2] = (theme === 'light' ? 246/255 : 250/255) * colorShift;
+        colors[i] = (theme === 'light' ? 59/255 : Math.random() > 0.5 ? 96/255 : 34/255) * colorShift;
+        colors[i + 1] = (theme === 'light' ? 130/255 : Math.random() > 0.5 ? 165/255 : 211/255) * colorShift;
+        colors[i + 2] = (theme === 'light' ? 246/255 : Math.random() > 0.5 ? 250/255 : 238/255) * colorShift;
       }
 
       particlesGeometry.attributes.position.needsUpdate = true;
       particlesGeometry.attributes.color.needsUpdate = true;
-      particlesMesh.rotation.y += 0.008; // Faster rotation
-      particlesMesh.rotation.x += 0.005;
+      particlesMesh.rotation.y += 0.004;
+      particlesMesh.rotation.x += 0.002;
       renderer.render(scene, camera);
       requestAnimationFrame(animate);
     };
@@ -205,7 +205,7 @@ const Project = () => {
 
   // Masonry breakpoints
   const breakpointColumnsObj = {
-    default: 3, // Tighter grid for premium feel
+    default: 3,
     1100: 2,
     700: 1,
   };
@@ -229,7 +229,7 @@ const Project = () => {
       </motion.div>
       <motion.h2
         className={`relative text-4xl sm:text-5xl lg:text-7xl font-extrabold font-sora mb-16 text-center ${
-          theme === 'light' ? 'text-blue-900 text-shadow-xl' : 'text-blue-100 text-shadow-xl-dark'
+          theme === 'light' ? 'text-blue-900 text-shadow-neon' : 'text-blue-100 text-shadow-neon-dark'
         }`}
         variants={titleVariants}
         initial="hidden"
@@ -237,7 +237,7 @@ const Project = () => {
       >
         Projects I’m Proud Of ✨
         <motion.div
-          className={`h-1.5 mt-3 mx-auto ${theme === 'light' ? 'bg-gradient-to-r from-blue-600 to-yellow-500' : 'bg-gradient-to-r from-blue-500 to-blue-300'}`}
+          className={`h-1.5 mt-3 mx-auto ${theme === 'light' ? 'bg-gradient-to-r from-blue-600 to-cyan-400' : 'bg-gradient-to-r from-blue-500 to-cyan-500'}`}
           initial={{ width: 0 }}
           animate={{ width: '60%', scale: [1, 1.1, 1] }}
           transition={{ duration: 1.2, ease: 'easeOut', repeat: Infinity, repeatType: 'reverse', delay: 0.3 }}
@@ -258,8 +258,8 @@ const Project = () => {
             className={`px-5 py-2.5 rounded-full font-sora text-sm sm:text-base font-semibold ${
               filter === category
                 ? theme === 'light'
-                  ? 'bg-blue-600 text-white shadow-lg'
-                  : 'bg-blue-500 text-gray-900 shadow-lg'
+                  ? 'bg-blue-600 text-white shadow-lg glow-border'
+                  : 'bg-blue-500 text-gray-900 shadow-lg glow-border'
                 : theme === 'light'
                 ? 'bg-white/20 text-gray-900 hover:bg-blue-200/30'
                 : 'bg-gray-800/20 text-gray-200 hover:bg-blue-600/30'
@@ -274,7 +274,7 @@ const Project = () => {
       <motion.div
         className={`absolute top-6 right-6 sm:top-10 sm:right-10 px-5 py-2.5 rounded-full font-sora text-sm sm:text-base font-semibold ${
           theme === 'light' ? 'bg-white/10 text-blue-900 border border-white/20' : 'bg-gray-900/10 text-blue-100 border border-gray-700/20'
-        } shadow-xl backdrop-blur-sm`}
+        } shadow-xl backdrop-blur-sm glow-border`}
         initial={{ opacity: 0, x: 50 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.7, delay: 0.5 }}
@@ -299,6 +299,8 @@ const Project = () => {
               key={project.id}
               className="mb-6"
               variants={cardVariants}
+              initial="hidden"
+              animate="visible"
             >
               <Tilt
                 tiltMaxAngleX={10}
@@ -311,20 +313,24 @@ const Project = () => {
                 glareColor={theme === 'light' ? '#ffffff' : '#60A5FA'}
                 glarePosition="all"
               >
-                <div
+                <motion.div
                   className={`relative p-6 rounded-2xl backdrop-blur-lg ${
                     theme === 'light'
-                      ? 'bg-white/15 border border-white/30'
-                      : 'bg-gray-900/15 border border-gray-700/30'
-                  } shadow-2xl`}
+                      ? 'bg-white/15 border border-white/30 glow-border'
+                      : 'bg-gray-900/15 border border-gray-700/30 glow-border'
+                  } cursor-pointer`}
+                  variants={cardVariants}
+                  whileHover="hover"
+                  style={{ pointerEvents: 'auto' }}
                 >
-                  <img
+                  <motion.img
                     src={project.screenshot}
                     alt={project.title}
                     className="w-full h-56 sm:h-72 object-cover rounded-lg mb-5"
-                    style={{ filter: theme === 'light' ? 'drop-shadow(0 0 20px rgba(255,255,255,0.9))' : 'drop-shadow(0 0 20px rgba(96,165,250,0.9))' }}
+                    style={{ filter: theme === 'light' ? 'drop-shadow(0 0 20px rgba(255,255,255,0.9))' : 'drop-shadow(0 0 20px rgba(34,211,238,0.9))' }}
+                    whileHover={{ scale: 1.05 }}
                   />
-                  <h3 className={`text-xl sm:text-2xl font-bold font-sora mb-3 ${theme === 'light' ? 'text-gray-900' : 'text-gray-100'}`}>
+                  <h3 className={`text-xl sm:text-2xl font-bold font-sora mb-3 ${theme === 'light' ? 'text-gray-900' : 'text-gray-100'} text-shadow-neon`}>
                     {project.title}
                   </h3>
                   <p className={`text-sm sm:text-base font-sora mb-4 ${theme === 'light' ? 'text-gray-700' : 'text-gray-300'}`}>
@@ -332,7 +338,7 @@ const Project = () => {
                   </p>
                   <div className="flex flex-wrap gap-2 mb-5">
                     {project.tech.map((tech) => (
-                      <span
+                      <motion.span
                         key={tech}
                         className="px-3 py-1.5 rounded-full text-xs sm:text-sm font-sora font-medium"
                         style={{
@@ -341,31 +347,34 @@ const Project = () => {
                           border: `1px solid ${techColors[tech]}`,
                           boxShadow: `0 0 10px ${techColors[tech]}40`,
                         }}
+                        whileHover={{ scale: 1.1, boxShadow: `0 0 15px ${techColors[tech]}80` }}
                       >
                         {tech}
-                      </span>
+                      </motion.span>
                     ))}
                   </div>
                   <div className="flex gap-4">
-                    <a
+                    <motion.a
                       href={project.liveLink}
                       className={`flex-1 text-center px-5 py-2.5 rounded-full font-sora text-sm sm:text-base font-semibold ${
                         theme === 'light' ? 'bg-blue-600 text-white hover:bg-blue-700' : 'bg-blue-500 text-gray-900 hover:bg-blue-400'
-                      } transition-all duration-400 shadow-lg`}
+                      } transition-all duration-400 shadow-lg glow-border`}
+                      whileHover={{ scale: 1.05 }}
                     >
                       View Live
-                    </a>
-                    <a
+                    </motion.a>
+                    <motion.a
                       href={project.githubLink}
                       className={`flex-1 text-center px-5 py-2.5 rounded-full font-sora text-sm sm:text-base font-semibold ${
                         theme === 'light' ? 'bg-white/20 text-gray-900 hover:bg-white/30' : 'bg-gray-800/20 text-gray-200 hover:bg-gray-700/30'
-                      } transition-all duration-400 shadow-lg`}
+                      } transition-all duration-400 shadow-lg glow-border`}
+                      whileHover={{ scale: 1.05 }}
                     >
                       GitHub Code
-                    </a>
+                    </motion.a>
                   </div>
-                </div>
-              </Tilt>
+                </motion.div>
+              </Tilt> hhhh
             </motion.div>
           ))}
         </Masonry>

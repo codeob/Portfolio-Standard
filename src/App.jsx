@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
 import Navbar from './components/Navbar';
-import HeroSection from './components/HeroSection';
-import Skills from './components/Skills';
-import Project from './components/Project';
-import Footer from './components/Footer';
-import AnimatedBackground from './components/AnimatedBackground';
-import { ThemeContext, ThemeProvider } from './components/ThemeContext';
+import HeroSection from './Components/HeroSection';
+import Skills from './Components/Skills';
+import Project from './Components/Project';
+import Footer from './Components/Footer';
+import AnimatedBackground from './Components/AnimatedBackground';
+import { ThemeContext, ThemeProvider } from './Components/ThemeContext';
 import Contact from './Components/Contact';
 
 function AppContent() {
