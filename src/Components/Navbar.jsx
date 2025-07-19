@@ -191,7 +191,7 @@ function Navbar() {
                 { id: 'hero', label: 'Home' },
                 { id: 'skills', label: 'Skills' },
                 { id: 'projects', label: 'Projects' },
-                { id: 'footer', label: 'Contact' },
+                { id: 'contact', label: 'Contact' },
                 { id: 'cv', label: 'CV', href: '/cv.pdf' },
                 { id: 'github', label: 'GitHub', href: 'https://github.com' },
               ].map((item, index) => (

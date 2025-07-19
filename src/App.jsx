@@ -6,6 +6,7 @@ import Project from './components/Project';
 import Footer from './components/Footer';
 import AnimatedBackground from './components/AnimatedBackground';
 import { ThemeContext, ThemeProvider } from './components/ThemeContext';
+import Contact from './Components/Contact';
 
 function AppContent() {
   const { theme } = useContext(ThemeContext);
@@ -18,6 +19,7 @@ function AppContent() {
         <HeroSection />
         <Skills />
         <Project />
+        <Contact />
         <Footer />
       </div>
     </div>
