@@ -1,386 +1,219 @@
-import React, { useEffect, useRef, useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.168.0/build/three.module.min.js';
-import Masonry from 'react-masonry-css';
-import Tilt from 'react-parallax-tilt';
-import { ThemeContext } from './ThemeContext';
 
-// Project data
 const projects = [
   {
     id: 1,
-    title: 'E-commerce App',
-    description: 'A scalable online store with secure payments and user authentication.',
-    screenshot: 'https://i.pinimg.com/1200x/92/10/e6/9210e6e5e4f1da2a943715809248fff5.jpg',
-    tech: ['React', 'Node.js', 'MongoDB', 'Tailwind'],
-    category: 'Fullstack',
-    liveLink: '#',
-    githubLink: '#',
+    title: 'Event Planner',
+    description: 'A web app for organizing events with real-time updates.',
+    screenshot: 'https://i.pinimg.com/1200x/d1/56/0d/d1560d593e2839a644c74c54a05f77aa.jpg',
+    tech: ['React', 'Firebase', 'Node.js'],
+    category: 'Full Stack',
+    liveLink: 'https://effortless-sunshine-c5b87e.netlify.app/',
+    githubLink: 'git@github.com:allianatenadu/Planner.git',
   },
   {
     id: 2,
-    title: 'Game App',
-    description: 'A real-time multiplayer 2D game with dynamic interactions.',
-    screenshot: 'https://i.pinimg.com/1200x/04/36/f0/0436f0244990a805322a84f12a0182a5.jpg',
-    tech: ['React', 'Firebase', 'JavaScript'],
-    category: 'Games',
-    liveLink: '#',
-    githubLink: '#',
+    title: 'Guessing Game',
+    description: 'An interactive number guessing game.',
+    screenshot: 'https://i.pinimg.com/1200x/42/ec/85/42ec856b3dba1595c7be4cff23965c34.jpg',
+    tech: ['JavaScript', 'React'],
+    category: 'Frontend',
+    liveLink: 'https://polite-cajeta-65e913.netlify.app/',
+    githubLink: 'https://github.com/codeob/Game.git',
   },
   {
     id: 3,
-    title: 'Todo List App',
-    description: 'A productivity app with seamless task management and cloud sync.',
-    screenshot: 'https://i.pinimg.com/1200x/db/28/57/db2857a5ebabfa68b4e6076f076dfd07.jpg',
-    tech: ['React', 'Firebase', 'Tailwind'],
+    title: 'Movie',
+    description: 'An interactive movie browsing platform.',
+    screenshot: 'https://i.pinimg.com/1200x/2b/30/67/2b30679ede227a620636d13f4c2ec013.jpg',
+    tech: ['React'],
     category: 'Frontend',
-    liveLink: '#',
-    githubLink: '#',
+    liveLink: 'https://cozy-meringue-a0fdad.netlify.app/',
+    githubLink: 'https://github.com/codeob/react-9-home-work.git',
   },
   {
     id: 4,
-    title: 'Event Planner App',
-    description: 'An event scheduling app with integrated calendar functionality.',
-    screenshot: 'https://i.pinimg.com/1200x/eb/b8/8e/ebb88e6b4b1e1ac1971ffdde5c55aa66.jpg',
-    tech: ['React', 'Node.js', 'MongoDB', 'Express'],
-    category: 'Fullstack',
-    liveLink: '#',
-    githubLink: '#',
+    title: 'Todo List',
+    description: 'A task management app with CRUD functionality.',
+    screenshot: 'https://i.pinimg.com/1200x/c5/78/1d/c5781d72c1298dc869b74702b4ee42a0.jpg',
+    tech: ['React', 'Local Storage'],
+    category: 'Frontend',
+    liveLink: 'https://curious-marshmallow-8df031.netlify.app/',
+    githubLink: 'git@github.com:codeob/TodoList.git',
+  },
+  {
+    id: 5,
+    title: 'E-commerce Website',
+    description: 'A full-featured online store with payment integration.',
+    screenshot: 'https://i.pinimg.com/1200x/53/00/63/5300630244e710970b63eac76570c343.jpg',
+    tech: ['React', 'Node.js', 'MongoDB'],
+    category: 'Full Stack',
+    liveLink: 'https://lustrous-rolypoly-7a6031.netlify.app/',
+    githubLink: 'git@github.com:codeob/E-commerce.git',
+  },
+  {
+    id: 6,
+    title: 'Spices Store',
+    description: 'A mobile-friendly spices store platform.',
+    screenshot: 'https://i.pinimg.com/1200x/e9/81/e1/e981e186761b7955be31f9d9cfe8c9f1.jpg',
+    tech: ['React', 'Tailwind'],
+    category: 'Full Stack',
+    liveLink: 'https://startling-speculoos-5080dd.netlify.app/',
+    githubLink: 'https://github.com/codeob/Spices-product.git',
   },
 ];
 
-// Tech color mapping
 const techColors = {
   React: '#61DAFB',
   'Node.js': '#3C873A',
   MongoDB: '#47A248',
   Tailwind: '#06B6D4',
   Firebase: '#FFCA28',
-  JavaScript: '#F7DF1E',
+  JavaScript: '#FFCA28',
   Express: '#000000',
+  'Local Storage': '#6B7280',
+  'React Native': '#61DAFB',
+  'Express.js': '#000000',
 };
 
-// Animation variants
 const containerVariants = {
-  hidden: { opacity: 0, y: 80 },
+  hidden: { opacity: 0, y: 60 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 1, ease: 'easeOut', staggerChildren: 0.15 },
+    transition: { duration: 1, ease: 'easeInOut', staggerChildren: 0.15 },
   },
 };
 
 const cardVariants = {
-  hidden: { opacity: 0, scale: 0.85, rotateX: 10 },
-  visible: { opacity: 1, scale: 1, rotateX: 0, transition: { duration: 0.6, ease: 'easeOut' } },
+  hidden: { opacity: 0, y: 20, scale: 0.9 },
+  visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.6, ease: 'easeInOut' } },
   hover: {
     scale: 1.05,
-    y: -10,
-    rotateX: 5,
-    boxShadow: '0 0 40px rgba(59, 130, 246, 0.8), 0 0 60px rgba(34, 211, 238, 0.6)',
-    transition: { duration: 0.4, ease: 'easeOut' },
+    rotate: 1,
+    boxShadow: '0 0 15px rgba(37, 99, 235, 0.6)',
+    transition: { duration: 0.3, ease: 'easeOut' },
   },
 };
 
 const titleVariants = {
-  hidden: { opacity: 0, y: -50 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: 'easeOut' } },
+  hidden: { opacity: 0, y: -20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeInOut' } },
 };
 
-const Project = () => {
-  const { theme } = useContext(ThemeContext);
-  const canvasRef = useRef(null);
+const buttonVariants = {
+  hover: { scale: 1.05, boxShadow: '0 0 12px rgba(37, 99, 235, 0.6)', transition: { duration: 0.3, ease: 'easeOut' } },
+};
+
+function Project() {
   const [filter, setFilter] = useState('All');
 
-  useEffect(() => {
-    if (!canvasRef.current) {
-      console.error('Project: Canvas ref is null');
-      return;
-    }
-
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer({ canvas: canvasRef.current, alpha: true });
-    if (!renderer) {
-      console.error('Project: Failed to initialize WebGL renderer');
-      return;
-    }
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-
-    const particleCount = window.innerWidth < 768 ? 5000 : 10000;
-    const particlesGeometry = new THREE.BufferGeometry();
-    const posArray = new Float32Array(particleCount * 3);
-    const velocityArray = new Float32Array(particleCount * 3);
-    const colorArray = new Float32Array(particleCount * 3);
-
-    for (let i = 0; i < particleCount * 3; i += 3) {
-      posArray[i] = (Math.random() - 0.5) * 50;
-      posArray[i + 1] = (Math.random() - 0.5) * 50;
-      posArray[i + 2] = (Math.random() - 0.5) * 50;
-      velocityArray[i] = (Math.random() - 0.5) * 0.04;
-      velocityArray[i + 1] = (Math.random() - 0.5) * 0.04;
-      velocityArray[i + 2] = (Math.random() - 0.5) * 0.04;
-      colorArray[i] = theme === 'light' ? 59/255 : Math.random() > 0.5 ? 96/255 : 34/255;
-      colorArray[i + 1] = theme === 'light' ? 130/255 : Math.random() > 0.5 ? 165/255 : 211/255;
-      colorArray[i + 2] = theme === 'light' ? 246/255 : Math.random() > 0.5 ? 250/255 : 238/255;
-    }
-
-    particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
-    particlesGeometry.setAttribute('velocity', new THREE.BufferAttribute(velocityArray, 3));
-    particlesGeometry.setAttribute('color', new THREE.BufferAttribute(colorArray, 3));
-
-    const material = new THREE.PointsMaterial({
-      size: window.innerWidth < 768 ? 0.06 : 0.1,
-      vertexColors: true,
-      blending: THREE.AdditiveBlending,
-      transparent: true,
-      sizeAttenuation: true,
-      opacity: 0.97,
-    });
-
-    const particlesMesh = new THREE.Points(particlesGeometry, material);
-    scene.add(particlesMesh);
-    camera.position.z = 7;
-
-    let mouseX = 0;
-    let mouseY = 0;
-    const handleMouseMove = (event) => {
-      mouseX = (event.clientX / window.innerWidth) * 2 - 1;
-      mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
-    };
-    window.addEventListener('mousemove', handleMouseMove);
-
-    const animate = () => {
-      const positions = particlesGeometry.attributes.position.array;
-      const velocities = particlesGeometry.attributes.velocity.array;
-      const colors = particlesGeometry.attributes.color.array;
-
-      for (let i = 0; i < particleCount * 3; i += 3) {
-        positions[i] += velocities[i];
-        positions[i + 1] += velocities[i + 1];
-        positions[i + 2] += velocities[i + 2];
-
-        if (Math.abs(positions[i]) > 25) velocities[i] *= -0.9;
-        if (Math.abs(positions[i + 1]) > 25) velocities[i + 1] *= -0.9;
-        if (Math.abs(positions[i + 2]) > 25) velocities[i + 2] *= -0.9;
-
-        const distance = Math.sqrt(positions[i] ** 2 + positions[i + 1] ** 2 + positions[i + 2] ** 2);
-        const pulse = Math.sin(Date.now() * 0.002 + distance * 0.2) * 0.05;
-        velocities[i] += pulse * mouseX * 0.015;
-        velocities[i + 1] += pulse * mouseY * 0.015;
-
-        const colorShift = Math.sin(Date.now() * 0.0008 + i) * 0.4 + 0.6;
-        colors[i] = (theme === 'light' ? 59/255 : Math.random() > 0.5 ? 96/255 : 34/255) * colorShift;
-        colors[i + 1] = (theme === 'light' ? 130/255 : Math.random() > 0.5 ? 165/255 : 211/255) * colorShift;
-        colors[i + 2] = (theme === 'light' ? 246/255 : Math.random() > 0.5 ? 250/255 : 238/255) * colorShift;
-      }
-
-      particlesGeometry.attributes.position.needsUpdate = true;
-      particlesGeometry.attributes.color.needsUpdate = true;
-      particlesMesh.rotation.y += 0.004;
-      particlesMesh.rotation.x += 0.002;
-      renderer.render(scene, camera);
-      requestAnimationFrame(animate);
-    };
-    animate();
-
-    const handleResize = () => {
-      camera.aspect = window.innerWidth / window.innerHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth, window.innerHeight);
-    };
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-      window.removeEventListener('mousemove', handleMouseMove);
-      renderer.dispose();
-    };
-  }, [theme]);
-
-  // Filter logic
-  const categories = ['All', 'Frontend', 'Fullstack', 'Games'];
+  const categories = ['All', 'Frontend', 'Full Stack', 'Game Development'];
   const filteredProjects = filter === 'All' ? projects : projects.filter((project) => project.category === filter);
 
-  // Masonry breakpoints
-  const breakpointColumnsObj = {
-    default: 3,
-    1100: 2,
-    700: 1,
-  };
-
   return (
-    <section
-      id="projects"
-      className="relative min-h-screen flex flex-col items-center px-4 sm:px-6 lg:px-8 py-16 z-10 bg-transparent"
-    >
-      <motion.div
-        className="fixed inset-0 z-0"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1.2 }}
-      >
-        <canvas
-          ref={canvasRef}
-          className="w-full h-full"
-          style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh' }}
-        />
-      </motion.div>
+    <section id="projects" className="relative min-h-screen flex flex-col items-center px-4 sm:px-6 lg:px-8 py-12 z-10 bg-white in-view">
       <motion.h2
-        className={`relative text-4xl sm:text-5xl lg:text-7xl font-extrabold font-sora mb-16 text-center ${
-          theme === 'light' ? 'text-blue-900 text-shadow-neon' : 'text-blue-100 text-shadow-neon-dark'
-        }`}
+        className="relative text-2xl sm:text-3xl lg:text-4xl font-bold font-sans mb-8 text-center text-[#D97706]"
         variants={titleVariants}
         initial="hidden"
-        animate="visible"
+        whileInView="visible"
+        viewport={{ once: false, amount: 0.3 }}
       >
-        Projects I’m Proud Of ✨
+        My Projects
         <motion.div
-          className={`h-1.5 mt-3 mx-auto ${theme === 'light' ? 'bg-gradient-to-r from-blue-600 to-cyan-400' : 'bg-gradient-to-r from-blue-500 to-cyan-500'}`}
+          className="h-1 mt-2 mx-auto bg-gradient-to-r from-[#2563EB] to-[#D97706]"
           initial={{ width: 0 }}
-          animate={{ width: '60%', scale: [1, 1.1, 1] }}
-          transition={{ duration: 1.2, ease: 'easeOut', repeat: Infinity, repeatType: 'reverse', delay: 0.3 }}
+          animate={{ width: '50%' }}
+          transition={{ duration: 0.8, ease: 'easeInOut', delay: 0.2 }}
         />
       </motion.h2>
-
-      {/* Filter Buttons */}
-      <motion.div
-        className="flex flex-wrap justify-center gap-3 mb-12"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, delay: 0.3 }}
-      >
+      <motion.div className="flex flex-wrap justify-center gap-2 mb-10" variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.3 }}>
         {categories.map((category) => (
-          <button
+          <motion.button
             key={category}
             onClick={() => setFilter(category)}
-            className={`px-5 py-2.5 rounded-full font-sora text-sm sm:text-base font-semibold ${
-              filter === category
-                ? theme === 'light'
-                  ? 'bg-blue-600 text-white shadow-lg glow-border'
-                  : 'bg-blue-500 text-gray-900 shadow-lg glow-border'
-                : theme === 'light'
-                ? 'bg-white/20 text-gray-900 hover:bg-blue-200/30'
-                : 'bg-gray-800/20 text-gray-200 hover:bg-blue-600/30'
-            } backdrop-blur-sm border border-white/20 transition-all duration-400`}
+            className={`px-2 py-1 rounded-full font-sans text-xs sm:text-sm font-semibold ${
+              filter === category ? 'bg-[#2563EB] text-white shadow-md' : 'bg-[#E5E7EB] text-[#1F2937] hover:bg-[#2563EB]/20'
+            } border border-[#9CA3AF] transition-all duration-300 hover:scale-105 hover:shadow-md`}
+            variants={buttonVariants}
+            whileHover="hover"
+            style={{ pointerEvents: 'auto', zIndex: 10 }}
           >
             {category}
-          </button>
+          </motion.button>
         ))}
       </motion.div>
-
-      {/* Project Count */}
       <motion.div
-        className={`absolute top-6 right-6 sm:top-10 sm:right-10 px-5 py-2.5 rounded-full font-sora text-sm sm:text-base font-semibold ${
-          theme === 'light' ? 'bg-white/10 text-blue-900 border border-white/20' : 'bg-gray-900/10 text-blue-100 border border-gray-700/20'
-        } shadow-xl backdrop-blur-sm glow-border`}
+        className="absolute top-4 right-4 sm:top-6 sm:right-6 px-2 py-1 rounded-full font-sans text-xs font-semibold bg-[#E5E7EB] text-[#D97706] border border-[#9CA3AF] shadow-md"
         initial={{ opacity: 0, x: 50 }}
         animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.7, delay: 0.5 }}
+        transition={{ duration: 0.6, delay: 0.5 }}
       >
-        {projects.length} Projects Completed
+        {projects.length} Projects
       </motion.div>
-
-      {/* Masonry Grid */}
-      <motion.div
-        className="max-w-6xl mx-auto w-full"
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-      >
-        <Masonry
-          breakpointCols={breakpointColumnsObj}
-          className="flex w-auto -ml-3"
-          columnClassName="pl-3"
-        >
-          {filteredProjects.map((project) => (
-            <motion.div
-              key={project.id}
-              className="mb-6"
-              variants={cardVariants}
-              initial="hidden"
-              animate="visible"
-            >
-              <Tilt
-                tiltMaxAngleX={10}
-                tiltMaxAngleY={10}
-                perspective={1000}
-                scale={1.02}
-                transitionSpeed={400}
-                glareEnable={true}
-                glareMaxOpacity={0.3}
-                glareColor={theme === 'light' ? '#ffffff' : '#60A5FA'}
-                glarePosition="all"
-              >
-                <motion.div
-                  className={`relative p-6 rounded-2xl backdrop-blur-lg ${
-                    theme === 'light'
-                      ? 'bg-white/15 border border-white/30 glow-border'
-                      : 'bg-gray-900/15 border border-gray-700/30 glow-border'
-                  } cursor-pointer`}
-                  variants={cardVariants}
-                  whileHover="hover"
-                  style={{ pointerEvents: 'auto' }}
+      <motion.div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto w-full z-10" variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.3 }}>
+        {filteredProjects.map((project) => (
+          <motion.div
+            key={project.id}
+            className="relative p-3 rounded-lg bg-[#E5E7EB] border border-[#9CA3AF] hover:scale-105 hover:shadow-md transition-all duration-300"
+            variants={cardVariants}
+            whileHover="hover"
+            style={{ pointerEvents: 'auto', zIndex: 10 }}
+          >
+            <motion.img
+              src={project.screenshot}
+              alt={project.title}
+              className="w-full h-32 sm:h-36 object-cover rounded-md mb-3"
+              style={{ filter: 'drop-shadow(0 0 8px rgba(37, 99, 235, 0.6))' }}
+              whileHover={{ scale: 1.05, transition: { duration: 0.3, ease: 'easeOut' } }}
+            />
+            <h3 className="text-base font-bold font-sans mb-2 text-[#D97706]">{project.title}</h3>
+            <p className="text-xs font-sans mb-2 text-[#6B7280]">{project.description}</p>
+            <div className="flex flex-wrap gap-1 mb-3">
+              {project.tech.map((tech) => (
+                <motion.span
+                  key={tech}
+                  className="px-1 py-0.5 rounded-full text-xs font-sans font-medium hover:scale-110 hover:shadow-md transition-all duration-300"
+                  style={{
+                    background: `rgba(${parseInt(techColors[tech].slice(1,3),16)}, ${parseInt(techColors[tech].slice(3,5),16)}, ${parseInt(techColors[tech].slice(5,7),16)}, 0.2)`,
+                    color: techColors[tech],
+                    border: `1px solid ${techColors[tech]}`,
+                    pointerEvents: 'auto',
+                    zIndex: 10,
+                  }}
+                  whileHover={{ scale: 1.1, boxShadow: `0 0 8px ${techColors[tech]}80`, transition: { duration: 0.3, ease: 'easeOut' } }}
                 >
-                  <motion.img
-                    src={project.screenshot}
-                    alt={project.title}
-                    className="w-full h-56 sm:h-72 object-cover rounded-lg mb-5"
-                    style={{ filter: theme === 'light' ? 'drop-shadow(0 0 20px rgba(255,255,255,0.9))' : 'drop-shadow(0 0 20px rgba(34,211,238,0.9))' }}
-                    whileHover={{ scale: 1.05 }}
-                  />
-                  <h3 className={`text-xl sm:text-2xl font-bold font-sora mb-3 ${theme === 'light' ? 'text-gray-900' : 'text-gray-100'} text-shadow-neon`}>
-                    {project.title}
-                  </h3>
-                  <p className={`text-sm sm:text-base font-sora mb-4 ${theme === 'light' ? 'text-gray-700' : 'text-gray-300'}`}>
-                    {project.description}
-                  </p>
-                  <div className="flex flex-wrap gap-2 mb-5">
-                    {project.tech.map((tech) => (
-                      <motion.span
-                        key={tech}
-                        className="px-3 py-1.5 rounded-full text-xs sm:text-sm font-sora font-medium"
-                        style={{
-                          background: `rgba(${parseInt(techColors[tech].slice(1,3),16), parseInt(techColors[tech].slice(3,5),16), parseInt(techColors[tech].slice(5,7),16)}, 0.25)`,
-                          color: techColors[tech],
-                          border: `1px solid ${techColors[tech]}`,
-                          boxShadow: `0 0 10px ${techColors[tech]}40`,
-                        }}
-                        whileHover={{ scale: 1.1, boxShadow: `0 0 15px ${techColors[tech]}80` }}
-                      >
-                        {tech}
-                      </motion.span>
-                    ))}
-                  </div>
-                  <div className="flex gap-4">
-                    <motion.a
-                      href={project.liveLink}
-                      className={`flex-1 text-center px-5 py-2.5 rounded-full font-sora text-sm sm:text-base font-semibold ${
-                        theme === 'light' ? 'bg-blue-600 text-white hover:bg-blue-700' : 'bg-blue-500 text-gray-900 hover:bg-blue-400'
-                      } transition-all duration-400 shadow-lg glow-border`}
-                      whileHover={{ scale: 1.05 }}
-                    >
-                      View Live
-                    </motion.a>
-                    <motion.a
-                      href={project.githubLink}
-                      className={`flex-1 text-center px-5 py-2.5 rounded-full font-sora text-sm sm:text-base font-semibold ${
-                        theme === 'light' ? 'bg-white/20 text-gray-900 hover:bg-white/30' : 'bg-gray-800/20 text-gray-200 hover:bg-gray-700/30'
-                      } transition-all duration-400 shadow-lg glow-border`}
-                      whileHover={{ scale: 1.05 }}
-                    >
-                      GitHub Code
-                    </motion.a>
-                  </div>
-                </motion.div>
-              </Tilt> 
-            </motion.div>
-          ))}
-        </Masonry>
+                  {tech}
+                </motion.span>
+              ))}
+            </div>
+            <div className="flex gap-2">
+              <motion.a
+                href={project.liveLink}
+                className="flex-1 text-center px-2 py-1 rounded-full font-sans text-xs font-semibold bg-[#2563EB] text-white transition-all duration-300 shadow-md hover:scale-105 hover:shadow-lg"
+                variants={buttonVariants}
+                whileHover="hover"
+                style={{ pointerEvents: 'auto', zIndex: 10 }}
+              >
+                View Live
+              </motion.a>
+              <motion.a
+                href={project.githubLink}
+                className="flex-1 text-center px-2 py-1 rounded-full font-sans text-xs font-semibold bg-[#E5E7EB] text-[#1F2937] hover:bg-[#2563EB]/20 transition-all duration-300 shadow-md hover:scale-105 hover:shadow-lg"
+                variants={buttonVariants}
+                whileHover="hover"
+                style={{ pointerEvents: 'auto', zIndex: 10 }}
+              >
+                GitHub Code
+              </motion.a>
+            </div>
+          </motion.div>
+        ))}
       </motion.div>
     </section>
   );
-};
+}
 
 export default Project;

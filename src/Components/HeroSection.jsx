@@ -1,152 +1,110 @@
-import React, { useContext, useEffect } from 'react';
-import { motion, useAnimation } from 'framer-motion';
-import { scroller } from 'react-scroll';
-import { ThemeContext } from './ThemeContext';
-import Profile from '../assets/Profile.jpeg';
+import React from 'react';
+import { motion } from 'framer-motion';
+
+const socialLinks = [
+  { name: 'GitHub', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/github.svg', url: 'https://github.com/codeob', color: '#181717' },
+  { name: 'LinkedIn', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/linkedin.svg', url: 'https://linkedin.com/in/yourusername', color: '#0A66C2' },
+  { name: 'CV', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/adobeacrobatreader.svg', url: '/path/to/your-cv.pdf', color: '#D97706' },
+];
+
+const containerVariants = {
+  hidden: { opacity: 0, scale: 0.9 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: { duration: 1, ease: 'easeInOut', staggerChildren: 0.2 },
+  },
+};
+
+const childVariants = {
+  hidden: { opacity: 0, y: 20, scale: 0.9 },
+  visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.6, ease: 'easeInOut' } },
+};
+
+const buttonVariants = {
+  hover: { scale: 1.05, boxShadow: '0 0 12px rgba(37, 99, 235, 0.6)', transition: { duration: 0.3, ease: 'easeOut' } },
+};
+
+const socialVariants = {
+  hidden: { opacity: 0, scale: 0.8 },
+  visible: { opacity: 1, scale: 1, transition: { duration: 0.5 } },
+  hover: { scale: 1.1, transition: { duration: 0.3, ease: 'easeOut' } },
+};
 
 function HeroSection() {
-  const { theme } = useContext(ThemeContext);
-  const controls = useAnimation();
-
-  // Typewriter effect for name
-  const name = "Tawiah Obed";
-  const typewriterVariants = {
-    hidden: { width: 0 },
-    visible: {
-      width: 'auto',
-      transition: {
-        duration: name.length * 0.08,
-        ease: 'linear',
-        staggerChildren: 0.08,
-      },
-    },
-  };
-
-  const letterVariants = {
-    hidden: { opacity: 0, y: 15 },
-    visible: { opacity: 1, y: 0 },
-  };
-
-  // Container animation
-  const containerVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.8, ease: 'easeOut', staggerChildren: 0.2, delay: 0.5 },
-    },
-  };
-
-  const childVariants = {
-    hidden: { opacity: 0, y: 15 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-  };
-
-  const imageVariants = {
-    hidden: { opacity: 0, scale: 0.5, rotate: -30 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      rotate: 0,
-      transition: { duration: 1, ease: 'easeOut', type: 'spring', stiffness: 120 },
-    },
-  };
-
-  useEffect(() => {
-    // Pulse animation for image
-    controls.start({
-      scale: [1, 1.03, 1],
-      transition: { repeat: Infinity, duration: 2.5, ease: 'easeInOut' },
-    });
-  }, [controls]);
-
   return (
     <motion.section
       id="hero"
-      className={`relative min-h-[70vh] flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-20 sm:pt-24 lg:pt-28 ${
-        theme === 'light' ? 'bg-transparent' : 'bg-transparent'
-      }`}
+      className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20 bg-white in-view"
       variants={containerVariants}
       initial="hidden"
-      animate="visible"
+      whileInView="visible"
+      viewport={{ once: false, amount: 0.3 }}
+      style={{ zIndex: 10 }}
     >
-      <div className="container mx-auto flex flex-col lg:flex-row items-center justify-center gap-8 sm:gap-10 lg:gap-12">
-        {/* Profile Image */}
-        <motion.div
-          className="relative w-40 h-40 sm:w-48 sm:h-48 lg:w-56 lg:h-56"
-        >
-          <motion.img
-            src={Profile}
-            alt="Tawiah Obed"
-            className={`w-full h-full rounded-full object-cover shadow-2xl ${
-              theme === 'light'
-                ? 'border border-gradient-to-r from-blue-600 to-gold-500'
-                : 'border border-gradient-to-r from-blue-500 to-silver-500'
-            }`}
-          />
-          {/* Double Glow Effect */}
-          <motion.div
-            className={`absolute inset-0 rounded-full ${
-              theme === 'light' ? 'bg-blue-300' : 'bg-blue-500'
-            } opacity-30 blur-2xl`}
-          />
-          <motion.div
-            className={`absolute inset-0 rounded-full ${
-              theme === 'light' ? 'bg-gold-200' : 'bg-silver-200'
-            } opacity-20 blur-3xl`}
-            animate={{ scale: [1, 1.2, 1], opacity: [0.2, 0.4, 0.2] }}
-            transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
-          />
-        </motion.div>
-
-        {/* Text Content */}
-        <motion.div
-          className="text-center lg:text-left max-w-sm sm:max-w-md lg:max-w-lg"
-          variants={childVariants}
-          style={{ zIndex: 10 }}
-        >
-          <motion.h1
-            className={`font-serif font-bold text-2xl sm:text-3xl lg:text-4xl mb-3 ${
-              theme === 'light' ? 'text-blue-800' : 'text-blue-200'
-            } overflow-hidden ${theme === 'light' ? 'text-shadow-sm' : 'text-shadow-sm-dark'}`}
-            variants={typewriterVariants}
-          >
-            {name.split('').map((char, index) => (
-              <motion.span key={index} variants={letterVariants}>
-                {char}
-              </motion.span>
-            ))}
-          </motion.h1>
-          <motion.p
-            className={`text-xs sm:text-sm lg:text-md leading-relaxed ${
-              theme === 'light' ? 'text-gray-800' : 'text-gray-200'
-            } mb-4`}
-            variants={childVariants}
-          >
-            As a Full Stack Developer, I’ve gained hands-on experience building complete web and mobile applications from the ground up. I’ve worked with HTML, CSS, and Tailwind CSS to craft responsive, visually appealing user interfaces. On the frontend, I use JavaScript and React to build dynamic, interactive user experiences. For backend development, I work with Node.js, Express.js, and MongoDB to create secure, scalable APIs. I also use Firebase for real-time data and authentication. Additionally, I build cross-platform mobile apps using React Native. With this skillset, I can confidently bring your ideas to life — from design to deployment.
-          </motion.p>
-          <motion.button
-            className={`px-4 py-2 sm:px-5 sm:py-2.5 rounded-lg font-medium text-white ${
-              theme === 'light' ? 'bg-blue-600 hover:bg-blue-700' : 'bg-blue-500 hover:bg-blue-600'
-            } transition-colors duration-300 shadow-lg`}
-            whileHover={{
-              scale: 1.05,
-              boxShadow: theme === 'light' ? '0 0 20px rgba(59, 130, 246, 0.6)' : '0 0 20px rgba(96, 165, 250, 0.6)',
-            }}
+      <div className="container mx-auto flex flex-col lg:flex-row items-center justify-between gap-8">
+        <motion.div className="max-w-md" variants={childVariants}>
+          <h1 className="text-4xl sm:text-5xl font-bold font-sans text-[#D97706] mb-3">
+            Tawiah Obed
+          </h1>
+          <h2 className="text-lg sm:text-xl font-semibold font-sans text-[#6B7280] mb-4">
+            Full Stack Developer
+          </h2>
+          <p className="text-sm sm:text-base font-sans text-[#1F2937] mb-5">
+            Crafting responsive web and mobile applications with React, Node.js, and MongoDB to bring innovative solutions to life.
+          </p>
+          <motion.a
+            href="#projects"
+            className="inline-block px-6 py-2 rounded-lg font-sans text-sm sm:text-base font-semibold text-white bg-[#2563EB] transition-all duration-300 shadow-md hover:scale-105 hover:shadow-lg"
+            variants={buttonVariants}
+            whileHover="hover"
             whileTap={{ scale: 0.95 }}
-            onClick={() =>
-              scroller.scrollTo('projects', {
-                duration: 800,
-                delay: 0,
-                smooth: 'easeInOutQuart',
-              })
-            }
-            variants={childVariants}
-            onHoverStart={() => console.log('Hover started on Discover My Projects button')}
-            onHoverEnd={() => console.log('Hover ended on Discover My Projects button')}
+            style={{ pointerEvents: 'auto', zIndex: 10 }}
           >
-            Discover My Projects
-          </motion.button>
+            Explore My Work
+          </motion.a>
+          <motion.div className="flex gap-3 mt-5" variants={childVariants}>
+            {socialLinks.map((link) => (
+              <motion.a
+                key={link.name}
+                href={link.url}
+                className="relative group hover:scale-110 hover:shadow-md transition-all duration-300"
+                variants={socialVariants}
+                whileHover="hover"
+                style={{ pointerEvents: 'auto', zIndex: 10 }}
+              >
+                <img
+                  src={link.icon}
+                  alt={link.name}
+                  className="w-5 h-5 sm:w-6 sm:h-6"
+                  style={{ filter: 'drop-shadow(0 0 4px rgba(37, 99, 235, 0.6))' }}
+                />
+                <motion.div
+                  className="absolute inset-0 rounded-full"
+                  style={{ background: link.color, opacity: 0.3, filter: 'blur(10px)' }}
+                  initial={{ scale: 0, opacity: 0 }}
+                  whileHover={{ scale: 1.3, opacity: 0.6, transition: { duration: 0.3, ease: 'easeOut' } }}
+                />
+              </motion.a>
+            ))}
+          </motion.div>
+          <motion.div className="mt-6 bg-[#E5E7EB] p-5 rounded-lg shadow-md border border-[#9CA3AF]" variants={childVariants}>
+            <h3 className="text-lg font-semibold font-sans text-[#D97706] mb-3">About Me</h3>
+            <p className="text-sm font-sans text-[#1F2937]">
+              I’m a dedicated full stack developer focused on delivering high-quality, scalable digital experiences using modern technologies.
+            </p>
+          </motion.div>
+        </motion.div>
+        <motion.div
+          className="w-64 h-64 sm:w-80 sm:h-80"
+          variants={childVariants}
+          whileHover={{ scale: 1.05, rotate: 2, transition: { duration: 0.3, ease: 'easeOut' } }}
+        >
+          <img
+            src="https://source.unsplash.com/400x400/?portrait"
+            alt="Tawiah Obed"
+            className="w-full h-full rounded-lg object-cover shadow-md border-2 border-[#2563EB] transition-all duration-300 hover:scale-105"
+          />
         </motion.div>
       </div>
     </motion.section>

@@ -1,1 +1,43 @@
 @import "tailwindcss";
+
+html, body {
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  background-color: #ffffff;
+  color: #1f2937;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+html.dark, body.dark {
+  background-color: #111827;
+  color: #f3f4f6;
+}
+
+section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 80px;
+}
+
+.animate-glow-pulse {
+  animation: glow-pulse 2s ease-in-out infinite;
+}
+
+@keyframes glow-pulse {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(37, 99, 235, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 15px rgba(37, 99, 235, 0.6);
+  }
+}
+
+@media (max-width: 640px) {
+  section {
+    padding-top: 60px;
+  }
+}
