@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import MyProfile from '../assets/MyProfile.jpg'; // Adjust the path as necessary
 
 const socialLinks = [
   { name: 'GitHub', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/github.svg', url: 'https://github.com/codeob', color: '#181717' },
@@ -101,7 +102,7 @@ function HeroSection() {
           whileHover={{ scale: 1.05, rotate: 2, transition: { duration: 0.3, ease: 'easeOut' } }}
         >
           <img
-            src="https://source.unsplash.com/400x400/?portrait"
+            src={MyProfile}
             alt="Tawiah Obed"
             className="w-full h-full rounded-lg object-cover shadow-md border-2 border-[#2563EB] transition-all duration-300 hover:scale-105"
           />
