@@ -2,17 +2,17 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 const skills = [
-  { name: 'HTML', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/html5.svg', color: '#FFFFFF', subtitle: 'Frontend Markup', percentage: 90 },
-  { name: 'CSS', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/css3.svg', color: '#FFFFFF', subtitle: 'Styling Framework', percentage: 85 },
-  { name: 'Tailwind CSS', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/tailwindcss.svg', color: '#FFFFFF', subtitle: 'Utility-First CSS', percentage: 75 },
-  { name: 'JavaScript', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/javascript.svg', color: '#FFFFFF', subtitle: 'Dynamic Scripting', percentage: 80 },
-  { name: 'React.js', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/react.svg', color: '#FFFFFF', subtitle: 'Frontend Library', percentage: 80 },
-  { name: 'Node.js', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/nodedotjs.svg', color: '#FFFFFF', subtitle: 'Backend Runtime', percentage: 75 },
-  { name: 'MongoDB', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/mongodb.svg', color: '#FFFFFF', subtitle: 'NoSQL Database', percentage: 70 },
-  { name: 'Express.js', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/express.svg', color: '#FFFFFF', subtitle: 'Backend Framework', percentage: 70 },
-  { name: 'Firebase', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/firebase.svg', color: '#FFFFFF', subtitle: 'Real-Time Backend', percentage: 70 },
+  { name: 'HTML', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/html5.svg', color: '#E34F26', subtitle: 'Frontend Markup', percentage: 90 },
+  { name: 'CSS', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/css3.svg', color: '#1572B6', subtitle: 'Styling Framework', percentage: 85 },
+  { name: 'Tailwind CSS', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/tailwindcss.svg', color: '#06B6D4', subtitle: 'Utility-First CSS', percentage: 75 },
+  { name: 'JavaScript', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/javascript.svg', color: '#F7DF1E', subtitle: 'Dynamic Scripting', percentage: 80 },
+  { name: 'React.js', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/react.svg', color: '#61DAFB', subtitle: 'Frontend Library', percentage: 80 },
+  { name: 'Node.js', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/nodedotjs.svg', color: '#339933', subtitle: 'Backend Runtime', percentage: 75 },
+  { name: 'MongoDB', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/mongodb.svg', color: '#47A248', subtitle: 'NoSQL Database', percentage: 70 },
+  { name: 'Express.js', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/express.svg', color: '#444444', subtitle: 'Backend Framework', percentage: 70 },
+  { name: 'Firebase', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/firebase.svg', color: '#FFCA28', subtitle: 'Real-Time Backend', percentage: 70 },
   { name: 'GitHub', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/github.svg', color: '#FFFFFF', subtitle: 'Version Control', percentage: 85 },
-  { name: 'React Native', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/react.svg', color: '#FFFFFF', subtitle: 'Mobile Development', percentage: 65 },
+  { name: 'React Native', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/react.svg', color: '#61DAFB', subtitle: 'Mobile Development', percentage: 65 },
   { name: 'PostgreSQL', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/postgresql.svg', color: '#336791', subtitle: 'Relational Database', percentage: 70 },
   { name: 'Next.js', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/nextdotjs.svg', color: '#FFFFFF', subtitle: 'React Framework', percentage: 75 },
   { name: 'TypeScript', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/typescript.svg', color: '#3178C6', subtitle: 'Typed JavaScript', percentage: 75 },
@@ -87,7 +87,7 @@ function Skills() {
                 src={skill.icon}
                 alt={skill.name}
                 className="w-16 h-16 sm:w-20 sm:h-20"
-                style={{ filter: 'brightness(0) invert(1) drop-shadow(0 0 10px var(--accent-blue))' }}
+                style={{ filter: `drop-shadow(0 0 10px ${skill.color})` }}
               />
               <motion.div
                 className="absolute inset-0 rounded-full"
