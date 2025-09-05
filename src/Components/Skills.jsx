@@ -13,6 +13,10 @@ const skills = [
   { name: 'Firebase', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/firebase.svg', color: '#FFFFFF', subtitle: 'Real-Time Backend', percentage: 70 },
   { name: 'GitHub', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/github.svg', color: '#FFFFFF', subtitle: 'Version Control', percentage: 85 },
   { name: 'React Native', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/react.svg', color: '#FFFFFF', subtitle: 'Mobile Development', percentage: 65 },
+  { name: 'PostgreSQL', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/postgresql.svg', color: '#336791', subtitle: 'Relational Database', percentage: 70 },
+  { name: 'Next.js', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/nextdotjs.svg', color: '#FFFFFF', subtitle: 'React Framework', percentage: 75 },
+  { name: 'TypeScript', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/typescript.svg', color: '#3178C6', subtitle: 'Typed JavaScript', percentage: 75 },
+  { name: 'Vue.js', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/vuedotjs.svg', color: '#4FC08D', subtitle: 'Frontend Framework', percentage: 70 },
 ];
 
 const socialLinks = [
@@ -87,7 +91,7 @@ function Skills() {
               />
               <motion.div
                 className="absolute inset-0 rounded-full"
-                style={{ background: 'var(--accent-blue)', opacity: 0.4, filter: 'blur(30px)' }}
+                style={{ background: skill.color, opacity: 0.4, filter: 'blur(30px)' }}
                 animate={{ scale: [1, 1.2, 1], opacity: [0.4, 0.6, 0.4] }}
                 transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}
               />
@@ -105,14 +109,14 @@ function Skills() {
                 <motion.path
                   d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
                   fill="none"
-                  stroke="var(--accent-blue)"
+                  stroke={skill.color}
                   strokeWidth="2.5"
                   strokeDasharray="100, 100"
                   strokeDashoffset={100 - skill.percentage}
                   initial={{ strokeDashoffset: 100 }}
                   animate={{ strokeDashoffset: 100 - skill.percentage }}
                   transition={{ duration: 1.5, ease: 'easeInOut' }}
-                  style={{ filter: 'drop-shadow(0 0 10px var(--accent-blue))' }}
+                  style={{ filter: `drop-shadow(0 0 10px ${skill.color})` }}
                 />
               </svg>
             </div>
