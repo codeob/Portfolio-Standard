@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
-import { Toaster, toast } from 'react-hot-toast';
+import { Toaster } from 'react-hot-toast';
 
 const socialLinks = [
-  { name: 'GitHub', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/github.svg', url: 'https://github.com/codeob', color: '#181717' },
-  { name: 'LinkedIn', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/linkedin.svg', url: 'https://linkedin.com/in/yourusername', color: '#0A66C2' },
-  { name: 'CV', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/adobeacrobatreader.svg', url: '/path/to/your-cv.pdf', color: '#D97706' },
+  { name: 'Instagram', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/instagram.svg', url: 'https://www.instagram.com/tawiah_full_stack_developer/', color: '#FFFFFF' },
+  { name: 'LinkedIn', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/linkedin.svg', url: 'https://www.linkedin.com/in/tawiah-obed-a8867b2b6/', color: '#FFFFFF' },
+  { name: 'X', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/x.svg', url: 'https://x.com/ObedTawiah83026/', color: '#FFFFFF' },
+  { name: 'TikTok', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/tiktok.svg', url: 'https://www.tiktok.com/@tawiahcode', color: '#FFFFFF' },
+  { name: 'WhatsApp', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/whatsapp.svg', url: 'https://wa.me/0539526814', color: '#FFFFFF' },
 ];
 
 const containerVariants = {
@@ -22,124 +24,39 @@ const itemVariants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeInOut' } },
 };
 
-const buttonVariants = {
-  hover: { scale: 1.05, boxShadow: '0 0 12px rgba(37, 99, 235, 0.6)', transition: { duration: 0.3, ease: 'easeOut' } },
-};
-
 const socialVariants = {
   hidden: { opacity: 0, scale: 0.8 },
   visible: { opacity: 1, scale: 1, transition: { duration: 0.5 } },
-  hover: { scale: 1.1, transition: { duration: 0.3, ease: 'easeOut' } },
+  hover: { scale: 1.1, boxShadow: '0 0 12px #00FF88', transition: { duration: 0.3, ease: 'easeOut' } },
 };
 
 function Contact() {
-  const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (formData.name && formData.email && formData.subject && formData.message) {
-      toast.success('Message sent successfully!', {
-        style: {
-          background: '#E5E7EB',
-          color: '#1F2937',
-          border: '1px solid #2563EB',
-          boxShadow: '0 4px 10px rgba(0, 0, 0, 0.2)',
-          borderRadius: '8px',
-          padding: '10px 16px',
-        },
-      });
-      setFormData({ name: '', email: '', subject: '', message: '' });
-    } else {
-      toast.error('Please fill out all fields.', {
-        style: {
-          background: '#E5E7EB',
-          color: '#1F2937',
-          border: '1px solid #EF4444',
-          boxShadow: '0 4px 10px rgba(0, 0, 0, 0.2)',
-          borderRadius: '8px',
-          padding: '10px 16px',
-        },
-      });
-    }
-  };
-
   return (
-    <section id="contact" className="relative min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 py-12 z-10 bg-white in-view">
+    <section id="contact" className="relative min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 py-12 z-10 bg-[#000000] in-view">
       <Toaster position="top-right" />
       <motion.div className="max-w-4xl w-full z-10" variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.3 }}>
         <motion.h2
-          className="text-2xl sm:text-3xl lg:text-4xl font-bold font-sans mb-5 text-center text-[#D97706]"
+          className="text-2xl sm:text-3xl lg:text-4xl font-bold font-sans mb-5 text-center"
           variants={itemVariants}
+          style={{ background: 'linear-gradient(45deg, #00D4FF, #8A2BE2)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}
         >
           Get in Touch
           <motion.div
-            className="h-1 mt-2 mx-auto bg-gradient-to-r from-[#2563EB] to-[#D97706]"
+            className="h-1 mt-2 mx-auto bg-gradient-to-r from-[var(--accent-blue)] to-[var(--accent-purple)]"
             initial={{ width: 0 }}
             animate={{ width: '40%' }}
             transition={{ duration: 0.8, ease: 'easeInOut', delay: 0.2 }}
           />
         </motion.h2>
-        <motion.p className="text-sm sm:text-base font-sans mb-10 text-center text-[#6B7280]" variants={itemVariants}>
-          Have a project in mind? Let’s connect and make it happen.
+        <motion.p className="text-sm sm:text-base font-sans mb-6 text-center text-[var(--secondary-text)]" variants={itemVariants}>
+          I’m Obed Tawiah, a passionate full-stack developer based in Accra, Ghana, dedicated to crafting innovative, high-quality digital solutions that drive success. With expertise in modern web technologies and a commitment to excellence, I transform ideas into seamless, user-focused applications that deliver real value. Whether you need a stunning website, a robust backend system, or a complete digital overhaul, I’m here to bring your vision to life with precision and creativity. Let’s collaborate to create something extraordinary that elevates your brand and captivates your audience.
         </motion.p>
-        <motion.div className="p-5 sm:p-6 rounded-lg bg-[#E5E7EB] border border-[#9CA3AF] shadow-md" variants={itemVariants}>
-          <div className="space-y-5">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <input
-                type="text"
-                name="name"
-                value={formData.name}
-                onChange={handleInputChange}
-                placeholder="Your Name"
-                className="w-full p-3 rounded-lg font-sans text-xs sm:text-sm bg-white text-[#1F2937] border border-[#9CA3AF] focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/50 transition-all duration-300"
-              />
-              <input
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleInputChange}
-                placeholder="Your Email"
-                className="w-full p-3 rounded-lg font-sans text-xs sm:text-sm bg-white text-[#1F2937] border border-[#9CA3AF] focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/50 transition-all duration-300"
-              />
-            </div>
-            <input
-              type="text"
-              name="subject"
-              value={formData.subject}
-              onChange={handleInputChange}
-              placeholder="Subject"
-              className="w-full p-3 rounded-lg font-sans text-xs sm:text-sm bg-white text-[#1F2937] border border-[#9CA3AF] focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/50 transition-all duration-300"
-            />
-            <textarea
-              name="message"
-              value={formData.message}
-              onChange={handleInputChange}
-              placeholder="Your Message"
-              rows="5"
-              className="w-full p-3 rounded-lg font-sans text-xs sm:text-sm bg-white text-[#1F2937] border border-[#9CA3AF] focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/50 transition-all duration-300"
-            />
-            <motion.button
-              onClick={handleSubmit}
-              className="w-full py-2 rounded-lg font-sans text-sm sm:text-base font-semibold bg-[#2563EB] text-white transition-all duration-300 shadow-md hover:scale-105 hover:shadow-lg"
-              variants={buttonVariants}
-              whileHover="hover"
-              style={{ pointerEvents: 'auto', zIndex: 10 }}
-            >
-              Send Message
-            </motion.button>
-          </div>
-        </motion.div>
-        <motion.div className="flex justify-center gap-4 mt-10" variants={itemVariants}>
+        <motion.div className="flex flex-wrap justify-center gap-6 mt-10" variants={itemVariants}>
           {socialLinks.map((link) => (
             <motion.a
               key={link.name}
               href={link.url}
-              className="relative group hover:scale-110 hover:shadow-md transition-all duration-300"
+              className="relative group"
               variants={socialVariants}
               whileHover="hover"
               style={{ pointerEvents: 'auto', zIndex: 10 }}
@@ -147,26 +64,30 @@ function Contact() {
               <img
                 src={link.icon}
                 alt={link.name}
-                className="w-5 h-5 sm:w-6 sm:h-6"
-                style={{ filter: 'drop-shadow(0 0 4px rgba(37, 99, 235, 0.6))' }}
+                className="w-8 h-8 sm:w-10 sm:h-10"
+                style={{ filter: 'brightness(0) invert(1) drop-shadow(0 0 6px var(--accent-blue))' }}
               />
               <motion.div
                 className="absolute inset-0 rounded-full"
-                style={{ background: link.color, opacity: 0.3, filter: 'blur(10px)' }}
+                style={{ background: 'var(--accent-blue)', opacity: 0.3, filter: 'blur(10px)' }}
                 initial={{ scale: 0, opacity: 0 }}
                 whileHover={{ scale: 1.3, opacity: 0.6, transition: { duration: 0.3, ease: 'easeOut' } }}
               />
+              <span className="mt-2 block text-center text-xs sm:text-sm font-sans text-[var(--primary-text)]">{link.name}</span>
             </motion.a>
           ))}
         </motion.div>
-        <motion.div className="mt-10 w-full max-w-4xl p-5 rounded-lg bg-[#E5E7EB] border border-[#9CA3AF] shadow-md" variants={itemVariants}>
+        <motion.div className="mt-10 w-full max-w-4xl p-5 rounded-lg bg-[var(--hover-bg)] border border-[var(--divider-border)] shadow-[0_0_10px_var(--accent-purple)]" variants={itemVariants}>
           <div className="w-full h-56 flex items-center justify-center">
-            <span className="text-base sm:text-lg font-sans font-medium text-[#1F2937]">
-              Location: Accra, Ghana
-            </span>
+            <img
+              src="https://i.pinimg.com/1200x/a0/64/16/a064165ad78693bf0bd239712642a000.jpg"
+              alt="Location: Accra, Ghana"
+              className="w-full h-full object-cover rounded-lg"
+              style={{ filter: 'drop-shadow(0 0 10px var(--accent-blue))' }}
+            />
           </div>
         </motion.div>
-        <motion.p className="text-center text-sm sm:text-base font-sans mt-8 text-[#D97706] font-semibold" variants={itemVariants}>
+        <motion.p className="text-center text-sm sm:text-base font-sans mt-8 text-[var(--accent-purple)] font-semibold" variants={itemVariants}>
           Let’s create something remarkable together.
         </motion.p>
       </motion.div>

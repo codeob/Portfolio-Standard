@@ -6,7 +6,6 @@ export function ThemeProvider({ children }) {
   const [theme, setTheme] = useState('light');
 
   useEffect(() => {
-    // Load theme from local storage, default to 'light'
     const savedTheme = localStorage.getItem('theme') || 'light';
     setTheme(savedTheme);
     if (savedTheme === 'dark') {

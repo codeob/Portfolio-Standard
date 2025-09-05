@@ -74,7 +74,7 @@ function App() {
 
   return (
     <motion.div
-      className="relative bg-white text-[#1F2937] min-h-screen px-4 sm:px-6 lg:px-8"
+      className="relative min-h-screen px-4 sm:px-6 lg:px-8 dark:bg-[var(--background)] dark:text-[var(--primary-text)]"
       variants={containerVariants}
       initial="hidden"
       animate="visible"

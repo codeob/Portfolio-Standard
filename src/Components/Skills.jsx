@@ -2,23 +2,23 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 const skills = [
-  { name: 'HTML', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/html5.svg', color: '#E34F26', subtitle: 'Frontend Markup', percentage: 90 },
-  { name: 'CSS', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/css3.svg', color: '#1572B6', subtitle: 'Styling Framework', percentage: 85 },
-  { name: 'Tailwind CSS', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/tailwindcss.svg', color: '#06B6D4', subtitle: 'Utility-First CSS', percentage: 75 },
-  { name: 'JavaScript', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/javascript.svg', color: '#F7DF1E', subtitle: 'Dynamic Scripting', percentage: 80 },
-  { name: 'React.js', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/react.svg', color: '#61DAFB', subtitle: 'Frontend Library', percentage: 80 },
-  { name: 'Node.js', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/nodedotjs.svg', color: '#3C873A', subtitle: 'Backend Runtime', percentage: 75 },
-  { name: 'MongoDB', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/mongodb.svg', color: '#47A248', subtitle: 'NoSQL Database', percentage: 70 },
-  { name: 'Express.js', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/express.svg', color: '#000000', subtitle: 'Backend Framework', percentage: 70 },
-  { name: 'Firebase', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/firebase.svg', color: '#FFCA28', subtitle: 'Real-Time Backend', percentage: 70 },
-  { name: 'GitHub', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/github.svg', color: '#181717', subtitle: 'Version Control', percentage: 85 },
-  { name: 'React Native', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/react.svg', color: '#61DAFB', subtitle: 'Mobile Development', percentage: 65 },
+  { name: 'HTML', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/html5.svg', color: '#FFFFFF', subtitle: 'Frontend Markup', percentage: 90 },
+  { name: 'CSS', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/css3.svg', color: '#FFFFFF', subtitle: 'Styling Framework', percentage: 85 },
+  { name: 'Tailwind CSS', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/tailwindcss.svg', color: '#FFFFFF', subtitle: 'Utility-First CSS', percentage: 75 },
+  { name: 'JavaScript', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/javascript.svg', color: '#FFFFFF', subtitle: 'Dynamic Scripting', percentage: 80 },
+  { name: 'React.js', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/react.svg', color: '#FFFFFF', subtitle: 'Frontend Library', percentage: 80 },
+  { name: 'Node.js', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/nodedotjs.svg', color: '#FFFFFF', subtitle: 'Backend Runtime', percentage: 75 },
+  { name: 'MongoDB', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/mongodb.svg', color: '#FFFFFF', subtitle: 'NoSQL Database', percentage: 70 },
+  { name: 'Express.js', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/express.svg', color: '#FFFFFF', subtitle: 'Backend Framework', percentage: 70 },
+  { name: 'Firebase', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/firebase.svg', color: '#FFFFFF', subtitle: 'Real-Time Backend', percentage: 70 },
+  { name: 'GitHub', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/github.svg', color: '#FFFFFF', subtitle: 'Version Control', percentage: 85 },
+  { name: 'React Native', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/react.svg', color: '#FFFFFF', subtitle: 'Mobile Development', percentage: 65 },
 ];
 
 const socialLinks = [
-  { name: 'GitHub', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/github.svg', url: 'https://github.com/codeob', color: '#181717' },
-  { name: 'LinkedIn', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/linkedin.svg', url: 'https://linkedin.com/in/yourusername', color: '#0A66C2' },
-  { name: 'CV', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/adobeacrobatreader.svg', url: '/path/to/your-cv.pdf', color: '#D97706' },
+  { name: 'GitHub', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/github.svg', url: 'https://github.com/codeob', color: '#FFFFFF' },
+  { name: 'LinkedIn', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/linkedin.svg', url: 'https://linkedin.com/in/yourusername', color: '#FFFFFF' },
+  { name: 'CV', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/adobeacrobatreader.svg', url: '/path/to/your-cv.pdf', color: '#FFFFFF' },
 ];
 
 const containerVariants = {
@@ -35,7 +35,7 @@ const cardVariants = {
   visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.5, ease: 'easeOut' } },
   hover: {
     scale: 1.05,
-    boxShadow: '0 0 20px rgba(37, 99, 235, 0.6)',
+    boxShadow: '0 0 20px #00FF88',
     transition: { duration: 0.3, ease: 'easeOut' },
   },
 };
@@ -48,21 +48,22 @@ const titleVariants = {
 const socialVariants = {
   hidden: { opacity: 0, scale: 0.8 },
   visible: { opacity: 1, scale: 1, transition: { duration: 0.5 } },
-  hover: { scale: 1.2, transition: { duration: 0.3, ease: 'easeOut' } },
+  hover: { scale: 1.2, boxShadow: '0 0 12px #00FF88', transition: { duration: 0.3, ease: 'easeOut' } },
 };
 
 function Skills() {
   return (
-    <section id="skills" className="relative min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 py-12 z-10 bg-white">
+    <section id="skills" className="relative min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 py-12 z-10 bg-[#000000]">
       <motion.h2
-        className="relative text-3xl sm:text-4xl lg:text-5xl font-bold font-sans mb-8 text-center text-[#D97706]"
+        className="relative text-3xl sm:text-4xl lg:text-5xl font-bold font-sans mb-8 text-center"
         variants={titleVariants}
         initial="hidden"
         animate="visible"
+        style={{ background: 'linear-gradient(45deg, #00D4FF, #8A2BE2)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}
       >
         Tech Stack Mastery
         <motion.div
-          className="h-1 mt-2 mx-auto bg-gradient-to-r from-[#2563EB] to-[#D97706]"
+          className="h-1 mt-2 mx-auto bg-gradient-to-r from-[var(--accent-blue)] to-[var(--accent-purple)]"
           initial={{ width: 0 }}
           animate={{ width: '50%' }}
           transition={{ duration: 1, ease: 'easeOut', delay: 0.2 }}
@@ -72,7 +73,7 @@ function Skills() {
         {skills.map((skill) => (
           <motion.div
             key={skill.name}
-            className="relative p-6 rounded-xl bg-[#E5E7EB] border border-[#9CA3AF] hover:scale-105 hover:shadow-lg transition-all duration-300"
+            className="relative p-6 rounded-xl bg-[var(--hover-bg)] border border-[var(--divider-border)] shadow-[0_0_10px_var(--accent-blue)]"
             variants={cardVariants}
             whileHover="hover"
             style={{ pointerEvents: 'auto', zIndex: 10 }}
@@ -82,36 +83,36 @@ function Skills() {
                 src={skill.icon}
                 alt={skill.name}
                 className="w-16 h-16 sm:w-20 sm:h-20"
-                style={{ filter: 'drop-shadow(0 0 10px rgba(37, 99, 235, 0.6)) brightness(1.2)' }}
+                style={{ filter: 'brightness(0) invert(1) drop-shadow(0 0 10px var(--accent-blue))' }}
               />
               <motion.div
                 className="absolute inset-0 rounded-full"
-                style={{ background: skill.color, opacity: 0.4, filter: 'blur(30px)' }}
+                style={{ background: 'var(--accent-blue)', opacity: 0.4, filter: 'blur(30px)' }}
                 animate={{ scale: [1, 1.2, 1], opacity: [0.4, 0.6, 0.4] }}
                 transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}
               />
             </div>
-            <h3 className="text-lg sm:text-xl font-semibold font-sans text-center text-[#1F2937]">{skill.name}</h3>
-            <p className="text-xs sm:text-sm font-sans text-center text-[#6B7280]">{skill.subtitle}</p>
+            <h3 className="text-lg sm:text-xl font-semibold font-sans text-center text-[var(--primary-text)]">{skill.name}</h3>
+            <p className="text-xs sm:text-sm font-sans text-center text-[var(--secondary-text)]">{skill.subtitle}</p>
             <div className="relative flex justify-center mt-4">
               <svg className="w-16 h-16" viewBox="0 0 36 36">
                 <path
                   d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
                   fill="none"
-                  stroke="#9CA3AF"
+                  stroke="#333333"
                   strokeWidth="2.5"
                 />
                 <motion.path
                   d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
                   fill="none"
-                  stroke={skill.color}
+                  stroke="var(--accent-blue)"
                   strokeWidth="2.5"
                   strokeDasharray="100, 100"
                   strokeDashoffset={100 - skill.percentage}
                   initial={{ strokeDashoffset: 100 }}
                   animate={{ strokeDashoffset: 100 - skill.percentage }}
                   transition={{ duration: 1.5, ease: 'easeInOut' }}
-                  style={{ filter: `drop-shadow(0 0 10px ${skill.color})` }}
+                  style={{ filter: 'drop-shadow(0 0 10px var(--accent-blue))' }}
                 />
               </svg>
             </div>
@@ -123,7 +124,7 @@ function Skills() {
           <motion.a
             key={link.name}
             href={link.url}
-            className="relative group hover:scale-125 hover:shadow-lg transition-all duration-300"
+            className="relative group"
             variants={socialVariants}
             whileHover="hover"
             style={{ pointerEvents: 'auto', zIndex: 10 }}
@@ -132,11 +133,11 @@ function Skills() {
               src={link.icon}
               alt={link.name}
               className="w-8 h-8"
-              style={{ filter: 'drop-shadow(0 0 8px rgba(37, 99, 235, 0.6))' }}
+              style={{ filter: 'brightness(0) invert(1) drop-shadow(0 0 8px var(--accent-blue))' }}
             />
             <motion.div
               className="absolute inset-0 rounded-full"
-              style={{ background: link.color, opacity: 0.3, filter: 'blur(15px)' }}
+              style={{ background: 'var(--accent-blue)', opacity: 0.3, filter: 'blur(15px)' }}
               initial={{ scale: 0, opacity: 0 }}
               whileHover={{ scale: 1.5, opacity: 0.7, transition: { duration: 0.3, ease: 'easeOut' } }}
             />
