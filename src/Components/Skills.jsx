@@ -14,7 +14,7 @@ const skills = [
   { name: 'GitHub', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/github.svg', color: '#FFFFFF', subtitle: 'Version Control', percentage: 85 },
   { name: 'React Native', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/react.svg', color: '#61DAFB', subtitle: 'Mobile Development', percentage: 65 },
   { name: 'PostgreSQL', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/postgresql.svg', color: '#336791', subtitle: 'Relational Database', percentage: 70 },
-  { name: 'Next.js', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/nextdotjs.svg', color: '#FFFFFF', subtitle: 'React Framework', percentage: 75 },
+  { name: 'Next.js', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/nextdotjs.svg', color: '#FFFFFF', subtitle: 'Frontend Framework', percentage: 75 },
   { name: 'TypeScript', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/typescript.svg', color: '#3178C6', subtitle: 'Typed JavaScript', percentage: 75 },
   { name: 'Vue.js', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/vuedotjs.svg', color: '#4FC08D', subtitle: 'Frontend Framework', percentage: 70 },
 ];
