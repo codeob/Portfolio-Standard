@@ -157,10 +157,10 @@ function HeroSection() {
         />
       </div>
 
-      <div className="max-w-6xl mx-auto px-6 py-20 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 relative z-10">
         <div className="text-center">
           <motion.h1 
-            className="text-5xl md:text-6xl font-extrabold mb-6 text-gradient text-reveal"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold mb-4 sm:mb-6 text-gradient text-reveal"
             variants={titleVariants}
             style={{ fontFamily: 'var(--font-heading)' }}
           >
@@ -168,11 +168,12 @@ function HeroSection() {
               initial={{ opacity: 0, y: 100 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.5 }}
+              className="block sm:inline"
             >
               Hello, I'm{' '}
             </motion.span>
             <motion.span 
-              className="text-blue-600"
+              className="text-blue-600 block sm:inline"
               initial={{ opacity: 0, scale: 0.5 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, delay: 1 }}
@@ -182,7 +183,7 @@ function HeroSection() {
           </motion.h1>
           
           <motion.h2 
-            className="text-xl md:text-2xl font-medium text-gray-600 mb-8"
+            className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-medium text-gray-600 mb-6 sm:mb-8 px-4"
             variants={childVariants}
             style={{ fontFamily: 'var(--font-body)' }}
           >
@@ -190,11 +191,12 @@ function HeroSection() {
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 1.2 }}
+              className="block sm:inline"
             >
               Full Stack Developer
             </motion.span>
             <motion.span
-              className="mx-2"
+              className="mx-1 sm:mx-2 block sm:inline"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 1.5 }}
@@ -205,13 +207,14 @@ function HeroSection() {
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 1.4 }}
+              className="block sm:inline"
             >
               Problem Solver
             </motion.span>
           </motion.h2>
           
           <motion.p 
-            className="text-lg text-gray-600 mb-12 max-w-2xl mx-auto leading-relaxed"
+            className="text-base sm:text-lg lg:text-xl text-gray-600 mb-8 sm:mb-10 lg:mb-12 max-w-xs sm:max-w-lg md:max-w-2xl mx-auto leading-relaxed px-4"
             variants={childVariants}
             style={{ fontFamily: 'var(--font-body)' }}
           >
@@ -220,12 +223,12 @@ function HeroSection() {
           </motion.p>
           
           <motion.div 
-            className="flex flex-col sm:flex-row gap-4 justify-center mb-12"
+            className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-8 sm:mb-10 lg:mb-12 px-4"
             variants={buttonVariants}
           >
             <motion.a
               href="#projects"
-              className="btn-primary inline-flex items-center justify-center px-8 py-4 text-lg font-semibold glow"
+              className="btn-primary inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold glow w-full sm:w-auto"
               variants={buttonVariants}
               whileHover="hover"
               whileTap="tap"
@@ -241,7 +244,7 @@ function HeroSection() {
             </motion.a>
             <motion.a
               href="#contact"
-              className="btn-outline inline-flex items-center justify-center px-8 py-4 text-lg font-semibold"
+              className="btn-outline inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold w-full sm:w-auto"
               variants={buttonVariants}
               whileHover="hover"
               whileTap="tap"
@@ -258,14 +261,14 @@ function HeroSection() {
           </motion.div>
           
           <motion.div 
-            className="flex justify-center space-x-6"
+            className="flex justify-center space-x-4 sm:space-x-6 px-4"
             variants={socialVariants}
           >
             {socialLinks.map((link, index) => (
               <motion.a
                 key={link.name}
                 href={link.url}
-                className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center hover:bg-blue-50 transition-colors duration-200 icon-hover"
+                className="w-10 h-10 sm:w-12 sm:h-12 bg-gray-100 rounded-full flex items-center justify-center hover:bg-blue-50 transition-colors duration-200 icon-hover"
                 variants={socialVariants}
                 whileHover="hover"
                 aria-label={`Visit my ${link.name} profile`}
@@ -276,7 +279,7 @@ function HeroSection() {
                 <img
                   src={link.icon}
                   alt={link.name}
-                  className="w-6 h-6"
+                  className="w-5 h-5 sm:w-6 sm:h-6"
                 />
               </motion.a>
             ))}

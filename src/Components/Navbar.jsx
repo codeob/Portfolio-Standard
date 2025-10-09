@@ -47,24 +47,24 @@ function Navbar() {
       initial="hidden"
       animate="visible"
     >
-      <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-4 flex justify-between items-center">
         <motion.div
-          className="text-xl font-bold text-gradient"
+          className="text-lg sm:text-xl font-bold text-gradient"
           variants={linkVariants}
           style={{ fontFamily: 'var(--font-heading)' }}
         >
           Tawiah Obed
         </motion.div>
-        
+
         {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center space-x-8">
+        <div className="hidden md:flex items-center space-x-6 lg:space-x-8">
           {navLinks.map((link) => (
             <motion.a
               key={link.name}
               href={link.href}
               className={`relative text-sm font-medium transition-all duration-200 ${
-                activeLink === link.name 
-                  ? 'text-blue-600' 
+                activeLink === link.name
+                  ? 'text-blue-600'
                   : 'text-gray-700 hover:text-blue-600'
               }`}
               variants={linkVariants}
@@ -86,11 +86,11 @@ function Navbar() {
 
         {/* Mobile Menu Button */}
         <button
-          className="md:hidden text-gray-700 focus:outline-none"
+          className="md:hidden text-gray-700 focus:outline-none p-2"
           onClick={toggleMenu}
           aria-label="Toggle menu"
         >
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={isOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16m-7 6h7"}></path>
           </svg>
         </button>
@@ -105,14 +105,14 @@ function Navbar() {
         animate={{ opacity: isOpen ? 1 : 0, height: isOpen ? 'auto' : 0 }}
         transition={{ duration: 0.3 }}
       >
-        <div className="px-6 py-4 space-y-4">
+        <div className="px-4 sm:px-6 py-4 space-y-3 sm:space-y-4">
           {navLinks.map((link) => (
             <a
               key={link.name}
               href={link.href}
-              className={`block text-sm font-medium transition-colors duration-200 ${
-                activeLink === link.name 
-                  ? 'text-blue-600' 
+              className={`block text-sm sm:text-base font-medium transition-colors duration-200 py-2 ${
+                activeLink === link.name
+                  ? 'text-blue-600'
                   : 'text-gray-700 hover:text-blue-600'
               }`}
               onClick={() => handleLinkClick(link.name)}

@@ -224,59 +224,59 @@ function Project() {
   return (
     <section
       id="projects"
-      className="py-20 bg-white"
+      className="py-12 sm:py-16 lg:py-20 bg-white"
       onKeyDown={handleKeyDown}
       tabIndex={0}
     >
-      <div className="max-w-6xl mx-auto px-6">
-        <motion.h2
-          className="text-3xl md:text-4xl font-bold text-center mb-16 text-gray-900"
-          variants={titleVariants}
-          initial="hidden"
-          whileInView="visible"
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <motion.h2
+          className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-8 sm:mb-12 lg:mb-16 text-gray-900 px-4"
+        variants={titleVariants}
+        initial="hidden"
+        whileInView="visible"
           viewport={{ once: true, amount: 0.3 }}
           style={{ fontFamily: 'var(--font-heading)' }}
-        >
+      >
           Featured Projects
         </motion.h2>
         
         <motion.div
-          className="flex flex-wrap justify-center gap-4 mb-12"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
+          className="flex flex-wrap justify-center gap-2 sm:gap-3 lg:gap-4 mb-8 sm:mb-10 lg:mb-12 px-4"
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
           viewport={{ once: true, amount: 0.3 }}
-        >
-          {categories.map((category) => (
-            <motion.button
-              key={category}
-              onClick={() => setFilter(category)}
-              className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
-                filter === category
+      >
+        {categories.map((category) => (
+          <motion.button
+            key={category}
+            onClick={() => setFilter(category)}
+              className={`px-3 sm:px-4 lg:px-6 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-200 ${
+              filter === category
                   ? 'bg-blue-600 text-white'
                   : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
               }`}
-              variants={buttonVariants}
-              whileHover="hover"
+            variants={buttonVariants}
+            whileHover="hover"
               style={{ fontFamily: 'var(--font-body)' }}
-            >
-              {category}
-            </motion.button>
-          ))}
-        </motion.div>
+          >
+            {category}
+          </motion.button>
+        ))}
+      </motion.div>
 
-        <motion.div 
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+      <motion.div
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4 sm:gap-6 lg:gap-8"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.3 }}
         >
           {filteredProjects.map((project, index) => (
-            <motion.div
-              key={project.id}
+              <motion.div
+                key={project.id}
               className="card overflow-hidden group relative"
-              variants={cardVariants}
+                variants={cardVariants}
               whileHover="hover"
               style={{
                 animationDelay: `${index * 0.1}s`
@@ -293,10 +293,10 @@ function Project() {
               
               <div className="relative z-10">
                 <div className="relative overflow-hidden">
-                  <motion.img
-                    src={project.screenshot}
-                    alt={project.title}
-                    className="w-full h-48 object-cover"
+                <motion.img
+                  src={project.screenshot}
+                  alt={project.title}
+                    className="w-full h-40 sm:h-48 lg:h-56 object-cover"
                     variants={imageVariants}
                     whileHover="hover"
                   />
@@ -305,27 +305,27 @@ function Project() {
                     whileHover={{ opacity: 0.3 }}
                   />
                   
-                  {/* Overlay with project info */}
+                  {/* Overlay with project info - hidden on mobile */}
                   <motion.div
-                    className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                    className="absolute inset-0 hidden sm:flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                     initial={{ scale: 0.8 }}
                     whileHover={{ scale: 1 }}
                   >
                     <motion.div
-                      className="bg-white/90 backdrop-blur-sm rounded-lg p-4 text-center"
+                      className="bg-white/90 backdrop-blur-sm rounded-lg p-3 lg:p-4 text-center"
                       initial={{ y: 20, opacity: 0 }}
                       whileHover={{ y: 0, opacity: 1 }}
                       transition={{ duration: 0.3 }}
                     >
-                      <h4 className="font-semibold text-gray-900 mb-2">Quick Preview</h4>
-                      <p className="text-sm text-gray-600">Click to explore</p>
+                      <h4 className="font-semibold text-gray-900 mb-1 lg:mb-2 text-sm lg:text-base">Quick Preview</h4>
+                      <p className="text-xs lg:text-sm text-gray-600">Click to explore</p>
                     </motion.div>
                   </motion.div>
                 </div>
                 
-                <div className="p-6">
+                <div className="p-4 sm:p-5 lg:p-6">
                   <motion.h3 
-                    className="text-xl font-semibold mb-3 text-gray-900"
+                    className="text-lg sm:text-xl font-semibold mb-2 sm:mb-3 text-gray-900"
                     style={{ fontFamily: 'var(--font-heading)' }}
                     whileHover={{ scale: 1.02 }}
                   >
@@ -333,7 +333,7 @@ function Project() {
                   </motion.h3>
                   
                   <motion.p 
-                    className="text-gray-600 mb-4 text-sm leading-relaxed"
+                    className="text-gray-600 mb-3 sm:mb-4 text-xs sm:text-sm leading-relaxed"
                     style={{ fontFamily: 'var(--font-body)' }}
                     initial={{ opacity: 0.8 }}
                     whileHover={{ opacity: 1 }}
@@ -342,7 +342,7 @@ function Project() {
                   </motion.p>
                   
                   <motion.div 
-                    className="flex flex-wrap gap-2 mb-6"
+                    className="flex flex-wrap gap-1.5 sm:gap-2 mb-4 sm:mb-6"
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     transition={{ duration: 0.5, delay: 0.3 }}
@@ -350,7 +350,7 @@ function Project() {
                     {project.tech.map((tech, techIndex) => (
                       <motion.span
                         key={tech}
-                        className="px-3 py-1 bg-gray-100 text-gray-700 text-xs font-medium rounded-full hover:bg-blue-100 hover:text-blue-700 transition-colors duration-200"
+                        className="px-2 sm:px-3 py-1 bg-gray-100 text-gray-700 text-xs font-medium rounded-full hover:bg-blue-100 hover:text-blue-700 transition-colors duration-200"
                         style={{ fontFamily: 'var(--font-body)' }}
                         initial={{ scale: 0, opacity: 0 }}
                         whileInView={{ scale: 1, opacity: 1 }}
@@ -366,22 +366,22 @@ function Project() {
                   </motion.div>
                   
                   <motion.div 
-                    className="flex gap-3"
+                    className="flex flex-col sm:flex-row gap-2 sm:gap-3"
                     variants={buttonVariants}
                   >
                     <motion.a
                       href={project.liveLink}
-                      className="btn-primary flex-1 text-center py-2 text-sm font-semibold"
+                      className="btn-primary flex-1 text-center py-2 sm:py-2.5 text-xs sm:text-sm font-semibold"
                       whileHover="hover"
                       whileTap="tap"
                       style={{ fontFamily: 'var(--font-body)' }}
-                    >
-                      View Project
-                    </motion.a>
+                  >
+                    View Project
+                  </motion.a>
                     <motion.a
                       href={project.githubLink || project.github}
-                      className="btn-outline flex-1 text-center py-2 text-sm font-semibold"
-                      whileHover="hover"
+                      className="btn-outline flex-1 text-center py-2 sm:py-2.5 text-xs sm:text-sm font-semibold"
+          whileHover="hover"
                       whileTap="tap"
                       style={{ fontFamily: 'var(--font-body)' }}
                     >

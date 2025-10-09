@@ -101,10 +101,10 @@ const iconVariants = {
 
 function Skills() {
   return (
-    <section id="skills" className="py-20 bg-gray-50">
-      <div className="max-w-6xl mx-auto px-6">
+    <section id="skills" className="py-12 sm:py-16 lg:py-20 bg-gray-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.h2
-          className="text-3xl md:text-4xl font-bold text-center mb-16 text-gray-900"
+          className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-8 sm:mb-12 lg:mb-16 text-gray-900 px-4"
           variants={titleVariants}
           initial="hidden"
           whileInView="visible"
@@ -115,7 +115,7 @@ function Skills() {
         </motion.h2>
         
         <motion.div 
-          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6"
+          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 sm:gap-4 lg:gap-6"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
@@ -124,7 +124,7 @@ function Skills() {
           {skills.map((skill, index) => (
             <motion.div
               key={skill.name}
-              className="card p-6 text-center group cursor-pointer relative overflow-hidden"
+              className="card p-3 sm:p-4 lg:p-6 text-center group cursor-pointer relative overflow-hidden"
               variants={cardVariants}
               whileHover="hover"
               style={{
@@ -143,11 +143,11 @@ function Skills() {
               
               <div className="relative z-10">
                 <motion.div 
-                  className="flex justify-center mb-4"
+                  className="flex justify-center mb-2 sm:mb-3 lg:mb-4"
                   variants={iconVariants}
                 >
                   <motion.div
-                    className="w-16 h-16 rounded-full flex items-center justify-center"
+                    className="w-10 h-10 sm:w-12 sm:h-12 lg:w-16 lg:h-16 rounded-full flex items-center justify-center"
                     style={{ 
                       backgroundColor: skill.bgColor,
                       border: `2px solid ${skill.color}40`
@@ -162,7 +162,7 @@ function Skills() {
                     <img
                       src={skill.icon}
                       alt={skill.name}
-                      className="w-8 h-8"
+                      className="w-5 h-5 sm:w-6 sm:h-6 lg:w-8 lg:h-8"
                       style={{ 
                         filter: `drop-shadow(0 2px 4px ${skill.color}40)`
                       }}
@@ -171,7 +171,7 @@ function Skills() {
                 </motion.div>
                 
                 <motion.h3 
-                  className="text-sm font-medium text-gray-700 group-hover:text-gray-900 transition-colors duration-200"
+                  className="text-xs sm:text-sm font-medium text-gray-700 group-hover:text-gray-900 transition-colors duration-200"
                   style={{ fontFamily: 'var(--font-body)' }}
                   whileHover={{ scale: 1.05 }}
                 >

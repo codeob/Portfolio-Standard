@@ -29,24 +29,24 @@ const socialVariants = {
 
 function Footer() {
   return (
-    <footer id="footer" className="bg-white border-t border-gray-200 py-12">
-      <div className="max-w-6xl mx-auto px-6">
-        <motion.div 
+    <footer id="footer" className="bg-white border-t border-gray-200 py-8 sm:py-10 lg:py-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.div
           className="text-center"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.3 }}
         >
-          <motion.div 
-            className="flex justify-center space-x-6 mb-8"
+          <motion.div
+            className="flex justify-center space-x-4 sm:space-x-6 mb-6 sm:mb-8"
             variants={itemVariants}
           >
             {socialLinks.map((link) => (
               <motion.a
                 key={link.name}
                 href={link.url}
-                className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center hover:bg-blue-50 transition-colors duration-200"
+                className="w-8 h-8 sm:w-10 sm:h-10 bg-gray-100 rounded-full flex items-center justify-center hover:bg-blue-50 transition-colors duration-200"
                 variants={socialVariants}
                 whileHover="hover"
                 aria-label={`Visit my ${link.name} profile`}
@@ -54,25 +54,25 @@ function Footer() {
                 <img
                   src={link.icon}
                   alt={link.name}
-                  className="w-5 h-5"
+                  className="w-4 h-4 sm:w-5 sm:h-5"
                   style={{ filter: 'brightness(0) saturate(100%) invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(97%)' }}
                 />
               </motion.a>
             ))}
           </motion.div>
-          
-          <motion.div 
-            className="border-t border-gray-200 pt-8"
+
+          <motion.div
+            className="border-t border-gray-200 pt-6 sm:pt-8"
             variants={itemVariants}
           >
-            <p 
-              className="text-gray-600 text-sm"
+            <p
+              className="text-gray-600 text-xs sm:text-sm"
               style={{ fontFamily: 'var(--font-body)' }}
             >
               © 2025 Tawiah Obed. All rights reserved.
             </p>
-            <p 
-              className="text-gray-500 text-sm mt-2"
+            <p
+              className="text-gray-500 text-xs sm:text-sm mt-1 sm:mt-2"
               style={{ fontFamily: 'var(--font-body)' }}
             >
               Built with ❤️ by Obed
