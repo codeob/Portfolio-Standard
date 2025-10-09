@@ -1,129 +1,128 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { useTheme } from './ThemeContext';
 
 const navLinks = [
   { name: 'Home', href: '#hero' },
+  { name: 'About', href: '#about' },
   { name: 'Skills', href: '#skills' },
   { name: 'Projects', href: '#projects' },
   { name: 'Contact', href: '#contact' },
 ];
 
-const socialLinks = [
-  { name: 'GitHub', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/github.svg', url: 'https://github.com/codeob', color: '#FFFFFF' },
-  { name: 'LinkedIn', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/linkedin.svg', url: 'https://linkedin.com/in/yourusername', color: '#FFFFFF' },
-  { name: 'CV', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/adobeacrobatreader.svg', url: '/path/to/your-cv.pdf', color: '#FFFFFF' },
-];
-
 const containerVariants = {
-  hidden: { opacity: 0, y: -50 },
+  hidden: { opacity: 0, y: -20 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.8, ease: 'easeInOut', staggerChildren: 0.1 },
+    transition: { duration: 0.6, ease: 'easeOut' },
   },
 };
 
 const linkVariants = {
-  hidden: { opacity: 0, y: -20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+  hidden: { opacity: 0, y: -10 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.4 } },
   hover: {
-    scale: 1.05,
-    color: '#00FF88',
-    boxShadow: '0 0 10px #00FF88',
-    transition: { duration: 0.3, ease: 'easeOut' },
+    color: 'var(--accent-blue)',
+    transition: { duration: 0.2, ease: 'easeOut' },
   },
-};
-
-const socialVariants = {
-  hidden: { opacity: 0, scale: 0.8 },
-  visible: { opacity: 1, scale: 1, transition: { duration: 0.5 } },
-  hover: { scale: 1.1, boxShadow: '0 0 12px #00FF88', transition: { duration: 0.3, ease: 'easeOut' } },
 };
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const context = useTheme();
-  const theme = context?.theme || 'dark';
-  const toggleTheme = context?.toggleTheme || (() => {});
+  const [activeLink, setActiveLink] = useState('Home');
+  
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
 
+  const handleLinkClick = (linkName) => {
+    setActiveLink(linkName);
+    setIsOpen(false);
+  };
+
   return (
     <motion.nav
-      className="fixed top-0 left-0 w-full bg-[#000000] border-b border-[var(--divider-border)] shadow-[0_0_10px_var(--accent-blue)] z-20"
+      className="fixed top-0 left-0 w-full bg-white/80 backdrop-blur-sm border-b border-gray-200 shadow-sm z-50"
       variants={containerVariants}
       initial="hidden"
       animate="visible"
     >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-2 flex justify-between items-center">
+      <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
         <motion.div
-          className="text-lg sm:text-xl lg:text-2xl font-bold font-sans text-[var(--accent-blue)]"
+          className="text-xl font-bold text-gradient"
           variants={linkVariants}
-          style={{ background: 'linear-gradient(45deg, #00D4FF, #8A2BE2)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}
+          style={{ fontFamily: 'var(--font-heading)' }}
         >
           Tawiah Obed
         </motion.div>
-        <div className="flex items-center gap-4">
-          <button
-            className="lg:hidden text-[var(--primary-text)] focus:outline-none"
-            onClick={toggleMenu}
-            aria-label="Toggle menu"
-          >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={isOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16m-7 6h7"}></path>
-            </svg>
-          </button>
-        </div>
-        <div
-          className={`${
-            isOpen ? 'flex' : 'hidden'
-          } lg:flex flex-col lg:flex-row absolute lg:static top-12 left-0 w-full lg:w-auto bg-[#000000] lg:bg-transparent shadow-[0_0_10px_var(--accent-blue)] lg:shadow-none z-10 lg:items-center gap-3 lg:gap-4 p-4 lg:p-0 transition-all duration-300`}
-        >
-          <div className="flex flex-col lg:flex-row gap-2 lg:gap-3">
-            {navLinks.map((link) => (
-              <motion.a
-                key={link.name}
-                href={link.href}
-                className="text-xs sm:text-sm font-sans font-medium text-[var(--primary-text)] hover:text-[var(--accent-green)] transition-all duration-300"
-                variants={linkVariants}
-                whileHover="hover"
-                style={{ pointerEvents: 'auto', zIndex: 20 }}
-                onClick={() => setIsOpen(false)}
-              >
-                {link.name}
-              </motion.a>
-            ))}
-          </div>
-          <div className="flex flex-col lg:flex-row gap-2 mt-3 lg:mt-0">
-            {socialLinks.map((link) => (
-              <motion.a
-                key={link.name}
-                href={link.url}
-                className="relative group"
-                variants={socialVariants}
-                whileHover="hover"
-                style={{ pointerEvents: 'auto', zIndex: 20 }}
-                onClick={() => setIsOpen(false)}
-              >
-                <img
-                  src={link.icon}
-                  alt={link.name}
-                  className="w-4 h-4 sm:w-5 sm:h-5"
-                  style={{ filter: 'brightness(0) invert(1) drop-shadow(0 0 6px var(--accent-blue))' }}
-                />
+        
+        {/* Desktop Navigation */}
+        <div className="hidden md:flex items-center space-x-8">
+          {navLinks.map((link) => (
+            <motion.a
+              key={link.name}
+              href={link.href}
+              className={`relative text-sm font-medium transition-all duration-200 ${
+                activeLink === link.name 
+                  ? 'text-blue-600' 
+                  : 'text-gray-700 hover:text-blue-600'
+              }`}
+              variants={linkVariants}
+              whileHover="hover"
+              onClick={() => handleLinkClick(link.name)}
+              style={{ fontFamily: 'var(--font-body)' }}
+            >
+              {link.name}
+              {activeLink === link.name && (
                 <motion.div
-                  className="absolute inset-0 rounded-full"
-                  style={{ background: 'var(--accent-blue)', opacity: 0.3, filter: 'blur(10px)' }}
-                  initial={{ scale: 0, opacity: 0 }}
-                  whileHover={{ scale: 1.3, opacity: 0.6, transition: { duration: 0.3, ease: 'easeOut' } }}
+                  className="absolute -bottom-1 left-0 right-0 h-0.5 bg-blue-600"
+                  layoutId="activeIndicator"
+                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
                 />
-              </motion.a>
-            ))}
-          </div>
+              )}
+            </motion.a>
+          ))}
         </div>
+
+        {/* Mobile Menu Button */}
+        <button
+          className="md:hidden text-gray-700 focus:outline-none"
+          onClick={toggleMenu}
+          aria-label="Toggle menu"
+        >
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={isOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16m-7 6h7"}></path>
+          </svg>
+        </button>
       </div>
+
+      {/* Mobile Navigation */}
+      <motion.div
+        className={`md:hidden bg-white border-t border-gray-200 ${
+          isOpen ? 'block' : 'hidden'
+        }`}
+        initial={{ opacity: 0, height: 0 }}
+        animate={{ opacity: isOpen ? 1 : 0, height: isOpen ? 'auto' : 0 }}
+        transition={{ duration: 0.3 }}
+      >
+        <div className="px-6 py-4 space-y-4">
+          {navLinks.map((link) => (
+            <a
+              key={link.name}
+              href={link.href}
+              className={`block text-sm font-medium transition-colors duration-200 ${
+                activeLink === link.name 
+                  ? 'text-blue-600' 
+                  : 'text-gray-700 hover:text-blue-600'
+              }`}
+              onClick={() => handleLinkClick(link.name)}
+              style={{ fontFamily: 'var(--font-body)' }}
+            >
+              {link.name}
+            </a>
+          ))}
+        </div>
+      </motion.div>
     </motion.nav>
   );
 }

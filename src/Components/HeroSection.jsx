@@ -1,161 +1,287 @@
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import MyProfile from '../assets/MyProfile.jpg';
+import { motion } from 'framer-motion';
 
 const socialLinks = [
-  { name: 'GitHub', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/github.svg', url: 'https://github.com/codeob', color: '#FFFFFF' },
-  { name: 'LinkedIn', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/linkedin.svg', url: 'https://linkedin.com/in/yourusername', color: '#FFFFFF' },
-  { name: 'CV', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/adobeacrobatreader.svg', url: '/path/to/your-cv.pdf', color: '#FFFFFF' },
+  { name: 'GitHub', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/github.svg', url: 'https://github.com/codeob' },
+  { name: 'LinkedIn', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/linkedin.svg', url: 'https://linkedin.com/in/yourusername' },
+  { name: 'Email', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/gmail.svg', url: 'mailto:your.email@example.com' },
 ];
 
-const taglines = ['Web Developer', 'Problem Solver', 'Innovator'];
-
 const containerVariants = {
-  hidden: { opacity: 0, y: 50 },
+  hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    y: 0,
-    transition: { duration: 1.2, ease: 'easeInOut', staggerChildren: 0.3 },
+    transition: { 
+      duration: 1.2, 
+      ease: [0.4, 0, 0.2, 1], 
+      staggerChildren: 0.3,
+      delayChildren: 0.2
+    },
   },
 };
 
 const childVariants = {
-  hidden: { opacity: 0, y: 30, scale: 0.95 },
-  visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.8, ease: 'easeInOut' } },
+  hidden: { 
+    opacity: 0, 
+    y: 50,
+    scale: 0.9
+  },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    scale: 1,
+    transition: { 
+      duration: 0.8, 
+      ease: [0.4, 0, 0.2, 1] 
+    } 
+  },
+};
+
+const titleVariants = {
+  hidden: { 
+    opacity: 0, 
+    y: 100,
+    rotateX: -90
+  },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    rotateX: 0,
+    transition: { 
+      duration: 1.2, 
+      ease: [0.4, 0, 0.2, 1],
+      delay: 0.3
+    } 
+  },
 };
 
 const buttonVariants = {
-  hover: { scale: 1.1, boxShadow: '0 0 15px #00FF88', transition: { duration: 0.3, ease: 'easeOut' } },
+  hidden: { 
+    opacity: 0, 
+    scale: 0.8,
+    y: 30
+  },
+  visible: { 
+    opacity: 1, 
+    scale: 1,
+    y: 0,
+    transition: { 
+      duration: 0.6, 
+      ease: [0.4, 0, 0.2, 1],
+      delay: 0.8
+    } 
+  },
+  hover: { 
+    scale: 1.05,
+    y: -2,
+    transition: { duration: 0.3, ease: [0.4, 0, 0.2, 1] } 
+  },
+  tap: {
+    scale: 0.95,
+    transition: { duration: 0.1 }
+  }
 };
 
 const socialVariants = {
-  hidden: { opacity: 0, scale: 0.8 },
-  visible: { opacity: 1, scale: 1, transition: { duration: 0.5 } },
-  hover: { scale: 1.2, rotate: 5, boxShadow: '0 0 12px #00FF88', transition: { duration: 0.3, ease: 'easeOut' } },
+  hidden: { 
+    opacity: 0, 
+    scale: 0.5,
+    rotate: -180
+  },
+  visible: { 
+    opacity: 1, 
+    scale: 1,
+    rotate: 0,
+    transition: { 
+      duration: 0.8, 
+      ease: [0.4, 0, 0.2, 1],
+      delay: 1.2
+    } 
+  },
+  hover: { 
+    scale: 1.2,
+    rotate: 5,
+    y: -5,
+    transition: { duration: 0.3, ease: [0.4, 0, 0.2, 1] } 
+  },
 };
 
 function HeroSection() {
-  const [currentTagline, setCurrentTagline] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentTagline((prev) => (prev + 1) % taglines.length);
-    }, 3000);
-    return () => clearInterval(interval);
-  }, []);
 
   return (
     <motion.section
       id="hero"
-      className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 py-16 bg-[#000000]"
+      className="relative min-h-screen flex items-center justify-center bg-white overflow-hidden"
       variants={containerVariants}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: false, amount: 0.3 }}
-      style={{ zIndex: 10 }}
+      viewport={{ once: true, amount: 0.3 }}
     >
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute w-64 h-64 bg-[var(--accent-blue)]/10 rounded-full filter blur-3xl top-10 left-10 animate-pulse" />
-        <div className="absolute w-64 h-64 bg-[var(--accent-purple)]/10 rounded-full filter blur-3xl bottom-10 right-10 animate-pulse" />
+      {/* Animated background elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <motion.div
+          className="absolute top-20 left-10 w-72 h-72 bg-blue-100 rounded-full opacity-20"
+          animate={{
+            y: [0, -20, 0],
+            rotate: [0, 180, 360],
+          }}
+          transition={{
+            duration: 20,
+            repeat: Infinity,
+            ease: "linear"
+          }}
+        />
+        <motion.div
+          className="absolute bottom-20 right-10 w-96 h-96 bg-teal-100 rounded-full opacity-20"
+          animate={{
+            y: [0, 20, 0],
+            rotate: [360, 180, 0],
+          }}
+          transition={{
+            duration: 25,
+            repeat: Infinity,
+            ease: "linear"
+          }}
+        />
+        <motion.div
+          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-purple-100 rounded-full opacity-10"
+          animate={{
+            scale: [1, 1.2, 1],
+            rotate: [0, 90, 180, 270, 360],
+          }}
+          transition={{
+            duration: 15,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
       </div>
-      <div className="container mx-auto flex flex-col lg:flex-row items-center justify-between gap-12">
-        <motion.div className="max-w-lg lg:w-3/5" variants={childVariants}>
-          <h1 className="text-3xl sm:text-5xl font-bold font-sans mb-4" style={{ background: 'linear-gradient(45deg, #00D4FF, #8A2BE2)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
-            Hi, I’m Tawiah Obed
-          </h1>
-          <motion.h2
-            className="text-lg sm:text-xl font-semibold font-sans text-[var(--secondary-text)] mb-6"
-            key={currentTagline}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.5, ease: 'easeInOut' }}
+
+      <div className="max-w-6xl mx-auto px-6 py-20 relative z-10">
+        <div className="text-center">
+          <motion.h1 
+            className="text-5xl md:text-6xl font-extrabold mb-6 text-gradient text-reveal"
+            variants={titleVariants}
+            style={{ fontFamily: 'var(--font-heading)' }}
           >
-            Your <span className="text-[var(--accent-blue)]">{taglines[currentTagline]}</span>
+            <motion.span
+              initial={{ opacity: 0, y: 100 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
+            >
+              Hello, I'm{' '}
+            </motion.span>
+            <motion.span 
+              className="text-blue-600"
+              initial={{ opacity: 0, scale: 0.5 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay: 1 }}
+            >
+              Obed
+            </motion.span>
+          </motion.h1>
+          
+          <motion.h2 
+            className="text-xl md:text-2xl font-medium text-gray-600 mb-8"
+            variants={childVariants}
+            style={{ fontFamily: 'var(--font-body)' }}
+          >
+            <motion.span
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 1.2 }}
+            >
+              Full Stack Developer
+            </motion.span>
+            <motion.span
+              className="mx-2"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 1.5 }}
+            >
+              &
+            </motion.span>
+            <motion.span
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 1.4 }}
+            >
+              Problem Solver
+            </motion.span>
           </motion.h2>
-          <p className="text-base sm:text-lg font-sans text-[var(--secondary-text)] mb-8">
-            I’m a passionate Full Stack Developer crafting seamless, scalable web and mobile solutions to elevate your business. With expertise in React, Node.js, and MongoDB, I turn ideas into impactful digital experiences.
-          </p>
-          <div className="flex gap-4">
+          
+          <motion.p 
+            className="text-lg text-gray-600 mb-12 max-w-2xl mx-auto leading-relaxed"
+            variants={childVariants}
+            style={{ fontFamily: 'var(--font-body)' }}
+          >
+            I craft seamless, scalable web and mobile solutions that elevate your business. 
+            With expertise in React, Node.js, and MongoDB, I turn ideas into impactful digital experiences.
+          </motion.p>
+          
+          <motion.div 
+            className="flex flex-col sm:flex-row gap-4 justify-center mb-12"
+            variants={buttonVariants}
+          >
             <motion.a
               href="#projects"
-              className="inline-block px-6 py-3 rounded-lg font-sans text-sm sm:text-base font-semibold text-[var(--primary-text)] bg-[var(--accent-blue)] border border-[var(--accent-blue)] shadow-[0_0_10px_var(--accent-blue)]"
+              className="btn-primary inline-flex items-center justify-center px-8 py-4 text-lg font-semibold glow"
               variants={buttonVariants}
               whileHover="hover"
-              whileTap={{ scale: 0.95 }}
-              style={{ pointerEvents: 'auto', zIndex: 10 }}
-              aria-label="Explore my projects"
+              whileTap="tap"
+              style={{ fontFamily: 'var(--font-body)' }}
             >
-              Explore My Work
+              <motion.span
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: 1.8 }}
+              >
+                View My Work
+              </motion.span>
             </motion.a>
             <motion.a
               href="#contact"
-              className="inline-block px-6 py-3 rounded-lg font-sans text-sm sm:text-base font-semibold text-[var(--primary-text)] bg-[var(--accent-green)] border border-[var(--accent-green)] shadow-[0_0_10px_var(--accent-green)]"
+              className="btn-outline inline-flex items-center justify-center px-8 py-4 text-lg font-semibold"
               variants={buttonVariants}
               whileHover="hover"
-              whileTap={{ scale: 0.95 }}
-              style={{ pointerEvents: 'auto', zIndex: 10 }}
-              aria-label="Contact me"
+              whileTap="tap"
+              style={{ fontFamily: 'var(--font-body)' }}
             >
-              Contact Me
+              <motion.span
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: 2 }}
+              >
+                Get In Touch
+              </motion.span>
             </motion.a>
-          </div>
-          <motion.div className="flex gap-4 mt-8" variants={childVariants}>
-            {socialLinks.map((link) => (
+          </motion.div>
+          
+          <motion.div 
+            className="flex justify-center space-x-6"
+            variants={socialVariants}
+          >
+            {socialLinks.map((link, index) => (
               <motion.a
                 key={link.name}
                 href={link.url}
-                className="relative group"
+                className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center hover:bg-blue-50 transition-colors duration-200 icon-hover"
                 variants={socialVariants}
                 whileHover="hover"
-                style={{ pointerEvents: 'auto', zIndex: 10 }}
                 aria-label={`Visit my ${link.name} profile`}
+                style={{
+                  animationDelay: `${2.2 + index * 0.2}s`
+                }}
               >
                 <img
                   src={link.icon}
                   alt={link.name}
-                  className="w-8 h-8"
-                  style={{ filter: 'brightness(0) invert(1) drop-shadow(0 0 6px var(--accent-blue))' }}
+                  className="w-6 h-6"
                 />
-                <motion.div
-                  className="absolute inset-0 rounded-full"
-                  style={{ background: 'var(--accent-blue)', opacity: 0.3, filter: 'blur(12px)' }}
-                  initial={{ scale: 0, opacity: 0 }}
-                  whileHover={{ scale: 1.4, opacity: 0.6, transition: { duration: 0.3, ease: 'easeOut' } }}
-                />
-                <motion.span
-                  className="absolute left-1/2 -translate-x-1/2 bottom-10 bg-[var(--hover-bg)] text-[var(--primary-text)] text-xs font-sans px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  initial={{ y: 10, opacity: 0 }}
-                  whileHover={{ y: 0, opacity: 1 }}
-                >
-                  {link.name}
-                </motion.span>
               </motion.a>
             ))}
           </motion.div>
-          <motion.div
-            className="mt-8 p-6 rounded-lg bg-[var(--hover-bg)] border border-[var(--divider-border)] shadow-[0_0_10px_var(--accent-purple)]"
-            variants={childVariants}
-          >
-            <h3 className="text-lg font-semibold font-sans text-[var(--accent-purple)] mb-4">
-              About Me
-            </h3>
-            <p className="text-sm sm:text-base font-sans text-[var(--secondary-text)]">
-              As a Full Stack Developer, I thrive on turning complex challenges into elegant solutions. With a strong foundation in React, Node.js, and MongoDB, I specialize in building responsive, user-friendly applications that drive business success. My mission is to deliver innovative, high-quality projects that exceed client expectations while embracing the latest technologies.
-            </p>
-          </motion.div>
-        </motion.div>
-        <motion.div
-          className="w-64 sm:w-80 h-64 sm:h-80"
-          variants={childVariants}
-          whileHover={{ scale: 1.05, rotate: 3, transition: { duration: 0.3, ease: 'easeOut' } }}
-        >
-          <img
-            src={MyProfile}
-            alt="Tawiah Obed"
-            className="w-full h-full rounded-full object-cover border-4 border-[var(--accent-blue)] shadow-[0_0_15px_var(--accent-blue)] transition-all duration-300"
-          />
-        </motion.div>
+        </div>
       </div>
     </motion.section>
   );

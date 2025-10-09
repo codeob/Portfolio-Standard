@@ -3,6 +3,16 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const projects = [
   {
+    id:1,
+    title:'JobFinder',
+    description:'',
+    screenshot:'https://i.pinimg.com/1200x/00/21/80/00218045c82c2c3fe7c825e67a94f4e7.jpg',
+    tech:['Reat','tailwind','Node.js','Express.js','Local Storage','MongoDB'],
+    category:'Full Stack',
+    liveLink:'https://capable-baklava-ce7ae1.netlify.app/',
+    github:'https://github.com/codeob/JOB_Finder.git'
+  },
+  {
     id: 1,
     title: 'Event Planner',
     description: 'A web app for organizing events with real-time updates.',
@@ -77,31 +87,110 @@ const techColors = {
 };
 
 const containerVariants = {
-  hidden: { opacity: 0, y: 60 },
+  hidden: { opacity: 0, y: 50 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 1, ease: 'easeInOut', staggerChildren: 0.15 },
+    transition: { 
+      duration: 1, 
+      ease: [0.4, 0, 0.2, 1], 
+      staggerChildren: 0.2,
+      delayChildren: 0.3
+    },
   },
 };
 
 const cardVariants = {
-  hidden: { opacity: 0, scale: 0.8, y: 50 },
-  visible: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.6, ease: 'easeInOut' } },
+  hidden: { 
+    opacity: 0, 
+    y: 60, 
+    scale: 0.8,
+    rotateX: -15
+  },
+  visible: { 
+    opacity: 1, 
+    y: 0, 
+    scale: 1,
+    rotateX: 0,
+    transition: { 
+      duration: 0.8, 
+      ease: [0.4, 0, 0.2, 1] 
+    } 
+  },
   hover: {
     scale: 1.05,
-    boxShadow: '0 0 20px #00FF88',
-    transition: { duration: 0.3, ease: 'easeOut' },
+    y: -10,
+    rotateX: 5,
+    transition: { 
+      duration: 0.4, 
+      ease: [0.4, 0, 0.2, 1] 
+    },
   },
 };
 
 const titleVariants = {
-  hidden: { opacity: 0, y: -20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeInOut' } },
+  hidden: { 
+    opacity: 0, 
+    y: -30,
+    scale: 0.9
+  },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    scale: 1,
+    transition: { 
+      duration: 0.8, 
+      ease: [0.4, 0, 0.2, 1],
+      delay: 0.2
+    } 
+  },
 };
 
 const buttonVariants = {
-  hover: { scale: 1.1, boxShadow: '0 0 12px #00FF88', transition: { duration: 0.3, ease: 'easeOut' } },
+  hidden: { 
+    opacity: 0, 
+    scale: 0.8,
+    y: 20
+  },
+  visible: { 
+    opacity: 1, 
+    scale: 1,
+    y: 0,
+    transition: { 
+      duration: 0.6, 
+      ease: [0.4, 0, 0.2, 1],
+      delay: 0.5
+    } 
+  },
+  hover: { 
+    scale: 1.05,
+    y: -2,
+    transition: { duration: 0.3, ease: [0.4, 0, 0.2, 1] } 
+  },
+  tap: {
+    scale: 0.95,
+    transition: { duration: 0.1 }
+  }
+};
+
+const imageVariants = {
+  hidden: { 
+    opacity: 0, 
+    scale: 1.1
+  },
+  visible: { 
+    opacity: 1, 
+    scale: 1,
+    transition: { 
+      duration: 0.8, 
+      ease: [0.4, 0, 0.2, 1],
+      delay: 0.3
+    } 
+  },
+  hover: {
+    scale: 1.1,
+    transition: { duration: 0.4 }
+  }
 };
 
 function Project() {
@@ -135,203 +224,183 @@ function Project() {
   return (
     <section
       id="projects"
-      className="relative min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 py-12 z-10"
+      className="py-20 bg-white"
       onKeyDown={handleKeyDown}
       tabIndex={0}
     >
-      <motion.h2
-        className="relative text-2xl sm:text-3xl lg:text-4xl font-bold font-sans mb-8 text-center"
-        variants={titleVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: false, amount: 0.3 }}
-        style={{ background: 'linear-gradient(45deg, #00D4FF, #8A2BE2)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}
-      >
-        My Projects
+      <div className="max-w-6xl mx-auto px-6">
+        <motion.h2
+          className="text-3xl md:text-4xl font-bold text-center mb-16 text-gray-900"
+          variants={titleVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          style={{ fontFamily: 'var(--font-heading)' }}
+        >
+          Featured Projects
+        </motion.h2>
+        
         <motion.div
-          className="h-1 mt-2 mx-auto bg-gradient-to-r from-[var(--accent-blue)] to-[var(--accent-purple)]"
-          initial={{ width: 0 }}
-          animate={{ width: '50%' }}
-          transition={{ duration: 0.8, ease: 'easeInOut', delay: 0.2 }}
-        />
-      </motion.h2>
-      <motion.div
-        className="flex flex-wrap justify-center gap-2 mb-10"
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: false, amount: 0.3 }}
-      >
-        {categories.map((category) => (
-          <motion.button
-            key={category}
-            onClick={() => setFilter(category)}
-            className={`px-3 py-1 rounded-full font-sans text-sm font-semibold border border-[var(--divider-border)] shadow-[0_0_8px_var(--accent-blue)] ${
-              filter === category
-                ? 'bg-[var(--accent-blue)] text-[var(--primary-text)]'
-                : 'bg-[var(--hover-bg)] text-[var(--secondary-text)] hover:bg-[var(--accent-green)] hover:text-[var(--primary-text)]'
-            } transition-all duration-300`}
-            variants={buttonVariants}
-            whileHover="hover"
-            style={{ pointerEvents: 'auto', zIndex: 10, background: filter === category ? 'linear-gradient(45deg, #00D4FF, #8A2BE2)' : '' }}
-          >
-            {category}
-          </motion.button>
-        ))}
-      </motion.div>
-      <motion.div
-        className="absolute top-4 right-4 sm:top-6 sm:right-6 px-2 py-1 rounded-full font-sans text-xs font-semibold bg-[var(--hover-bg)] text-[var(--accent-purple)] border border-[var(--divider-border)] shadow-[0_0_8px_var(--accent-purple)]"
-        initial={{ opacity: 0, x: 50 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.6, delay: 0.5 }}
-      >
-        {filteredProjects.length} Projects
-      </motion.div>
+          className="flex flex-wrap justify-center gap-4 mb-12"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+        >
+          {categories.map((category) => (
+            <motion.button
+              key={category}
+              onClick={() => setFilter(category)}
+              className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
+                filter === category
+                  ? 'bg-blue-600 text-white'
+                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+              }`}
+              variants={buttonVariants}
+              whileHover="hover"
+              style={{ fontFamily: 'var(--font-body)' }}
+            >
+              {category}
+            </motion.button>
+          ))}
+        </motion.div>
 
-      <div className="hidden lg:flex w-full max-w-5xl mx-auto h-[550px] justify-center items-center relative">
-        <AnimatePresence>
-          {filteredProjects.map((project, index) => {
-            const offset = (index - currentIndex + filteredProjects.length) % filteredProjects.length;
-            const isCenter = offset === 0;
-            const isSide = offset === 1 || offset === filteredProjects.length - 1;
-            const zIndex = isCenter ? 20 : isSide ? 10 : 0;
-            const xPosition = isCenter ? 0 : offset === 1 ? 200 : -200;
-            const scale = isCenter ? 1 : isSide ? 0.85 : 0;
-            const opacity = isCenter ? 1 : isSide ? 0.7 : 0;
-
-            return (
+        <motion.div 
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+        >
+          {filteredProjects.map((project, index) => (
+            <motion.div
+              key={project.id}
+              className="card overflow-hidden group relative"
+              variants={cardVariants}
+              whileHover="hover"
+              style={{
+                animationDelay: `${index * 0.1}s`
+              }}
+            >
+              {/* Animated background gradient */}
               <motion.div
-                key={project.id}
-                className="absolute w-[320px] rounded-2xl bg-[var(--hover-bg)] border border-[var(--divider-border)] shadow-[0_0_10px_var(--accent-blue)]"
-                variants={cardVariants}
-                initial="hidden"
-                animate={{ x: xPosition, scale, opacity, zIndex, y: 0 }}
-                transition={{ duration: 0.6, ease: 'easeInOut' }}
-                whileHover={{ scale: isCenter ? 1.05 : scale, zIndex: zIndex + 10, transition: { duration: 0.3 } }}
-                drag="x"
-                dragConstraints={{ left: 0, right: 0 }}
-                dragElastic={0.2}
-                onDragEnd={handleDragEnd}
-                style={{ pointerEvents: isCenter || isSide ? 'auto' : 'none', transformPerspective: 1000 }}
-              >
-                <motion.img
-                  src={project.screenshot}
-                  alt={project.title}
-                  className="w-full h-56 object-cover rounded-t-2xl"
-                  style={{ filter: 'drop-shadow(0_0_10px_var(--accent-blue))' }}
-                  whileHover={{ y: -10, transition: { duration: 0.3, ease: 'easeOut' } }}
-                />
-                <div className="p-4">
-                  <h3 className="text-lg font-bold font-sans text-[var(--accent-purple)] mb-2">{project.title}</h3>
-                  <p className="text-sm font-sans text-[var(--secondary-text)] mb-3 line-clamp-2">{project.description}</p>
-                  <div className="flex flex-wrap gap-1 mb-4">
-                    {project.tech.map((tech) => (
+                className="absolute inset-0 opacity-0 group-hover:opacity-100"
+                style={{
+                  background: 'linear-gradient(135deg, rgba(37, 99, 235, 0.1), rgba(20, 184, 166, 0.1))'
+                }}
+                transition={{ duration: 0.3 }}
+              />
+              
+              <div className="relative z-10">
+                <div className="relative overflow-hidden">
+                  <motion.img
+                    src={project.screenshot}
+                    alt={project.title}
+                    className="w-full h-48 object-cover"
+                    variants={imageVariants}
+                    whileHover="hover"
+                  />
+                  <motion.div 
+                    className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300"
+                    whileHover={{ opacity: 0.3 }}
+                  />
+                  
+                  {/* Overlay with project info */}
+                  <motion.div
+                    className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                    initial={{ scale: 0.8 }}
+                    whileHover={{ scale: 1 }}
+                  >
+                    <motion.div
+                      className="bg-white/90 backdrop-blur-sm rounded-lg p-4 text-center"
+                      initial={{ y: 20, opacity: 0 }}
+                      whileHover={{ y: 0, opacity: 1 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <h4 className="font-semibold text-gray-900 mb-2">Quick Preview</h4>
+                      <p className="text-sm text-gray-600">Click to explore</p>
+                    </motion.div>
+                  </motion.div>
+                </div>
+                
+                <div className="p-6">
+                  <motion.h3 
+                    className="text-xl font-semibold mb-3 text-gray-900"
+                    style={{ fontFamily: 'var(--font-heading)' }}
+                    whileHover={{ scale: 1.02 }}
+                  >
+                    {project.title}
+                  </motion.h3>
+                  
+                  <motion.p 
+                    className="text-gray-600 mb-4 text-sm leading-relaxed"
+                    style={{ fontFamily: 'var(--font-body)' }}
+                    initial={{ opacity: 0.8 }}
+                    whileHover={{ opacity: 1 }}
+                  >
+                    {project.description || 'A modern web application built with cutting-edge technologies.'}
+                  </motion.p>
+                  
+                  <motion.div 
+                    className="flex flex-wrap gap-2 mb-6"
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    transition={{ duration: 0.5, delay: 0.3 }}
+                  >
+                    {project.tech.map((tech, techIndex) => (
                       <motion.span
                         key={tech}
-                        className="px-2 py-0.5 rounded-full text-xs font-sans font-medium"
-                        style={{
-                          background: `rgba(${parseInt(techColors[tech].slice(1,3),16)}, ${parseInt(techColors[tech].slice(3,5),16)}, ${parseInt(techColors[tech].slice(5,7),16)}, 0.2)`,
-                          color: techColors[tech],
-                          border: `1px solid ${techColors[tech]}`,
+                        className="px-3 py-1 bg-gray-100 text-gray-700 text-xs font-medium rounded-full hover:bg-blue-100 hover:text-blue-700 transition-colors duration-200"
+                        style={{ fontFamily: 'var(--font-body)' }}
+                        initial={{ scale: 0, opacity: 0 }}
+                        whileInView={{ scale: 1, opacity: 1 }}
+                        whileHover={{ scale: 1.05 }}
+                        transition={{ 
+                          duration: 0.3, 
+                          delay: techIndex * 0.1 
                         }}
-                        whileHover={{ scale: 1.1, boxShadow: `0 0 8px ${techColors[tech]}80`, transition: { duration: 0.3 } }}
                       >
                         {tech}
                       </motion.span>
                     ))}
-                  </div>
-                  <motion.a
-                    href={project.liveLink}
-                    className="block text-center px-4 py-2 rounded-full font-sans text-sm font-semibold bg-[var(--accent-blue)] text-[var(--primary-text)] shadow-[0_0_8px_var(--accent-blue)]"
+                  </motion.div>
+                  
+                  <motion.div 
+                    className="flex gap-3"
                     variants={buttonVariants}
-                    whileHover="hover"
-                    whileTap={{ scale: 0.95 }}
-                    style={{ pointerEvents: 'auto', zIndex: 10 }}
-                    aria-label={`View ${project.title} project`}
                   >
-                    View Project
-                  </motion.a>
-                </div>
-              </motion.div>
-            );
-          })}
-        </AnimatePresence>
-        <motion.button
-          className="absolute left-12 top-1/2 -translate-y-1/2 bg-[var(--accent-blue)] text-[var(--primary-text)] p-3 rounded-full shadow-[0_0_10px_var(--accent-blue)]"
-          onClick={() => setCurrentIndex((prev) => (prev - 1 + filteredProjects.length) % filteredProjects.length)}
-          variants={buttonVariants}
-          whileHover="hover"
-          aria-label="Previous project"
-        >
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
-          </svg>
-        </motion.button>
-        <motion.button
-          className="absolute right-12 top-1/2 -translate-y-1/2 bg-[var(--accent-blue)] text-[var(--primary-text)] p-3 rounded-full shadow-[0_0_10px_var(--accent-blue)]"
-          onClick={() => setCurrentIndex((prev) => (prev + 1) % filteredProjects.length)}
-          variants={buttonVariants}
-          whileHover="hover"
-          aria-label="Next project"
-        >
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
-          </svg>
-        </motion.button>
-      </div>
-
-      <div className="lg:hidden w-full max-w-[600px] mx-auto grid grid-cols-1 sm:grid-cols-2 gap-4 justify-items-center">
-        <AnimatePresence>
-          {filteredProjects.map((project) => (
-            <motion.div
-              key={project.id}
-              className="w-[280px] rounded-2xl bg-[var(--hover-bg)] border border-[var(--divider-border)] shadow-[0_0_10px_var(--accent-blue)]"
-              variants={cardVariants}
-              initial="hidden"
-              animate="visible"
-              exit={{ opacity: 0, scale: 0.8, transition: { duration: 0.4 } }}
-            >
-              <motion.img
-                src={project.screenshot}
-                alt={project.title}
-                className="w-full h-44 object-cover rounded-t-2xl"
-                style={{ filter: 'drop-shadow(0_0_10px_var(--accent-blue))' }}
-                whileHover={{ y: -10, transition: { duration: 0.3, ease: 'easeOut' } }}
-              />
-              <div className="p-4">
-                <h3 className="text-lg font-bold font-sans text-[var(--accent-purple)] mb-2">{project.title}</h3>
-                <p className="text-sm font-sans text-[var(--secondary-text)] mb-3 line-clamp-2">{project.description}</p>
-                <div className="flex flex-wrap gap-1 mb-4">
-                  {project.tech.map((tech) => (
-                    <motion.span
-                      key={tech}
-                      className="px-2 py-0.5 rounded-full text-xs font-sans font-medium"
-                      style={{
-                        background: `rgba(${parseInt(techColors[tech].slice(1,3),16)}, ${parseInt(techColors[tech].slice(3,5),16)}, ${parseInt(techColors[tech].slice(5,7),16)}, 0.2)`,
-                        color: techColors[tech],
-                        border: `1px solid ${techColors[tech]}`,
-                      }}
-                      whileHover={{ scale: 1.1, boxShadow: `0 0 8px ${techColors[tech]}80`, transition: { duration: 0.3 } }}
+                    <motion.a
+                      href={project.liveLink}
+                      className="btn-primary flex-1 text-center py-2 text-sm font-semibold"
+                      whileHover="hover"
+                      whileTap="tap"
+                      style={{ fontFamily: 'var(--font-body)' }}
                     >
-                      {tech}
-                    </motion.span>
-                  ))}
+                      View Project
+                    </motion.a>
+                    <motion.a
+                      href={project.githubLink || project.github}
+                      className="btn-outline flex-1 text-center py-2 text-sm font-semibold"
+                      whileHover="hover"
+                      whileTap="tap"
+                      style={{ fontFamily: 'var(--font-body)' }}
+                    >
+                      GitHub
+                    </motion.a>
+                  </motion.div>
                 </div>
-                <motion.a
-                  href={project.liveLink}
-                  className="block text-center px-4 py-2 rounded-full font-sans text-sm font-semibold bg-[var(--accent-blue)] text-[var(--primary-text)] shadow-[0_0_8px_var(--accent-blue)]"
-                  variants={buttonVariants}
-                  whileHover="hover"
-                  whileTap={{ scale: 0.95 }}
-                  style={{ pointerEvents: 'auto', zIndex: 10 }}
-                  aria-label={`View ${project.title} project`}
-                >
-                  View Project
-                </motion.a>
               </div>
+              
+              {/* Shimmer effect */}
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100"
+                initial={{ x: '-100%' }}
+                whileHover={{ x: '100%' }}
+                transition={{ duration: 0.8, ease: 'easeInOut' }}
+              />
             </motion.div>
           ))}
-        </AnimatePresence>
+        </motion.div>
       </div>
     </section>
   );

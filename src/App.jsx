@@ -1,11 +1,14 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { motion, useViewportScroll, useTransform } from 'framer-motion';
 import Navbar from './Components/Navbar';
 import HeroSection from './Components/HeroSection';
+import About from './Components/About';
 import Skills from './Components/Skills';
 import Project from './Components/Project';
 import Contact from './Components/Contact';
 import Footer from './Components/Footer';
+import LoadingScreen from './Components/LoadingScreen';
+import ScrollProgress from './Components/ScrollProgress';
 import './index.css';
 
 const containerVariants = {
@@ -17,37 +20,11 @@ const containerVariants = {
 };
 
 function App() {
-  const sections = ['hero', 'skills', 'projects', 'contact', 'footer'];
+  const [isLoading, setIsLoading] = useState(true);
+  const sections = ['hero', 'about', 'skills', 'projects', 'contact', 'footer'];
   const scrollRef = useRef(null);
-  const { scrollYProgress } = useViewportScroll();
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0.8]);
 
   useEffect(() => {
-    let currentIndex = 0;
-    let isScrolling = false;
-    const hasScrolled = sessionStorage.getItem('autoScrollDone');
-
-    const scrollToNext = () => {
-      if (currentIndex >= sections.length || isScrolling) return;
-
-      isScrolling = true;
-      const element = document.getElementById(sections[currentIndex]);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-      currentIndex++;
-      if (currentIndex < sections.length) {
-        setTimeout(scrollToNext, 3000);
-      } else {
-        sessionStorage.setItem('autoScrollDone', 'true');
-      }
-      setTimeout(() => (isScrolling = false), 1000);
-    };
-
-    if (!hasScrolled) {
-      scrollToNext();
-    }
-
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -68,28 +45,36 @@ function App() {
 
     return () => {
       observer.disconnect();
-      sessionStorage.removeItem('autoScrollDone');
     };
   }, []);
 
+  const handleLoadingComplete = () => {
+    setIsLoading(false);
+  };
+
   return (
-    <motion.div
-      className="relative min-h-screen px-4 sm:px-6 lg:px-8 dark:bg-[var(--background)] dark:text-[var(--primary-text)]"
-      variants={containerVariants}
-      initial="hidden"
-      animate="visible"
-      style={{ opacity }}
-      ref={scrollRef}
-    >
-      <Navbar />
-      <main>
-        <HeroSection />
-        <Skills />
-        <Project />
-        <Contact />
-      </main>
-      <Footer />
-    </motion.div>
+    <>
+      {isLoading && <LoadingScreen onComplete={handleLoadingComplete} />}
+      
+      <motion.div
+        className="relative min-h-screen bg-white"
+        variants={containerVariants}
+        initial="hidden"
+        animate={isLoading ? "hidden" : "visible"}
+        ref={scrollRef}
+      >
+        <ScrollProgress />
+        <Navbar />
+        <main>
+          <HeroSection />
+          <About />
+          <Skills />
+          <Project />
+          <Contact />
+        </main>
+        <Footer />
+      </motion.div>
+    </>
   );
 }
 
