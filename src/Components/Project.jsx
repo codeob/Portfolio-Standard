@@ -13,7 +13,7 @@ const projects = [
     github:'https://github.com/codeob/JOB_Finder.git'
   },
   {
-    id: 1,
+    id: 2,
     title: 'Event Planner',
     description: 'A dynamic event management application with real-time collaboration, calendar integration, and automated notifications. Features include event creation, participant management, and Firebase-powered backend for seamless data synchronization.',
     screenshot: 'https://via.placeholder.com/400x250/50E3C2/FFFFFF?text=Event+Planner+Screenshot',
@@ -23,7 +23,7 @@ const projects = [
     githubLink: 'git@github.com:allianatenadu/Planner.git',
   },
   {
-    id: 2,
+    id: 3,
     title: 'Guessing Game',
     description: 'An engaging interactive number guessing game with dynamic difficulty levels, score tracking, and responsive design. Implements game logic with JavaScript and features a clean, intuitive React-based user interface.',
     screenshot: 'https://via.placeholder.com/400x250/FF6B6B/FFFFFF?text=Guessing+Game+Screenshot',
@@ -33,7 +33,7 @@ const projects = [
     githubLink: 'https://github.com/codeob/Game.git',
   },
   {
-    id: 3,
+    id: 4,
     title: 'Movie App',
     description: 'A sophisticated movie browsing platform with search functionality, detailed movie information, and responsive grid layout. Built with React for smooth user interactions and optimized for performance across devices.',
     screenshot: 'https://via.placeholder.com/400x250/9B59B6/FFFFFF?text=Movie+App+Screenshot',
@@ -43,7 +43,7 @@ const projects = [
     githubLink: 'https://github.com/codeob/react-9-home-work.git',
   },
   {
-    id: 4,
+    id: 5,
     title: 'Todo List',
     description: 'A robust task management application with full CRUD operations, local storage persistence, and drag-and-drop functionality. Features include task categorization, priority levels, and a clean, accessible user interface.',
     screenshot: 'https://via.placeholder.com/400x250/F39C12/FFFFFF?text=Todo+List+Screenshot',
@@ -53,7 +53,7 @@ const projects = [
     githubLink: 'git@github.com:codeob/TodoList.git',
   },
   {
-    id: 5,
+    id: 6,
     title: 'E-commerce Website',
     description: 'A full-featured online marketplace with secure payment processing, product catalog management, and user authentication. Includes shopping cart functionality, order tracking, and admin dashboard for inventory management.',
     screenshot: 'https://via.placeholder.com/400x250/E74C3C/FFFFFF?text=E-commerce+Screenshot',
@@ -63,7 +63,7 @@ const projects = [
     githubLink: 'git@github.com:codeob/E-commerce.git',
   },
   {
-    id: 6,
+    id: 7,
     title: 'Spices Store',
     description: 'A modern e-commerce platform specializing in spices with mobile-optimized design, product filtering, and secure checkout. Features include product reviews, wishlist functionality, and responsive design using Tailwind CSS.',
     screenshot: 'https://via.placeholder.com/400x250/27AE60/FFFFFF?text=Spices+Store+Screenshot',
@@ -298,7 +298,7 @@ function Project() {
       </motion.div>
 
       <motion.div
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4 sm:gap-6 lg:gap-8"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4 lg:gap-6"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
@@ -307,7 +307,7 @@ function Project() {
           {filteredProjects.map((project, index) => (
               <motion.div
                 key={project.id}
-              className="card overflow-hidden group relative"
+              className="overflow-hidden group relative min-h-[250px] sm:min-h-[280px] lg:min-h-[300px] bg-blue-200 border border-blue-400 rounded-lg shadow-md sm:bg-gray-100 sm:border-gray-300"
                 variants={cardVariants}
               whileHover="hover"
               style={{
@@ -356,25 +356,25 @@ function Project() {
                 </div>
                 
                 <div className="p-3 sm:p-4 lg:p-5">
-                  <motion.h3 
-                    className="text-lg sm:text-xl font-semibold mb-2 sm:mb-3 text-gray-900"
+                  <motion.h3
+                    className="text-base sm:text-lg font-semibold mb-1.5 sm:mb-2 text-gray-900"
                     style={{ fontFamily: 'var(--font-heading)' }}
                     whileHover={{ scale: 1.02 }}
                   >
                     {project.title}
                   </motion.h3>
-                  
-                  <motion.p 
-                    className="text-gray-600 mb-3 sm:mb-4 text-xs sm:text-sm leading-relaxed"
+
+                  <motion.p
+                    className="text-gray-600 mb-2 sm:mb-3 text-xs sm:text-sm leading-relaxed"
                     style={{ fontFamily: 'var(--font-body)' }}
                     initial={{ opacity: 0.8 }}
                     whileHover={{ opacity: 1 }}
                   >
                     {project.description || 'A modern web application built with cutting-edge technologies.'}
                   </motion.p>
-                  
-                  <motion.div 
-                    className="flex flex-wrap gap-1.5 sm:gap-2 mb-4 sm:mb-6"
+
+                  <motion.div
+                    className="flex flex-wrap gap-1 sm:gap-1.5 mb-3 sm:mb-4"
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     transition={{ duration: 0.5, delay: 0.3 }}
@@ -382,28 +382,28 @@ function Project() {
                     {project.tech.map((tech, techIndex) => (
                       <motion.span
                         key={tech}
-                        className="px-2 sm:px-3 py-1 bg-gray-100 text-gray-700 text-xs font-medium rounded-full hover:bg-blue-100 hover:text-blue-700 transition-colors duration-200"
+                        className="px-1.5 sm:px-2 py-0.5 sm:py-1 bg-gray-100 text-gray-700 text-xs font-medium rounded-full hover:bg-blue-100 hover:text-blue-700 transition-colors duration-200"
                         style={{ fontFamily: 'var(--font-body)' }}
                         initial={{ scale: 0, opacity: 0 }}
                         whileInView={{ scale: 1, opacity: 1 }}
                         whileHover={{ scale: 1.05 }}
-                        transition={{ 
-                          duration: 0.3, 
-                          delay: techIndex * 0.1 
+                        transition={{
+                          duration: 0.3,
+                          delay: techIndex * 0.1
                         }}
                       >
                         {tech}
                       </motion.span>
                     ))}
                   </motion.div>
-                  
-                  <motion.div 
-                    className="flex flex-col sm:flex-row gap-2 sm:gap-3"
+
+                  <motion.div
+                    className="flex flex-col sm:flex-row gap-1.5 sm:gap-2"
                     variants={buttonVariants}
                   >
                     <motion.a
                       href={project.liveLink}
-                      className="btn-primary flex-1 flex items-center justify-center text-center py-2 sm:py-2.5 text-xs sm:text-sm font-semibold"
+                      className="btn-primary flex-1 flex items-center justify-center text-center py-1.5 sm:py-2 text-xs font-semibold"
                       whileHover="hover"
                       whileTap="tap"
                       style={{ fontFamily: 'var(--font-body)' }}
@@ -412,7 +412,7 @@ function Project() {
                   </motion.a>
                     <motion.a
                       href={project.githubLink || project.github}
-                      className="btn-outline flex-1 flex items-center justify-center text-center py-2 sm:py-2.5 text-xs sm:text-sm font-semibold"
+                      className="btn-outline flex-1 flex items-center justify-center text-center py-1.5 sm:py-2 text-xs font-semibold"
           whileHover="hover"
                       whileTap="tap"
                       style={{ fontFamily: 'var(--font-body)' }}
