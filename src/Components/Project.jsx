@@ -9,7 +9,7 @@ const projects = [
     screenshot:'https://via.placeholder.com/400x250/4A90E2/FFFFFF?text=JobFinder+Screenshot',
     tech:['React','Tailwind','Node.js','Express.js','Local Storage','MongoDB'],
     category:'Full Stack',
-    liveLink:' http://localhost:5173/',
+    liveLink:' https://carrier-finder.netlify.app/',
     github:'https://github.com/codeob/JOB_Finder.git'
   },
   {
