@@ -29,7 +29,7 @@ const projects = [
     screenshot: 'https://via.placeholder.com/400x250/FF6B6B/FFFFFF?text=Guessing+Game+Screenshot',
     tech: ['JavaScript', 'React'],
     category: 'Game Development',
-    liveLink: 'https://polite-cajeta-65e913.netlify.app/',
+    liveLink: 'https://carrier-finder.netlify.app/',
     githubLink: 'https://github.com/codeob/Game.git',
   },
   {
