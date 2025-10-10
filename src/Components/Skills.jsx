@@ -3,6 +3,9 @@ import { motion } from 'framer-motion';
 
 const skills = [
   { name: 'React', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/react.svg', color: '#61DAFB', bgColor: 'rgba(97, 218, 251, 0.1)' },
+  { name: 'HTML', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/html5.svg', color: '#E34F26', bgColor: 'rgba(227, 79, 38, 0.1)' },
+  { name: 'CSS', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/css3.svg', color: '#1572B6', bgColor: 'rgba(21, 114, 182, 0.1)' },
+  { name: 'React Native', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/react.svg', color: '#61DAFB', bgColor: 'rgba(97, 218, 251, 0.1)' },
   { name: 'Node.js', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/nodedotjs.svg', color: '#339933', bgColor: 'rgba(51, 153, 51, 0.1)' },
   { name: 'JavaScript', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/javascript.svg', color: '#F7DF1E', bgColor: 'rgba(247, 223, 30, 0.1)' },
   { name: 'TypeScript', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/typescript.svg', color: '#3178C6', bgColor: 'rgba(49, 120, 198, 0.1)' },

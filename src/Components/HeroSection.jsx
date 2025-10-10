@@ -117,45 +117,6 @@ function HeroSection() {
       whileInView="visible"
       viewport={{ once: true, amount: 0.3 }}
     >
-      {/* Animated background elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <motion.div
-          className="absolute top-20 left-10 w-72 h-72 bg-blue-100 rounded-full opacity-20"
-          animate={{
-            y: [0, -20, 0],
-            rotate: [0, 180, 360],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: "linear"
-          }}
-        />
-        <motion.div
-          className="absolute bottom-20 right-10 w-96 h-96 bg-teal-100 rounded-full opacity-20"
-          animate={{
-            y: [0, 20, 0],
-            rotate: [360, 180, 0],
-          }}
-          transition={{
-            duration: 25,
-            repeat: Infinity,
-            ease: "linear"
-          }}
-        />
-        <motion.div
-          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-purple-100 rounded-full opacity-10"
-          animate={{
-            scale: [1, 1.2, 1],
-            rotate: [0, 90, 180, 270, 360],
-          }}
-          transition={{
-            duration: 15,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        />
-      </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 relative z-10">
         <div className="text-center">
@@ -213,13 +174,13 @@ function HeroSection() {
             </motion.span>
           </motion.h2>
           
-          <motion.p 
+          <motion.p
             className="text-base sm:text-lg lg:text-xl text-gray-600 mb-8 sm:mb-10 lg:mb-12 max-w-xs sm:max-w-lg md:max-w-2xl mx-auto leading-relaxed px-4"
             variants={childVariants}
             style={{ fontFamily: 'var(--font-body)' }}
           >
-            I craft seamless, scalable web and mobile solutions that elevate your business. 
-            With expertise in React, Node.js, and MongoDB, I turn ideas into impactful digital experiences.
+            As a skilled full-stack developer, I specialize in building robust, scalable web and mobile applications that drive business growth.
+            Utilizing cutting-edge technologies including React, Node.js, and MongoDB, I transform innovative ideas into high-performance digital solutions.
           </motion.p>
           
           <motion.div 

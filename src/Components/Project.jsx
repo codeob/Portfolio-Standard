@@ -5,9 +5,9 @@ const projects = [
   {
     id:1,
     title:'JobFinder',
-    description:'',
-    screenshot:'https://i.pinimg.com/1200x/00/21/80/00218045c82c2c3fe7c825e67a94f4e7.jpg',
-    tech:['Reat','tailwind','Node.js','Express.js','Local Storage','MongoDB'],
+    description:'A comprehensive job search platform featuring advanced filtering, user authentication, real-time job postings, and responsive design. Built with React for frontend, Node.js and Express for backend, and MongoDB for data storage.',
+    screenshot:'https://via.placeholder.com/400x250/4A90E2/FFFFFF?text=JobFinder+Screenshot',
+    tech:['React','Tailwind','Node.js','Express.js','Local Storage','MongoDB'],
     category:'Full Stack',
     liveLink:'https://capable-baklava-ce7ae1.netlify.app/',
     github:'https://github.com/codeob/JOB_Finder.git'
@@ -15,8 +15,8 @@ const projects = [
   {
     id: 1,
     title: 'Event Planner',
-    description: 'A web app for organizing events with real-time updates.',
-    screenshot: 'https://i.pinimg.com/1200x/d1/56/0d/d1560d593e2839a644c74c54a05f77aa.jpg',
+    description: 'A dynamic event management application with real-time collaboration, calendar integration, and automated notifications. Features include event creation, participant management, and Firebase-powered backend for seamless data synchronization.',
+    screenshot: 'https://via.placeholder.com/400x250/50E3C2/FFFFFF?text=Event+Planner+Screenshot',
     tech: ['React', 'Firebase', 'Node.js'],
     category: 'Full Stack',
     liveLink: 'https://effortless-sunshine-c5b87e.netlify.app/',
@@ -25,8 +25,8 @@ const projects = [
   {
     id: 2,
     title: 'Guessing Game',
-    description: 'An interactive number guessing game.',
-    screenshot: 'https://i.pinimg.com/1200x/42/ec/85/42ec856b3dba1595c7be4cff23965c34.jpg',
+    description: 'An engaging interactive number guessing game with dynamic difficulty levels, score tracking, and responsive design. Implements game logic with JavaScript and features a clean, intuitive React-based user interface.',
+    screenshot: 'https://via.placeholder.com/400x250/FF6B6B/FFFFFF?text=Guessing+Game+Screenshot',
     tech: ['JavaScript', 'React'],
     category: 'Game Development',
     liveLink: 'https://polite-cajeta-65e913.netlify.app/',
@@ -34,9 +34,9 @@ const projects = [
   },
   {
     id: 3,
-    title: 'Movie',
-    description: 'An interactive movie browsing platform.',
-    screenshot: 'https://i.pinimg.com/1200x/2b/30/67/2b30679ede227a620636d13f4c2ec013.jpg',
+    title: 'Movie App',
+    description: 'A sophisticated movie browsing platform with search functionality, detailed movie information, and responsive grid layout. Built with React for smooth user interactions and optimized for performance across devices.',
+    screenshot: 'https://via.placeholder.com/400x250/9B59B6/FFFFFF?text=Movie+App+Screenshot',
     tech: ['React'],
     category: 'Frontend',
     liveLink: 'https://cozy-meringue-a0fdad.netlify.app/',
@@ -45,8 +45,8 @@ const projects = [
   {
     id: 4,
     title: 'Todo List',
-    description: 'A task management app with CRUD functionality.',
-    screenshot: 'https://i.pinimg.com/1200x/c5/78/1d/c5781d72c1298dc869b74702b4ee42a0.jpg',
+    description: 'A robust task management application with full CRUD operations, local storage persistence, and drag-and-drop functionality. Features include task categorization, priority levels, and a clean, accessible user interface.',
+    screenshot: 'https://via.placeholder.com/400x250/F39C12/FFFFFF?text=Todo+List+Screenshot',
     tech: ['React', 'Local Storage'],
     category: 'Frontend',
     liveLink: 'https://curious-marshmallow-8df031.netlify.app/',
@@ -55,8 +55,8 @@ const projects = [
   {
     id: 5,
     title: 'E-commerce Website',
-    description: 'A full-featured online store with payment integration.',
-    screenshot: 'https://i.pinimg.com/1200x/53/00/63/5300630244e710970b63eac76570c343.jpg',
+    description: 'A full-featured online marketplace with secure payment processing, product catalog management, and user authentication. Includes shopping cart functionality, order tracking, and admin dashboard for inventory management.',
+    screenshot: 'https://via.placeholder.com/400x250/E74C3C/FFFFFF?text=E-commerce+Screenshot',
     tech: ['React', 'Node.js', 'MongoDB'],
     category: 'Full Stack',
     liveLink: 'https://lustrous-rolypoly-7a6031.netlify.app/',
@@ -65,8 +65,8 @@ const projects = [
   {
     id: 6,
     title: 'Spices Store',
-    description: 'A mobile-friendly spices store platform.',
-    screenshot: 'https://i.pinimg.com/1200x/e9/81/e1/e981e186761b7955be31f9d9cfe8c9f1.jpg',
+    description: 'A modern e-commerce platform specializing in spices with mobile-optimized design, product filtering, and secure checkout. Features include product reviews, wishlist functionality, and responsive design using Tailwind CSS.',
+    screenshot: 'https://via.placeholder.com/400x250/27AE60/FFFFFF?text=Spices+Store+Screenshot',
     tech: ['React', 'Tailwind'],
     category: 'Full Stack',
     liveLink: 'https://startling-speculoos-5080dd.netlify.app/',
@@ -224,11 +224,43 @@ function Project() {
   return (
     <section
       id="projects"
-      className="py-12 sm:py-16 lg:py-20 bg-white"
+      className="py-12 sm:py-16 lg:py-20 bg-white relative overflow-hidden"
       onKeyDown={handleKeyDown}
       tabIndex={0}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Floating Programming Languages Background */}
+      <div className="absolute inset-0 pointer-events-none">
+        {[
+          'React', 'Node.js', 'JavaScript', 'TypeScript', 'Next.js',
+          'MongoDB', 'PostgreSQL', 'Express.js', 'Tailwind CSS',
+          'Git', 'Firebase', 'Docker', 'HTML', 'CSS', 'React Native'
+        ].map((lang, index) => (
+          <motion.div
+            key={lang}
+            className="absolute text-gray-300 font-medium text-xs opacity-15"
+            style={{
+              left: `${6 + (index * 6) % 88}%`,
+              top: `${8 + (index * 8) % 75}%`,
+            }}
+            animate={{
+              y: [0, -20, 0],
+              x: [0, 12, 0],
+              rotate: [0, 1.5, -1.5, 0],
+              opacity: [0.1, 0.2, 0.1],
+            }}
+            transition={{
+              duration: 16 + (index * 1.3),
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: index * 0.5,
+            }}
+          >
+            {lang}
+          </motion.div>
+        ))}
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
       <motion.h2
           className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-8 sm:mb-12 lg:mb-16 text-gray-900 px-4"
         variants={titleVariants}
@@ -296,7 +328,7 @@ function Project() {
                 <motion.img
                   src={project.screenshot}
                   alt={project.title}
-                    className="w-full h-40 sm:h-48 lg:h-56 object-cover"
+                    className="w-full h-32 sm:h-40 lg:h-48 object-cover"
                     variants={imageVariants}
                     whileHover="hover"
                   />
@@ -323,7 +355,7 @@ function Project() {
                   </motion.div>
                 </div>
                 
-                <div className="p-4 sm:p-5 lg:p-6">
+                <div className="p-3 sm:p-4 lg:p-5">
                   <motion.h3 
                     className="text-lg sm:text-xl font-semibold mb-2 sm:mb-3 text-gray-900"
                     style={{ fontFamily: 'var(--font-heading)' }}
@@ -371,7 +403,7 @@ function Project() {
                   >
                     <motion.a
                       href={project.liveLink}
-                      className="btn-primary flex-1 text-center py-2 sm:py-2.5 text-xs sm:text-sm font-semibold"
+                      className="btn-primary flex-1 flex items-center justify-center text-center py-2 sm:py-2.5 text-xs sm:text-sm font-semibold"
                       whileHover="hover"
                       whileTap="tap"
                       style={{ fontFamily: 'var(--font-body)' }}
@@ -380,7 +412,7 @@ function Project() {
                   </motion.a>
                     <motion.a
                       href={project.githubLink || project.github}
-                      className="btn-outline flex-1 text-center py-2 sm:py-2.5 text-xs sm:text-sm font-semibold"
+                      className="btn-outline flex-1 flex items-center justify-center text-center py-2 sm:py-2.5 text-xs sm:text-sm font-semibold"
           whileHover="hover"
                       whileTap="tap"
                       style={{ fontFamily: 'var(--font-body)' }}
