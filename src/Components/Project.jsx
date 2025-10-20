@@ -85,7 +85,8 @@ const projects = [
     {
     id: 9,
     title: `Decentralized voting system (Ballot)`,
-    description: 'An interactive, map-based digital experience that takes users on a nostalgic journey through Ko-Jo Cue’s life, blending music, storytelling, and visuals across key childhood locations in Kumasi. The project combines exploration, reflection, and audio-visual immersion to celebrate his formative years and artistic evolution.',
+    description: `A decentralized voting system ensures secure, transparent, and tamper-proof elections by recording votes on the blockchain, eliminating fraud and centralized control.
+It empowers organizations to conduct trustworthy, verifiable, and auditable elections in real time.`,
     screenshot: 'https://i.pinimg.com/1200x/3f/52/02/3f5202c1d50a1f57bca0880b7eb9dd32.jpg',
     tech: ['React', 'Tailwind','Node.js','Express.js','Local storage'],
     category: 'Frontend',
