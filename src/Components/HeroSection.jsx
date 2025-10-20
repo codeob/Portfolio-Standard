@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 const socialLinks = [
   { name: 'GitHub', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/github.svg', url: 'https://github.com/codeob' },
   { name: 'LinkedIn', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/linkedin.svg', url: 'https://linkedin.com/in/yourusername' },
+  { name: 'Twitter', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/x.svg', url: 'https://twitter.com/yourusername' },
   { name: 'Email', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/gmail.svg', url: 'mailto:your.email@example.com' },
 ];
 
@@ -17,23 +18,6 @@ const containerVariants = {
       staggerChildren: 0.3,
       delayChildren: 0.2
     },
-  },
-};
-
-const childVariants = {
-  hidden: { 
-    opacity: 0, 
-    y: 50,
-    scale: 0.9
-  },
-  visible: { 
-    opacity: 1, 
-    y: 0,
-    scale: 1,
-    transition: { 
-      duration: 0.8, 
-      ease: [0.4, 0, 0.2, 1] 
-    } 
   },
 };
 
@@ -51,6 +35,23 @@ const titleVariants = {
       duration: 1.2, 
       ease: [0.4, 0, 0.2, 1],
       delay: 0.3
+    } 
+  },
+};
+
+const childVariants = {
+  hidden: { 
+    opacity: 0, 
+    y: 50,
+    scale: 0.9
+  },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    scale: 1,
+    transition: { 
+      duration: 0.8, 
+      ease: [0.4, 0, 0.2, 1] 
     } 
   },
 };
@@ -107,143 +108,305 @@ const socialVariants = {
 };
 
 function HeroSection() {
-
   return (
     <motion.section
       id="hero"
-      className="relative min-h-screen flex items-center justify-center bg-white overflow-hidden"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      style={{ background: '#0A0E27' }}
       variants={containerVariants}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.3 }}
     >
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 relative z-10">
-        <div className="text-center">
-          <motion.h1 
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold mb-4 sm:mb-6 text-gradient text-reveal"
-            variants={titleVariants}
-            style={{ fontFamily: 'var(--font-heading)' }}
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          
+          {/* Left Column - Text Content */}
+          <motion.div
+            className="text-left lg:pr-8"
+            variants={containerVariants}
           >
-            <motion.span
-              initial={{ opacity: 0, y: 100 }}
+            {/* Professional Badge */}
+            <motion.div
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6"
+              initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.5 }}
-              className="block sm:inline"
+              transition={{ duration: 0.6, delay: 0.2 }}
+              style={{
+                background: 'rgba(59, 130, 246, 0.1)',
+                border: '1px solid rgba(59, 130, 246, 0.3)'
+              }}
             >
-              Hello, I'm{' '}
-            </motion.span>
-            <motion.span 
-              className="text-blue-600 block sm:inline"
-              initial={{ opacity: 0, scale: 0.5 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: 1 }}
-            >
-              Obed
-            </motion.span>
-          </motion.h1>
-          
-          <motion.h2 
-            className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-medium text-gray-600 mb-6 sm:mb-8 px-4"
-            variants={childVariants}
-            style={{ fontFamily: 'var(--font-body)' }}
-          >
-            <motion.span
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 1.2 }}
-              className="block sm:inline"
-            >
-              Full Stack Developer
-            </motion.span>
-            <motion.span
-              className="mx-1 sm:mx-2 block sm:inline"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 1.5 }}
-            >
-              &
-            </motion.span>
-            <motion.span
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 1.4 }}
-              className="block sm:inline"
-            >
-              Problem Solver
-            </motion.span>
-          </motion.h2>
-          
-          <motion.p
-            className="text-base sm:text-lg lg:text-xl text-gray-600 mb-8 sm:mb-10 lg:mb-12 max-w-xs sm:max-w-lg md:max-w-2xl mx-auto leading-relaxed px-4"
-            variants={childVariants}
-            style={{ fontFamily: 'var(--font-body)' }}
-          >
-            As a skilled full-stack developer, I specialize in building robust, scalable web and mobile applications that drive business growth.
-            Utilizing cutting-edge technologies including React, Node.js, and MongoDB, I transform innovative ideas into high-performance digital solutions.
-          </motion.p>
-          
-          <motion.div 
-            className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-8 sm:mb-10 lg:mb-12 px-4"
-            variants={buttonVariants}
-          >
-            <motion.a
-              href="#projects"
-              className="btn-primary inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold glow w-full sm:w-auto"
-              variants={buttonVariants}
-              whileHover="hover"
-              whileTap="tap"
-              style={{ fontFamily: 'var(--font-body)' }}
-            >
-              <motion.span
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, delay: 1.8 }}
+              <span className="w-2 h-2 rounded-full" style={{ background: '#10B981' }}></span>
+              <span 
+                className="text-sm font-medium"
+                style={{ color: 'var(--text-secondary)', fontFamily: 'var(--font-body)' }}
               >
-                View My Work
-              </motion.span>
-            </motion.a>
-            <motion.a
-              href="#contact"
-              className="btn-outline inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold w-full sm:w-auto"
-              variants={buttonVariants}
-              whileHover="hover"
-              whileTap="tap"
-              style={{ fontFamily: 'var(--font-body)' }}
+                Available for new opportunities
+              </span>
+            </motion.div>
+
+            {/* Name */}
+            <motion.h1 
+              className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-4"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              style={{ 
+                fontFamily: 'var(--font-heading)',
+                color: 'var(--text-primary)',
+                lineHeight: '1.1'
+              }}
             >
-              <motion.span
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, delay: 2 }}
-              >
-                Get In Touch
-              </motion.span>
-            </motion.a>
-          </motion.div>
-          
-          <motion.div 
-            className="flex justify-center space-x-4 sm:space-x-6 px-4"
-            variants={socialVariants}
-          >
-            {socialLinks.map((link, index) => (
-              <motion.a
-                key={link.name}
-                href={link.url}
-                className="w-10 h-10 sm:w-12 sm:h-12 bg-gray-100 rounded-full flex items-center justify-center hover:bg-blue-50 transition-colors duration-200 icon-hover"
-                variants={socialVariants}
-                whileHover="hover"
-                aria-label={`Visit my ${link.name} profile`}
-                style={{
-                  animationDelay: `${2.2 + index * 0.2}s`
+              Obed Tawiah
+            </motion.h1>
+
+            {/* Title with Gradient */}
+            <motion.div
+              className="mb-6"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+            >
+              <h2 
+                className="text-3xl sm:text-4xl lg:text-5xl font-bold"
+                style={{ 
+                  fontFamily: 'var(--font-heading)',
+                  color: 'var(--primary-blue)'
                 }}
               >
-                <img
-                  src={link.icon}
-                  alt={link.name}
-                  className="w-5 h-5 sm:w-6 sm:h-6"
-                />
+                Full Stack Developer
+              </h2>
+              <p
+                className="text-xl sm:text-2xl mt-2"
+                style={{ 
+                  fontFamily: 'var(--font-heading)',
+                  color: 'var(--text-secondary)',
+                  fontWeight: 500
+                }}
+              >
+                Crafting Digital Excellence
+              </p>
+            </motion.div>
+            
+            {/* Professional Description */}
+            <motion.p
+              className="text-base sm:text-lg mb-8 leading-relaxed"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+              style={{ 
+                fontFamily: 'var(--font-body)',
+                color: 'var(--text-secondary)',
+                maxWidth: '540px'
+              }}
+            >
+              Specializing in building scalable web applications with modern JavaScript frameworks. 
+              Passionate about creating intuitive user experiences and writing clean, maintainable code 
+              that drives business value.
+            </motion.p>
+
+            {/* Stats */}
+            <motion.div
+              className="flex flex-wrap gap-8 mb-8"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+            >
+              {[
+                { number: '1/2+', label: 'Years Experience' },
+                { number: '7+', label: 'Projects Completed' },
+                { number: '15+', label: 'Technologies' }
+              ].map((stat, index) => (
+                <div key={index}>
+                  <div 
+                    className="text-3xl font-bold"
+                    style={{ 
+                      fontFamily: 'var(--font-heading)',
+                      color: 'var(--primary-blue)'
+                    }}
+                  >
+                    {stat.number}
+                  </div>
+                  <div 
+                    className="text-sm"
+                    style={{ 
+                      fontFamily: 'var(--font-body)',
+                      color: 'var(--text-secondary)'
+                    }}
+                  >
+                    {stat.label}
+                  </div>
+                </div>
+              ))}
+            </motion.div>
+
+            {/* CTA Buttons */}
+            <motion.div 
+              className="flex flex-col sm:flex-row gap-4 mb-8"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.7 }}
+            >
+              <motion.a
+                href="#projects"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-xl"
+                whileHover={{ y: -2 }}
+                whileTap={{ scale: 0.98 }}
+                style={{ 
+                  fontFamily: 'var(--font-body)',
+                  background: 'var(--primary-blue)',
+                  color: '#FFFFFF',
+                  boxShadow: '0 4px 20px rgba(59, 130, 246, 0.3)'
+                }}
+              >
+                <span>Explore My Work</span>
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
               </motion.a>
-            ))}
+              <motion.a
+                href="#contact"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-semibold rounded-xl"
+                whileHover={{ y: -2 }}
+                whileTap={{ scale: 0.98 }}
+                style={{ 
+                  fontFamily: 'var(--font-body)',
+                  background: 'rgba(59, 130, 246, 0.1)',
+                  color: 'var(--primary-blue)',
+                  border: '1px solid var(--primary-blue)'
+                }}
+              >
+                <span>Let's Connect</span>
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+              </motion.a>
+            </motion.div>
+
+            {/* Social Links with Labels */}
+            <motion.div 
+              className="flex items-center gap-6"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.8 }}
+            >
+              <span 
+                className="text-sm font-medium"
+                style={{ color: 'var(--text-secondary)', fontFamily: 'var(--font-body)' }}
+              >
+                Connect:
+              </span>
+              <div className="flex space-x-3">
+                {socialLinks.map((link, index) => (
+                  <motion.a
+                    key={link.name}
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 rounded-lg flex items-center justify-center"
+                    whileHover={{ 
+                      y: -3,
+                      borderColor: 'var(--primary-blue)',
+                      background: 'rgba(59, 130, 246, 0.1)'
+                    }}
+                    aria-label={`Visit my ${link.name} profile`}
+                    style={{
+                      background: 'var(--background-card)',
+                      border: '1px solid var(--divider-border)',
+                      transition: 'all 0.3s'
+                    }}
+                  >
+                    <img
+                      src={link.icon}
+                      alt={link.name}
+                      className="w-5 h-5"
+                      style={{ filter: 'brightness(0) saturate(100%) invert(56%) sepia(93%) saturate(4366%) hue-rotate(201deg) brightness(97%) contrast(97%)' }}
+                    />
+                  </motion.a>
+                ))}
+              </div>
+            </motion.div>
+          </motion.div>
+
+          {/* Right Column - Visual Element */}
+          <motion.div
+            className="hidden lg:flex items-center justify-center"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          >
+            <div className="relative">
+              {/* Decorative circles */}
+              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                <motion.div
+                  className="w-80 h-80 rounded-full"
+                  style={{
+                    background: 'radial-gradient(circle, rgba(59, 130, 246, 0.12) 0%, transparent 70%)',
+                    filter: 'blur(40px)'
+                  }}
+                  animate={{
+                    scale: [1, 1.2, 1],
+                    opacity: [0.4, 0.6, 0.4]
+                  }}
+                  transition={{
+                    duration: 4,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                />
+              </div>
+              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                <motion.div
+                  className="w-64 h-64 rounded-full"
+                  style={{
+                    background: 'radial-gradient(circle, rgba(6, 182, 212, 0.15) 0%, transparent 70%)',
+                    filter: 'blur(30px)'
+                  }}
+                  animate={{
+                    scale: [1.2, 1, 1.2],
+                    opacity: [0.2, 0.4, 0.2]
+                  }}
+                  transition={{
+                    duration: 5,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                />
+              </div>
+
+              {/* Tech Stack Floating Elements */}
+              <div className="relative w-96 h-96 flex items-center justify-center">
+                {['React', 'Node.js', 'TypeScript', 'MongoDB', 'Next.js', 'Tailwind'].map((tech, index) => (
+                  <motion.div
+                    key={tech}
+                    className="absolute px-4 py-2 rounded-lg text-sm font-mono"
+                    style={{
+                      background: 'var(--background-card)',
+                      border: '1px solid var(--divider-border)',
+                      color: 'var(--primary-blue)',
+                      backdropFilter: 'blur(10px)',
+                      left: `${50 + 40 * Math.cos((index * Math.PI * 2) / 6 - Math.PI / 2)}%`,
+                      top: `${50 + 40 * Math.sin((index * Math.PI * 2) / 6 - Math.PI / 2)}%`,
+                      transform: 'translate(-50%, -50%)'
+                    }}
+                    animate={{
+                      y: [0, -10, 0],
+                      opacity: [0.7, 1, 0.7]
+                    }}
+                    transition={{
+                      duration: 3,
+                      repeat: Infinity,
+                      delay: index * 0.3,
+                      ease: "easeInOut"
+                    }}
+                  >
+                    {tech}
+                  </motion.div>
+                ))}
+              </div>
+            </div>
           </motion.div>
         </div>
       </div>

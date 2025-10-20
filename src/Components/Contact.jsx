@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 
 const socialLinks = [
-  { name: 'GitHub', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/github.svg', url: 'https://github.com/codeob', color: '#333333' },
-  { name: 'LinkedIn', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/linkedin.svg', url: 'https://www.linkedin.com/in/tawiah-obed-a8867b2b6/', color: '#0077B5' },
+  { name: 'GitHub', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/github.svg', url: 'https://github.com/codeob', color: '#3B82F6' },
+  { name: 'LinkedIn', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/linkedin.svg', url: 'https://www.linkedin.com/in/tawiah-obed-a8867b2b6/', color: '#0A66C2' },
   { name: 'Email', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/gmail.svg', url: 'mailto:your.email@example.com', color: '#EA4335' },
-  { name: 'Twitter', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/x.svg', url: 'https://x.com/ObedTawiah83026/', color: '#1DA1F2' },
+  { name: 'Twitter', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/x.svg', url: 'https://x.com/ObedTawiah83026/', color: '#06B6D4' },
 ];
 
 const containerVariants = {
@@ -34,6 +34,7 @@ function Contact() {
     email: '',
     message: ''
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e) => {
     setFormData({
@@ -44,58 +45,187 @@ function Contact() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission here
-    console.log('Form submitted:', formData);
+    setIsSubmitting(true);
+    
+    // Simulate form submission (replace with actual API call)
+    setTimeout(() => {
+      alert(`Thank you, ${formData.name}! Your message has been received. I'll get back to you soon!`);
+      setFormData({ name: '', email: '', message: '' });
+      setIsSubmitting(false);
+    }, 1000);
   };
 
   return (
-    <section id="contact" className="py-12 sm:py-16 lg:py-20 bg-gray-50">
+    <section id="contact" className="py-20 relative overflow-hidden" style={{ background: '#0A0E27' }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          className="text-center mb-8 sm:mb-12 lg:mb-16"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
-        >
+        {/* Header */}
+        <div className="text-center mb-16">
+          <motion.div 
+            className="mb-4"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <span 
+              className="text-sm font-mono uppercase tracking-wider"
+              style={{ color: 'var(--accent-cyan)', fontFamily: 'var(--font-mono)' }}
+            >
+              // Let's connect
+            </span>
+          </motion.div>
           <motion.h2
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 text-gray-900 px-4"
-            variants={itemVariants}
+            className="text-4xl sm:text-5xl md:text-6xl font-bold text-gradient mb-4"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             style={{ fontFamily: 'var(--font-heading)' }}
           >
-            Get In Touch
+            Let's Work Together
           </motion.h2>
           <motion.p 
-            className="text-base sm:text-lg lg:text-xl text-gray-600 max-w-xs sm:max-w-lg md:max-w-2xl mx-auto px-4"
-            variants={itemVariants}
-            style={{ fontFamily: 'var(--font-body)' }}
+            className="text-lg max-w-2xl mx-auto"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            style={{ color: 'var(--text-secondary)', fontFamily: 'var(--font-body)' }}
           >
-            I'm always interested in new opportunities and exciting projects. 
-            Let's discuss how we can work together to bring your ideas to life.
+            Ready to bring your ideas to life? Drop me a message and let's start building something extraordinary.
           </motion.p>
-        </motion.div>
+        </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-12">
-          {/* Contact Form */}
+        {/* Two Column Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-12">
+          {/* Left Column - Contact Info */}
           <motion.div
-            className="card p-4 sm:p-6 lg:p-8"
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
+            className="lg:col-span-2 space-y-8"
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
           >
+            <div>
+              <h3 
+                className="text-3xl font-bold mb-4"
+                style={{ 
+                  fontFamily: 'var(--font-heading)',
+                  color: 'var(--text-primary)'
+                }}
+              >
+                Get in touch
+              </h3>
+              <p 
+                className="text-base leading-relaxed mb-8"
+                style={{ color: 'var(--text-secondary)', fontFamily: 'var(--font-body)' }}
+              >
+                I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
+              </p>
+            </div>
+
+            {/* Contact Info Cards */}
+            <div className="space-y-4">
+              <motion.div
+                className="p-4 rounded-xl flex items-center gap-4"
+                style={{
+                  background: 'var(--background-card)',
+                  border: '1px solid var(--divider-border)'
+                }}
+                whileHover={{ x: 5 }}
+              >
+                <div className="w-12 h-12 rounded-lg flex items-center justify-center" style={{ background: 'rgba(59, 130, 246, 0.1)' }}>
+                  <svg className="w-6 h-6" style={{ color: 'var(--primary-blue)' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                </div>
+                <div>
+                  <p className="text-xs" style={{ color: 'var(--text-secondary)' }}>Email</p>
+                  <p className="text-sm font-medium" style={{ color: 'var(--text-primary)' }}>obed@example.com</p>
+                </div>
+              </motion.div>
+
+              <motion.div
+                className="p-4 rounded-xl flex items-center gap-4"
+                style={{
+                  background: 'var(--background-card)',
+                  border: '1px solid var(--divider-border)'
+                }}
+                whileHover={{ x: 5 }}
+              >
+                <div className="w-12 h-12 rounded-lg flex items-center justify-center" style={{ background: 'rgba(59, 130, 246, 0.1)' }}>
+                  <svg className="w-6 h-6" style={{ color: 'var(--primary-blue)' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                </div>
+                <div>
+                  <p className="text-xs" style={{ color: 'var(--text-secondary)' }}>Location</p>
+                  <p className="text-sm font-medium" style={{ color: 'var(--text-primary)' }}>Available Remotely</p>
+                </div>
+              </motion.div>
+            </div>
+
+            {/* Social Links */}
+            <div>
+              <p className="text-sm font-medium mb-4" style={{ color: 'var(--text-secondary)' }}>Follow me on</p>
+              <div className="flex gap-3">
+                {socialLinks.map((link) => (
+                  <motion.a
+                    key={link.name}
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-12 h-12 rounded-lg flex items-center justify-center"
+                    style={{
+                      background: 'var(--background-card)',
+                      border: '1px solid var(--divider-border)'
+                    }}
+                    whileHover={{ y: -4, borderColor: 'var(--primary-blue)' }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <img
+                      src={link.icon}
+                      alt={link.name}
+                      className="w-5 h-5"
+                      style={{ filter: 'brightness(0) saturate(100%) invert(56%) sepia(93%) saturate(4366%) hue-rotate(201deg) brightness(97%) contrast(97%)' }}
+                    />
+                  </motion.a>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Right Column - Contact Form */}
+          <motion.div
+            className="lg:col-span-3"
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <div
+              className="p-8 rounded-2xl"
+              style={{
+                background: 'var(--background-card)',
+                border: '1px solid var(--divider-border)'
+              }}
+            >
             <h3 
-              className="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6 text-gray-900"
-              style={{ fontFamily: 'var(--font-heading)' }}
+              className="text-2xl font-bold mb-6"
+              style={{ 
+                fontFamily: 'var(--font-heading)',
+                color: 'var(--text-primary)'
+              }}
             >
               Send me a message
             </h3>
-            <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <label 
                   htmlFor="name" 
-                  className="block text-sm font-medium text-gray-700 mb-1 sm:mb-2"
-                  style={{ fontFamily: 'var(--font-body)' }}
+                  className="block text-sm font-medium mb-2"
+                  style={{ 
+                    fontFamily: 'var(--font-body)',
+                    color: 'var(--text-secondary)'
+                  }}
                 >
                   Name
                 </label>
@@ -105,16 +235,26 @@ function Contact() {
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
-                  className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-200 text-sm sm:text-base"
-                  style={{ fontFamily: 'var(--font-body)' }}
+                  className="w-full px-4 py-3 rounded-xl transition-all duration-300"
+                  style={{ 
+                    fontFamily: 'var(--font-body)',
+                    background: 'rgba(10, 14, 39, 0.6)',
+                    border: '1px solid var(--divider-border)',
+                    color: 'var(--text-primary)'
+                  }}
+                  onFocus={(e) => e.target.style.borderColor = 'var(--primary-blue)'}
+                  onBlur={(e) => e.target.style.borderColor = 'var(--divider-border)'}
                   required
                 />
               </div>
               <div>
                 <label 
                   htmlFor="email" 
-                  className="block text-sm font-medium text-gray-700 mb-1 sm:mb-2"
-                  style={{ fontFamily: 'var(--font-body)' }}
+                  className="block text-sm font-medium mb-2"
+                  style={{ 
+                    fontFamily: 'var(--font-body)',
+                    color: 'var(--text-secondary)'
+                  }}
                 >
                   Email
                 </label>
@@ -124,16 +264,26 @@ function Contact() {
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-200 text-sm sm:text-base"
-                  style={{ fontFamily: 'var(--font-body)' }}
+                  className="w-full px-4 py-3 rounded-xl transition-all duration-300"
+                  style={{ 
+                    fontFamily: 'var(--font-body)',
+                    background: 'rgba(10, 14, 39, 0.6)',
+                    border: '1px solid var(--divider-border)',
+                    color: 'var(--text-primary)'
+                  }}
+                  onFocus={(e) => e.target.style.borderColor = 'var(--primary-blue)'}
+                  onBlur={(e) => e.target.style.borderColor = 'var(--divider-border)'}
                   required
                 />
               </div>
               <div>
                 <label 
                   htmlFor="message" 
-                  className="block text-sm font-medium text-gray-700 mb-1 sm:mb-2"
-                  style={{ fontFamily: 'var(--font-body)' }}
+                  className="block text-sm font-medium mb-2"
+                  style={{ 
+                    fontFamily: 'var(--font-body)',
+                    color: 'var(--text-secondary)'
+                  }}
                 >
                   Message
                 </label>
@@ -142,99 +292,43 @@ function Contact() {
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
-                  rows={4}
-                  className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-200 resize-none text-sm sm:text-base"
-                  style={{ fontFamily: 'var(--font-body)' }}
+                  rows={5}
+                  className="w-full px-4 py-3 rounded-xl transition-all duration-300 resize-none"
+                  style={{ 
+                    fontFamily: 'var(--font-body)',
+                    background: 'rgba(26, 26, 46, 0.6)',
+                    border: '1px solid rgba(0, 255, 209, 0.3)',
+                    color: 'var(--text-primary)'
+                  }}
+                  onFocus={(e) => e.target.style.borderColor = '#00FFD1'}
+                  onBlur={(e) => e.target.style.borderColor = 'rgba(0, 255, 209, 0.3)'}
                   required
                 ></textarea>
               </div>
               <motion.button
                 type="submit"
-                className="btn-primary w-full py-2.5 sm:py-3 text-sm sm:text-base font-semibold"
+                disabled={isSubmitting}
+                className="w-full py-4 rounded-xl text-base font-semibold transition-all duration-300"
                 variants={itemVariants}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                style={{ fontFamily: 'var(--font-body)' }}
+                whileHover={{ scale: isSubmitting ? 1 : 1.02, y: isSubmitting ? 0 : -2 }}
+                whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
+                style={{ 
+                  fontFamily: 'var(--font-body)',
+                  background: isSubmitting 
+                    ? 'var(--text-muted)' 
+                    : 'var(--primary-blue)',
+                  color: '#FFFFFF',
+                  boxShadow: '0 4px 20px rgba(59, 130, 246, 0.3)',
+                  cursor: isSubmitting ? 'not-allowed' : 'pointer'
+                }}
               >
-                Send Message
+                {isSubmitting ? 'Sending...' : 'Send Message'}
               </motion.button>
             </form>
+            </div>
           </motion.div>
 
-          {/* Social Links */}
-          <motion.div
-            className="space-y-8"
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-          >
-            <div>
-              <h3 
-                className="text-2xl font-semibold mb-6 text-gray-900"
-                style={{ fontFamily: 'var(--font-heading)' }}
-              >
-                Connect with me
-              </h3>
-              <div className="space-y-4">
-          {socialLinks.map((link) => (
-            <motion.a
-              key={link.name}
-              href={link.url}
-                    className="flex items-center space-x-4 p-4 bg-white rounded-lg border border-gray-200 hover:border-blue-300 hover:shadow-md transition-all duration-200 group"
-              variants={socialVariants}
-              whileHover="hover"
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <motion.div 
-                      className="w-10 h-10 rounded-full flex items-center justify-center transition-colors duration-200"
-                      style={{ 
-                        backgroundColor: link.color + '20',
-                        border: `2px solid ${link.color}40`
-                      }}
-                      whileHover={{
-                        scale: 1.1,
-                        backgroundColor: link.color + '30',
-                        boxShadow: `0 0 20px ${link.color}40`
-                      }}
-            >
-              <img
-                src={link.icon}
-                alt={link.name}
-                        className="w-5 h-5"
-                        style={{ 
-                          filter: `drop-shadow(0 2px 4px ${link.color}40)`
-                        }}
-                      />
-                    </motion.div>
-                    <span 
-                      className="text-gray-700 group-hover:text-gray-900 font-medium"
-                      style={{ fontFamily: 'var(--font-body)' }}
-                    >
-                      {link.name}
-                    </span>
-            </motion.a>
-          ))}
-              </div>
-            </div>
 
-            <div className="bg-blue-50 p-6 rounded-lg">
-              <h4 
-                className="text-lg font-semibold mb-3 text-blue-900"
-                style={{ fontFamily: 'var(--font-heading)' }}
-              >
-                Let's work together
-              </h4>
-              <p 
-                className="text-blue-800 text-sm leading-relaxed"
-                style={{ fontFamily: 'var(--font-body)' }}
-              >
-                I'm always excited to take on new challenges and collaborate on innovative projects. 
-                Whether you have a specific project in mind or just want to chat about technology, 
-                I'd love to hear from you!
-              </p>
-          </div>
-        </motion.div>
         </div>
       </div>
     </section>

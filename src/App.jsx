@@ -7,7 +7,7 @@ import Skills from './Components/Skills';
 import Project from './Components/Project';
 import Contact from './Components/Contact';
 import Footer from './Components/Footer';
-import LoadingScreen from './Components/LoadingScreen';
+
 import ScrollProgress from './Components/ScrollProgress';
 import './index.css';
 
@@ -20,7 +20,6 @@ const containerVariants = {
 };
 
 function App() {
-  const [isLoading, setIsLoading] = useState(true);
   const sections = ['hero', 'about', 'skills', 'projects', 'contact', 'footer'];
   const scrollRef = useRef(null);
 
@@ -48,19 +47,16 @@ function App() {
     };
   }, []);
 
-  const handleLoadingComplete = () => {
-    setIsLoading(false);
-  };
+
 
   return (
     <>
-      {isLoading && <LoadingScreen onComplete={handleLoadingComplete} />}
-      
       <motion.div
-        className="relative min-h-screen bg-white"
+        className="relative min-h-screen"
+        style={{ background: '#0A0E27' }}
         variants={containerVariants}
         initial="hidden"
-        animate={isLoading ? "hidden" : "visible"}
+        animate="visible"
         ref={scrollRef}
       >
         <ScrollProgress />

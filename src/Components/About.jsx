@@ -16,152 +16,182 @@ const childVariants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
 };
 
+const skillsData = [
+  { name: 'React & Next.js', level: 95, color: '#3B82F6' },
+  { name: 'Node.js & Express', level: 90, color: '#10B981' },
+  { name: 'TypeScript', level: 85, color: '#06B6D4' },
+  { name: 'MongoDB & PostgreSQL', level: 88, color: '#3B82F6' },
+  { name: 'Tailwind CSS', level: 92, color: '#06B6D4' },
+];
+
 function About() {
   return (
-    <section id="about" className="py-12 sm:py-16 lg:py-20 bg-white relative overflow-hidden">
-      {/* Floating Programming Languages Background */}
-      <div className="absolute inset-0 pointer-events-none">
-        {[
-          'React', 'Node.js', 'JavaScript', 'TypeScript', 'Next.js',
-          'MongoDB', 'PostgreSQL', 'Express.js', 'Tailwind CSS',
-          'Git', 'Firebase', 'Docker', 'HTML', 'CSS', 'React Native'
-        ].map((lang, index) => (
-          <motion.div
-            key={lang}
-            className="absolute text-gray-300 font-medium text-xs opacity-20"
-            style={{
-              left: `${8 + (index * 5) % 85}%`,
-              top: `${10 + (index * 7) % 80}%`,
-            }}
-            animate={{
-              y: [0, -25, 0],
-              x: [0, 15, 0],
-              rotate: [0, 2, -2, 0],
-              opacity: [0.15, 0.25, 0.15],
-            }}
-            transition={{
-              duration: 18 + (index * 1.2),
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: index * 0.4,
-            }}
-          >
-            {lang}
-          </motion.div>
-        ))}
-      </div>
+    <section id="about" className="py-20 relative overflow-hidden" style={{ background: '#0A0E27' }}>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Section Header */}
+        <div className="text-center mb-16">
+          <motion.div 
+            className="mb-4"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <span 
+              className="text-sm font-mono uppercase tracking-wider"
+              style={{ color: 'var(--accent-cyan)', fontFamily: 'var(--font-mono)' }}
+            >
+              // About me
+            </span>
+          </motion.div>
+          <motion.h2
+            className="text-4xl sm:text-5xl md:text-6xl font-bold text-gradient mb-4"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            style={{ fontFamily: 'var(--font-heading)' }}
+          >
+            Who I Am
+          </motion.h2>
+        </div>
+
         <motion.div
-          className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-12 items-center"
+          className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
+          viewport={{ once: true, amount: 0.2 }}
         >
-          {/* Image Section */}
+          {/* Image Section - Smaller */}
           <motion.div 
-            className="order-2 lg:order-1"
+            className="lg:col-span-1 flex justify-center lg:justify-start"
             variants={childVariants}
           >
             <div className="relative">
+              <div 
+                className="absolute -inset-1 rounded-2xl opacity-50"
+                style={{
+                  background: 'var(--primary-blue)',
+                  filter: 'blur(12px)'
+                }}
+              />
               <img
                 src={MyProfile}
-                alt="Tawiah Obed"
-                className="w-full max-w-xs sm:max-w-sm md:max-w-md mx-auto rounded-2xl shadow-lg"
+                alt="Obed Tawiah"
+                className="relative w-48 h-48 sm:w-56 sm:h-56 rounded-2xl object-cover shadow-xl"
+                style={{
+                  border: '2px solid var(--divider-border)'
+                }}
               />
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-teal-500/20 rounded-2xl"></div>
             </div>
           </motion.div>
 
           {/* Content Section */}
           <motion.div 
-            className="order-1 lg:order-2"
+            className="lg:col-span-2"
             variants={childVariants}
           >
-            <motion.h2 
-              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 text-gray-900"
+            <motion.h3 
+              className="text-2xl sm:text-3xl font-bold mb-4"
               variants={childVariants}
-              style={{ fontFamily: 'var(--font-heading)' }}
+              style={{ 
+                fontFamily: 'var(--font-heading)',
+                color: 'var(--text-primary)'
+              }}
             >
-              About Me
-            </motion.h2>
+              Full Stack Developer & Problem Solver
+            </motion.h3>
             
             <motion.p
-              className="text-base sm:text-lg text-gray-600 mb-4 sm:mb-6 leading-relaxed"
+              className="text-lg mb-6 leading-relaxed"
               variants={childVariants}
-              style={{ fontFamily: 'var(--font-body)' }}
+              style={{ 
+                fontFamily: 'var(--font-body)',
+                color: 'var(--text-secondary)'
+              }}
             >
-              As a committed full-stack developer with comprehensive expertise in contemporary web technologies,
-              I specialize in architecting scalable, high-performance applications that drive organizational objectives.
+              I'm a full-stack developer passionate about creating exceptional digital experiences. 
+              With expertise in modern web technologies, I build scalable applications that solve real-world problems.
             </motion.p>
 
             <motion.p
-              className="text-base sm:text-lg text-gray-600 mb-6 sm:mb-8 leading-relaxed"
+              className="text-base mb-8 leading-relaxed"
               variants={childVariants}
-              style={{ fontFamily: 'var(--font-body)' }}
+              style={{ 
+                fontFamily: 'var(--font-body)',
+                color: 'var(--text-secondary)'
+              }}
             >
-              Utilizing advanced proficiency in React, Node.js, MongoDB, and cutting-edge technologies,
-              I transform intricate technical challenges into efficient, robust solutions. My dedication lies in delivering
-              pioneering, premium-quality projects that consistently exceed stakeholder expectations.
+              My approach combines technical excellence with creative problem-solving. Whether it's designing 
+              intuitive interfaces or architecting robust backend systems, I'm committed to delivering 
+              high-quality solutions that exceed expectations.
             </motion.p>
 
-            <motion.div
-              className="flex flex-wrap gap-2 sm:gap-3 lg:gap-4 mb-6 sm:mb-8"
-              variants={childVariants}
-            >
-              <div className="bg-blue-50 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full">
-                <span className="text-blue-700 font-medium text-xs sm:text-sm" style={{ fontFamily: 'var(--font-body)' }}>
-                  React & Next.js
-                </span>
-              </div>
-              <div className="bg-green-50 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full">
-                <span className="text-green-700 font-medium text-xs sm:text-sm" style={{ fontFamily: 'var(--font-body)' }}>
-                  Node.js & Express
-                </span>
-              </div>
-              <div className="bg-purple-50 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full">
-                <span className="text-purple-700 font-medium text-xs sm:text-sm" style={{ fontFamily: 'var(--font-body)' }}>
-                  MongoDB & PostgreSQL
-                </span>
-              </div>
-              <div className="bg-orange-50 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full">
-                <span className="text-orange-700 font-medium text-xs sm:text-sm" style={{ fontFamily: 'var(--font-body)' }}>
-                  TypeScript
-                </span>
-              </div>
-              <div className="bg-red-50 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full">
-                <span className="text-red-700 font-medium text-xs sm:text-sm" style={{ fontFamily: 'var(--font-body)' }}>
-                  HTML
-                </span>
-              </div>
-              <div className="bg-indigo-50 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full">
-                <span className="text-indigo-700 font-medium text-xs sm:text-sm" style={{ fontFamily: 'var(--font-body)' }}>
-                  CSS
-                </span>
-              </div>
-              <div className="bg-cyan-50 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full">
-                <span className="text-cyan-700 font-medium text-xs sm:text-sm" style={{ fontFamily: 'var(--font-body)' }}>
-                  Tailwind CSS
-                </span>
-              </div>
-              <div className="bg-yellow-50 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full">
-                <span className="text-yellow-700 font-medium text-xs sm:text-sm" style={{ fontFamily: 'var(--font-body)' }}>
-                  JavaScript
-                </span>
-              </div>
+            {/* Skills Grid */}
+            <motion.div className="grid grid-cols-2 gap-4 mb-8" variants={childVariants}>
+              {skillsData.map((skill, index) => (
+                <motion.div
+                  key={skill.name}
+                  className="flex items-center gap-3 p-3 rounded-xl"
+                  style={{
+                    background: 'var(--background-card)',
+                    border: '1px solid var(--divider-border)'
+                  }}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  whileHover={{ 
+                    borderColor: skill.color,
+                    scale: 1.02
+                  }}
+                >
+                  <div 
+                    className="w-2 h-2 rounded-full"
+                    style={{ background: skill.color }}
+                  />
+                  <span 
+                    className="text-sm font-medium"
+                    style={{ color: 'var(--text-primary)', fontFamily: 'var(--font-body)' }}
+                  >
+                    {skill.name}
+                  </span>
+                </motion.div>
+              ))}
             </motion.div>
 
-            <motion.a
-              href="#contact"
-              className="btn-primary inline-flex items-center px-4 sm:px-6 py-2.5 sm:py-3 text-sm sm:text-base font-semibold w-full sm:w-auto justify-center"
-              variants={childVariants}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              style={{ fontFamily: 'var(--font-body)' }}
-            >
-              Learn More
-            </motion.a>
+            <motion.div className="flex gap-4" variants={childVariants}>
+              <motion.a
+                href="#contact"
+                className="inline-flex items-center px-6 py-3 text-base font-semibold rounded-xl"
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                style={{ 
+                  fontFamily: 'var(--font-body)',
+                  background: 'var(--primary-blue)',
+                  color: '#FFFFFF',
+                  boxShadow: '0 4px 20px rgba(59, 130, 246, 0.3)'
+                }}
+              >
+                Get In Touch
+              </motion.a>
+              <motion.a
+                href="/resume.pdf"
+                download
+                className="inline-flex items-center px-6 py-3 text-base font-semibold rounded-xl"
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                style={{ 
+                  fontFamily: 'var(--font-body)',
+                  background: 'transparent',
+                  color: 'var(--text-primary)',
+                  border: '2px solid var(--primary-blue)'
+                }}
+              >
+                Download CV
+              </motion.a>
+            </motion.div>
           </motion.div>
         </motion.div>
       </div>

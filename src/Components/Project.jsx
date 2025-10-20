@@ -75,15 +75,15 @@ const projects = [
 ];
 
 const techColors = {
-  React: '#00D4FF',
-  'Node.js': '#00FF88',
-  MongoDB: '#8A2BE2',
-  Tailwind: '#00D4FF',
-  Firebase: '#00FF88',
-  JavaScript: '#00D4FF',
-  'Local Storage': '#8A2BE2',
-  'React Native': '#00D4FF',
-  'Express.js': '#00FF88',
+  React: '#61DAFB',
+  'Node.js': '#339933',
+  MongoDB: '#47A248',
+  Tailwind: '#06B6D4',
+  Firebase: '#FFCA28',
+  JavaScript: '#F7DF1E',
+  'Local Storage': '#3B82F6',
+  'React Native': '#61DAFB',
+  'Express.js': '#FFFFFF',
 };
 
 const containerVariants = {
@@ -224,215 +224,258 @@ function Project() {
   return (
     <section
       id="projects"
-      className="py-12 sm:py-16 lg:py-20 bg-white relative overflow-hidden"
+      className="py-20 relative overflow-hidden"
+      style={{ background: '#0A0E27' }}
       onKeyDown={handleKeyDown}
       tabIndex={0}
     >
-      {/* Floating Programming Languages Background */}
-      <div className="absolute inset-0 pointer-events-none">
-        {[
-          'React', 'Node.js', 'JavaScript', 'TypeScript', 'Next.js',
-          'MongoDB', 'PostgreSQL', 'Express.js', 'Tailwind CSS',
-          'Git', 'Firebase', 'Docker', 'HTML', 'CSS', 'React Native'
-        ].map((lang, index) => (
-          <motion.div
-            key={lang}
-            className="absolute text-gray-300 font-medium text-xs opacity-15"
-            style={{
-              left: `${6 + (index * 6) % 88}%`,
-              top: `${8 + (index * 8) % 75}%`,
-            }}
-            animate={{
-              y: [0, -20, 0],
-              x: [0, 12, 0],
-              rotate: [0, 1.5, -1.5, 0],
-              opacity: [0.1, 0.2, 0.1],
-            }}
-            transition={{
-              duration: 16 + (index * 1.3),
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: index * 0.5,
-            }}
-          >
-            {lang}
-          </motion.div>
-        ))}
+      {/* Decorative background elements */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <motion.div
+          className="absolute w-96 h-96 rounded-full"
+          style={{
+            background: 'radial-gradient(circle, rgba(255, 111, 97, 0.08) 0%, transparent 70%)',
+            top: '20%',
+            right: '10%',
+            filter: 'blur(60px)'
+          }}
+          animate={{
+            y: [0, 40, 0],
+            scale: [1, 1.2, 1]
+          }}
+          transition={{
+            duration: 12,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-      <motion.h2
-          className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-8 sm:mb-12 lg:mb-16 text-gray-900 px-4"
-        variants={titleVariants}
-        initial="hidden"
-        whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
-          style={{ fontFamily: 'var(--font-heading)' }}
-      >
-          Featured Projects
-        </motion.h2>
+        <div className="text-center mb-16">
+          <motion.div 
+            className="mb-4"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <span 
+              className="text-sm font-mono uppercase tracking-wider"
+              style={{ color: 'var(--accent-cyan)', fontFamily: 'var(--font-mono)' }}
+            >
+              // My work
+            </span>
+          </motion.div>
+          <motion.h2
+            className="text-4xl sm:text-5xl md:text-6xl font-bold text-gradient mb-4"
+            variants={titleVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+            style={{ fontFamily: 'var(--font-heading)' }}
+          >
+            Featured Projects
+          </motion.h2>
+          <motion.p
+            className="text-lg max-w-2xl mx-auto"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            style={{ color: 'var(--text-secondary)', fontFamily: 'var(--font-body)' }}
+          >
+            Explore my latest work and creative solutions
+          </motion.p>
+        </div>
         
         <motion.div
-          className="flex flex-wrap justify-center gap-2 sm:gap-3 lg:gap-4 mb-8 sm:mb-10 lg:mb-12 px-4"
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
-      >
-        {categories.map((category) => (
-          <motion.button
-            key={category}
-            onClick={() => setFilter(category)}
-              className={`px-3 sm:px-4 lg:px-6 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-200 ${
-              filter === category
-                  ? 'bg-blue-600 text-white'
-                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-              }`}
-            variants={buttonVariants}
-            whileHover="hover"
-              style={{ fontFamily: 'var(--font-body)' }}
-          >
-            {category}
-          </motion.button>
-        ))}
-      </motion.div>
-
-      <motion.div
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4 lg:gap-6"
+          className="flex flex-wrap justify-center gap-3 mb-12 px-4"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.3 }}
         >
-          {filteredProjects.map((project, index) => (
-              <motion.div
-                key={project.id}
-              className="overflow-hidden group relative min-h-[250px] sm:min-h-[280px] lg:min-h-[300px] bg-blue-200 border border-blue-400 rounded-lg shadow-md sm:bg-gray-100 sm:border-gray-300"
-                variants={cardVariants}
-              whileHover="hover"
+          {categories.map((category) => (
+            <motion.button
+              key={category}
+              onClick={() => setFilter(category)}
+              className="px-6 py-3 rounded-xl text-sm font-semibold transition-all duration-300"
+              variants={buttonVariants}
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.95 }}
               style={{
-                animationDelay: `${index * 0.1}s`
+                fontFamily: 'var(--font-body)',
+                background: filter === category 
+                  ? 'var(--primary-blue)' 
+                  : 'var(--background-card)',
+                color: filter === category ? '#FFFFFF' : 'var(--text-secondary)',
+                border: '1px solid ' + (filter === category ? 'var(--primary-blue)' : 'var(--divider-border)'),
+                boxShadow: filter === category 
+                  ? '0 4px 20px rgba(59, 130, 246, 0.3)' 
+                  : 'none'
               }}
             >
-              {/* Animated background gradient */}
-              <motion.div
-                className="absolute inset-0 opacity-0 group-hover:opacity-100"
-                style={{
-                  background: 'linear-gradient(135deg, rgba(37, 99, 235, 0.1), rgba(20, 184, 166, 0.1))'
-                }}
-                transition={{ duration: 0.3 }}
-              />
-              
-              <div className="relative z-10">
-                <div className="relative overflow-hidden">
-                <motion.img
-                  src={project.screenshot}
-                  alt={project.title}
-                    className="w-full h-32 sm:h-40 lg:h-48 object-cover"
-                    variants={imageVariants}
-                    whileHover="hover"
-                  />
-                  <motion.div 
-                    className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300"
-                    whileHover={{ opacity: 0.3 }}
-                  />
-                  
-                  {/* Overlay with project info - hidden on mobile */}
-                  <motion.div
-                    className="absolute inset-0 hidden sm:flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                    initial={{ scale: 0.8 }}
-                    whileHover={{ scale: 1 }}
-                  >
-                    <motion.div
-                      className="bg-white/90 backdrop-blur-sm rounded-lg p-3 lg:p-4 text-center"
-                      initial={{ y: 20, opacity: 0 }}
-                      whileHover={{ y: 0, opacity: 1 }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      <h4 className="font-semibold text-gray-900 mb-1 lg:mb-2 text-sm lg:text-base">Quick Preview</h4>
-                      <p className="text-xs lg:text-sm text-gray-600">Click to explore</p>
-                    </motion.div>
-                  </motion.div>
-                </div>
-                
-                <div className="p-3 sm:p-4 lg:p-5">
-                  <motion.h3
-                    className="text-base sm:text-lg font-semibold mb-1.5 sm:mb-2 text-gray-900"
-                    style={{ fontFamily: 'var(--font-heading)' }}
-                    whileHover={{ scale: 1.02 }}
-                  >
-                    {project.title}
-                  </motion.h3>
-
-                  <motion.p
-                    className="text-gray-600 mb-2 sm:mb-3 text-xs sm:text-sm leading-relaxed"
-                    style={{ fontFamily: 'var(--font-body)' }}
-                    initial={{ opacity: 0.8 }}
-                    whileHover={{ opacity: 1 }}
-                  >
-                    {project.description || 'A modern web application built with cutting-edge technologies.'}
-                  </motion.p>
-
-                  <motion.div
-                    className="flex flex-wrap gap-1 sm:gap-1.5 mb-3 sm:mb-4"
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    transition={{ duration: 0.5, delay: 0.3 }}
-                  >
-                    {project.tech.map((tech, techIndex) => (
-                      <motion.span
-                        key={tech}
-                        className="px-1.5 sm:px-2 py-0.5 sm:py-1 bg-gray-100 text-gray-700 text-xs font-medium rounded-full hover:bg-blue-100 hover:text-blue-700 transition-colors duration-200"
-                        style={{ fontFamily: 'var(--font-body)' }}
-                        initial={{ scale: 0, opacity: 0 }}
-                        whileInView={{ scale: 1, opacity: 1 }}
-                        whileHover={{ scale: 1.05 }}
-                        transition={{
-                          duration: 0.3,
-                          delay: techIndex * 0.1
-                        }}
-                      >
-                        {tech}
-                      </motion.span>
-                    ))}
-                  </motion.div>
-
-                  <motion.div
-                    className="flex flex-col sm:flex-row gap-1.5 sm:gap-2"
-                    variants={buttonVariants}
-                  >
-                    <motion.a
-                      href={project.liveLink}
-                      className="btn-primary flex-1 flex items-center justify-center text-center py-1.5 sm:py-2 text-xs font-semibold"
-                      whileHover="hover"
-                      whileTap="tap"
-                      style={{ fontFamily: 'var(--font-body)' }}
-                  >
-                    View Project
-                  </motion.a>
-                    <motion.a
-                      href={project.githubLink || project.github}
-                      className="btn-outline flex-1 flex items-center justify-center text-center py-1.5 sm:py-2 text-xs font-semibold"
-          whileHover="hover"
-                      whileTap="tap"
-                      style={{ fontFamily: 'var(--font-body)' }}
-                    >
-                      GitHub
-                    </motion.a>
-                  </motion.div>
-                </div>
-              </div>
-              
-              {/* Shimmer effect */}
-              <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100"
-                initial={{ x: '-100%' }}
-                whileHover={{ x: '100%' }}
-                transition={{ duration: 0.8, ease: 'easeInOut' }}
-              />
-            </motion.div>
+              {category}
+            </motion.button>
           ))}
         </motion.div>
+
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={filter}
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            exit={{ opacity: 0, y: 20 }}
+            viewport={{ once: true, amount: 0.2 }}
+          >
+            {filteredProjects.map((project, index) => {
+              const primaryTech = project.tech[0];
+              const primaryColor = techColors[primaryTech] || '#3B82F6';
+              
+              return (
+              <motion.div
+                key={project.id}
+                className="group relative overflow-hidden rounded-2xl"
+                variants={cardVariants}
+                whileHover="hover"
+                layout
+                style={{
+                  background: 'var(--background-card)',
+                  border: '1px solid rgba(59, 130, 246, 0.15)',
+                  boxShadow: '0 4px 12px rgba(0, 0, 0, 0.08)'
+                }}
+              >
+
+                
+                <div className="relative z-10">
+                  {/* Project Image with enhanced hover effect */}
+                  <div className="relative overflow-hidden h-56">
+                    <motion.img
+                      src={project.screenshot}
+                      alt={project.title}
+                      className="w-full h-full object-cover"
+                      style={{
+                        transition: 'transform 0.5s ease'
+                      }}
+                      whileHover={{ scale: 1.05 }}
+                    />
+                    
+                    {/* Gradient overlay */}
+                    <div 
+                      className="absolute inset-0"
+                      style={{
+                        background: 'linear-gradient(to top, rgba(10, 14, 39, 0.9) 0%, transparent 60%)'
+                      }}
+                    />
+                    
+                    {/* Tech stack on image */}
+                    <div className="absolute bottom-4 left-4 flex flex-wrap gap-2">
+                      {project.tech.slice(0, 3).map((tech) => (
+                        <span
+                          key={tech}
+                          className="px-2.5 py-1 text-xs font-semibold rounded-md backdrop-blur-md"
+                          style={{
+                            background: 'rgba(10, 14, 39, 0.8)',
+                            color: techColors[tech] || '#3B82F6',
+                            border: `1px solid ${techColors[tech] || '#3B82F6'}40`
+                          }}
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                      {project.tech.length > 3 && (
+                        <span 
+                          className="px-2.5 py-1 text-xs font-semibold rounded-md backdrop-blur-md"
+                          style={{
+                            background: 'rgba(10, 14, 39, 0.8)',
+                            color: 'var(--primary-blue)',
+                            border: '1px solid rgba(59, 130, 246, 0.4)'
+                          }}
+                        >
+                          +{project.tech.length - 3}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                  
+                  {/* Content Section */}
+                  <div className="p-6">
+                    {/* Title */}
+                    <motion.h3
+                      className="text-xl font-bold mb-2 group-hover:text-primary-blue transition-colors"
+                      style={{ 
+                        fontFamily: 'var(--font-heading)',
+                        color: 'var(--text-primary)'
+                      }}
+                    >
+                      {project.title}
+                    </motion.h3>
+
+                    {/* Description */}
+                    <motion.p
+                      className="text-sm leading-relaxed mb-6"
+                      style={{ 
+                        fontFamily: 'var(--font-body)',
+                        color: 'var(--text-secondary)',
+                        display: '-webkit-box',
+                        WebkitLineClamp: 2,
+                        WebkitBoxOrient: 'vertical',
+                        overflow: 'hidden'
+                      }}
+                    >
+                      {project.description || 'A modern web application built with cutting-edge technologies.'}
+                    </motion.p>
+
+                    {/* Action Buttons */}
+                    <motion.div
+                      className="flex gap-3"
+                      variants={buttonVariants}
+                    >
+                      <motion.a
+                        href={project.liveLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex-1 flex items-center justify-center gap-2 py-3 rounded-lg text-sm font-semibold transition-all"
+                        whileHover={{ y: -2 }}
+                        whileTap={{ scale: 0.98 }}
+                        style={{ 
+                          fontFamily: 'var(--font-body)',
+                          background: 'var(--primary-blue)',
+                          color: '#FFFFFF',
+                          boxShadow: '0 4px 12px rgba(59, 130, 246, 0.25)'
+                        }}
+                      >
+                        <span>View Project</span>
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        </svg>
+                      </motion.a>
+                      <motion.a
+                        href={project.githubLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center justify-center w-12 h-12 rounded-lg transition-all"
+                        whileHover={{ y: -2 }}
+                        whileTap={{ scale: 0.98 }}
+                        style={{ 
+                          background: 'rgba(59, 130, 246, 0.1)',
+                          color: 'var(--primary-blue)',
+                          border: '1px solid rgba(59, 130, 246, 0.2)'
+                        }}
+                      >
+                        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path>
+                        </svg>
+                      </motion.a>
+                    </motion.div>
+                  </div>
+                </div>
+              </motion.div>
+              );
+            })}
+          </motion.div>
+        </AnimatePresence>
       </div>
     </section>
   );
