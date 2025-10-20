@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { motion, useViewportScroll, useTransform } from 'framer-motion';
+import React, { useEffect, useRef, useState, useMemo } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import Navbar from './Components/Navbar';
 import HeroSection from './Components/HeroSection';
 import About from './Components/About';
@@ -7,6 +7,7 @@ import Skills from './Components/Skills';
 import Project from './Components/Project';
 import Contact from './Components/Contact';
 import Footer from './Components/Footer';
+import ResumeModal from './Components/ResumeModal';
 
 import ScrollProgress from './Components/ScrollProgress';
 import './index.css';
@@ -20,8 +21,17 @@ const containerVariants = {
 };
 
 function App() {
-  const sections = ['hero', 'about', 'skills', 'projects', 'contact', 'footer'];
+  const [isResumeModalOpen, setIsResumeModalOpen] = useState(false);
+  const sections = useMemo(() => ['hero', 'about', 'skills', 'projects', 'contact', 'footer'], []);
   const scrollRef = useRef(null);
+
+  const handleResumeClick = () => {
+    setIsResumeModalOpen(true);
+  };
+
+  const closeResumeModal = () => {
+    setIsResumeModalOpen(false);
+  };
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -45,7 +55,7 @@ function App() {
     return () => {
       observer.disconnect();
     };
-  }, []);
+  }, [sections]);
 
 
 
@@ -60,15 +70,18 @@ function App() {
         ref={scrollRef}
       >
         <ScrollProgress />
-        <Navbar />
+        <Navbar onResumeClick={handleResumeClick} />
         <main>
           <HeroSection />
-          <About />
+          <About onResumeClick={handleResumeClick} />
           <Skills />
           <Project />
           <Contact />
         </main>
         <Footer />
+        <AnimatePresence>
+          {isResumeModalOpen && <ResumeModal key="resume-modal" onClose={closeResumeModal} />}
+        </AnimatePresence>
       </motion.div>
     </>
   );

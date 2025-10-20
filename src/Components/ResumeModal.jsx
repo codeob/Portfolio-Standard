@@ -1,279 +1,211 @@
 import React from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 
-// eslint-disable-next-line no-unused-vars
-const MotionDiv = motion.div;
-
-const ResumeModal = ({ isOpen, onClose }) => {
-  const resumeContent = `
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Obed Tawiah - Full Stack Developer Resume</title>
-        <script src="https://cdn.tailwindcss.com"></script>
-        <style>
-            @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-            body { font-family: 'Inter', sans-serif; }
-        </style>
-    </head>
-    <body class="bg-gradient-to-br from-slate-50 to-white text-gray-900 max-w-[8.5in] mx-auto p-10 shadow-2xl print:shadow-none print:p-6 print:bg-white">
-        <!-- Header Section -->
-        <header class="text-center mb-10 pb-6 border-b-4 border-indigo-600">
-            <h1 class="text-4xl font-bold text-gray-900 mb-2 tracking-tight">Obed Tawiah</h1>
-            <h2 class="text-2xl text-indigo-600 font-medium mb-4">Full Stack Developer</h2>
-            <div class="flex flex-col sm:flex-row justify-center items-center gap-2 text-sm text-gray-600">
-                <span class="flex items-center gap-1">
-                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
-                    </svg>
-                    Accra, Ghana
-                </span>
-                <span class="hidden sm:block">|</span>
-                <span class="flex items-center gap-1">
-                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
-                        <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
-                    </svg>
-                    tawiaho858@gmail.com
-                </span>
-            </div>
-            <div class="flex justify-center gap-4 mt-3 text-sm">
-                <a href="https://www.linkedin.com/in/tawiah-obed-a8867b2b6/" class="text-indigo-600 hover:text-indigo-800 transition-colors flex items-center gap-1">
-                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                    </svg>
-                    LinkedIn
-                </a>
-                <a href="https://github.com/codeob" class="text-gray-700 hover:text-gray-900 transition-colors flex items-center gap-1">
-                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                    </svg>
-                    GitHub
-                </a>
-                <a href="https://x.com/ObedTawiah83026/" class="text-blue-500 hover:text-blue-700 transition-colors flex items-center gap-1">
-                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
-                    </svg>
-                    Twitter
-                </a>
-            </div>
-        </header>
-
-        <!-- Profile Summary -->
-        <section class="mb-8">
-            <h3 class="text-2xl font-semibold text-gray-900 mb-4 border-b-2 border-indigo-200 pb-2">Profile Summary</h3>
-            <p class="text-gray-700 leading-relaxed text-justify">Experienced Full Stack Developer skilled in React.js, Next.js, Node.js, Express.js, Tailwind CSS, MongoDB, PostgreSQL, TypeScript, JavaScript, Git, Firebase, and Docker. Proficient in building scalable web applications, managing backend APIs, implementing responsive UI with Tailwind CSS, and deploying full-stack solutions on Vercel and Render. Passionate problem-solver dedicated to creating efficient, scalable applications with exceptional UI/UX, leveraging modern technologies for optimal performance and user engagement.</p>
-        </section>
-
-        <!-- Technical Skills -->
-        <section class="mb-8">
-            <h3 class="text-2xl font-semibold text-gray-900 mb-4 border-b-2 border-indigo-200 pb-2">Technical Skills</h3>
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-                <div class="bg-indigo-50 text-indigo-800 px-4 py-2 rounded-lg text-sm font-medium text-center shadow-sm">React (95%)</div>
-                <div class="bg-indigo-50 text-indigo-800 px-4 py-2 rounded-lg text-sm font-medium text-center shadow-sm">HTML (100%)</div>
-                <div class="bg-indigo-50 text-indigo-800 px-4 py-2 rounded-lg text-sm font-medium text-center shadow-sm">CSS (90%)</div>
-                <div class="bg-indigo-50 text-indigo-800 px-4 py-2 rounded-lg text-sm font-medium text-center shadow-sm">Next.js (95%)</div>
-                <div class="bg-indigo-50 text-indigo-800 px-4 py-2 rounded-lg text-sm font-medium text-center shadow-sm">Tailwind CSS (100%)</div>
-                <div class="bg-indigo-50 text-indigo-800 px-4 py-2 rounded-lg text-sm font-medium text-center shadow-sm">Node.js (79%)</div>
-                <div class="bg-indigo-50 text-indigo-800 px-4 py-2 rounded-lg text-sm font-medium text-center shadow-sm">Express.js (80%)</div>
-                <div class="bg-indigo-50 text-indigo-800 px-4 py-2 rounded-lg text-sm font-medium text-center shadow-sm">Firebase (70%)</div>
-                <div class="bg-indigo-50 text-indigo-800 px-4 py-2 rounded-lg text-sm font-medium text-center shadow-sm">MongoDB (80%)</div>
-                <div class="bg-indigo-50 text-indigo-800 px-4 py-2 rounded-lg text-sm font-medium text-center shadow-sm">PostgreSQL (70%)</div>
-                <div class="bg-indigo-50 text-indigo-800 px-4 py-2 rounded-lg text-sm font-medium text-center shadow-sm">JavaScript (70%)</div>
-                <div class="bg-indigo-50 text-indigo-800 px-4 py-2 rounded-lg text-sm font-medium text-center shadow-sm">TypeScript (70%)</div>
-                <div class="bg-indigo-50 text-indigo-800 px-4 py-2 rounded-lg text-sm font-medium text-center shadow-sm">Python (50%)</div>
-                <div class="bg-indigo-50 text-indigo-800 px-4 py-2 rounded-lg text-sm font-medium text-center shadow-sm">Git (100%)</div>
-                <div class="bg-indigo-50 text-indigo-800 px-4 py-2 rounded-lg text-sm font-medium text-center shadow-sm">Docker (50%)</div>
-            </div>
-        </section>
-
-        <!-- Professional Experience -->
-        <section class="mb-8">
-            <h3 class="text-2xl font-semibold text-gray-900 mb-4 border-b-2 border-indigo-200 pb-2">Professional Experience</h3>
-            <div class="bg-white p-6 rounded-lg shadow-md border border-gray-100">
-                <h4 class="text-xl font-semibold text-gray-900 mb-2">Full Stack Developer</h4>
-                <p class="text-indigo-600 font-medium mb-4"><strong>Freelance/Independent Projects</strong> | 2023 - Present</p>
-                <ul class="space-y-3 text-gray-700">
-                    <li class="flex items-start gap-2">
-                        <span class="text-indigo-500 mt-1">•</span>
-                        <span>Led the development of end-to-end web applications using React.js, Node.js, Express.js, and MongoDB, improving overall system performance and user satisfaction.</span>
-                    </li>
-                    <li class="flex items-start gap-2">
-                        <span class="text-indigo-500 mt-1">•</span>
-                        <span>Built and optimized RESTful APIs and integrated PostgreSQL and MongoDB databases to handle thousands of daily transactions efficiently.</span>
-                    </li>
-                    <li class="flex items-start gap-2">
-                        <span class="text-indigo-500 mt-1">•</span>
-                        <span>Designed scalable UI components with Next.js and Tailwind CSS, resulting in a 30% increase in load speed and better user engagement.</span>
-                    </li>
-                    <li class="flex items-start gap-2">
-                        <span class="text-indigo-500 mt-1">•</span>
-                        <span>Implemented JWT authentication and secure user sessions, strengthening data privacy and reducing unauthorized access incidents by 40%.</span>
-                    </li>
-                    <li class="flex items-start gap-2">
-                        <span class="text-indigo-500 mt-1">•</span>
-                        <span>Collaborated with cross-functional teams (UI/UX, product design, and QA) to deliver high-quality features on schedule using Agile/Scrum methodologies.</span>
-                    </li>
-                    <li class="flex items-start gap-2">
-                        <span class="text-indigo-500 mt-1">•</span>
-                        <span>Deployed full-stack solutions to Vercel (frontend) and Render (backend) with continuous integration pipelines for smooth updates.</span>
-                    </li>
-                    <li class="flex items-start gap-2">
-                        <span class="text-indigo-500 mt-1">•</span>
-                        <span>Integrated Docker for containerized development environments, ensuring consistent performance across different machines.</span>
-                    </li>
-                    <li class="flex items-start gap-2">
-                        <span class="text-indigo-500 mt-1">•</span>
-                        <span>Utilized Git and GitHub for version control, peer code reviews, and continuous deployment, reducing merge conflicts by 25%.</span>
-                    </li>
-                    <li class="flex items-start gap-2">
-                        <span class="text-indigo-500 mt-1">•</span>
-                        <span>Resolved complex bugs and optimized backend logic, reducing API latency by 35% and improving database query efficiency.</span>
-                    </li>
-                    <li class="flex items-start gap-2">
-                        <span class="text-indigo-500 mt-1">•</span>
-                        <span>Contributed to the development of an AI-driven module prototype to enhance user analytics and product recommendations.</span>
-                    </li>
-                </ul>
-            </div>
-        </section>
-
-        <!-- Projects -->
-        <section class="mb-8">
-            <h3 class="text-2xl font-semibold text-gray-900 mb-4 border-b-2 border-indigo-200 pb-2">Projects</h3>
-            <div class="space-y-6">
-                <div class="bg-white p-5 rounded-lg shadow-md border border-gray-100 hover:shadow-lg transition-shadow">
-                    <h4 class="text-lg font-semibold text-gray-900 mb-2">JobFinder - Full Stack Job Search Platform</h4>
-                    <p class="text-gray-700 mb-3">A comprehensive job search platform with advanced filtering, user authentication, and real-time job postings.</p>
-                    <p class="text-sm text-indigo-600 font-medium italic">Technologies: React, Tailwind CSS, Node.js, Express.js, MongoDB</p>
-                </div>
-                <div class="bg-white p-5 rounded-lg shadow-md border border-gray-100 hover:shadow-lg transition-shadow">
-                    <h4 class="text-lg font-semibold text-gray-900 mb-2">Event Planner - Event Management Application</h4>
-                    <p class="text-gray-700 mb-3">Dynamic event management app with real-time collaboration, calendar integration, and automated notifications.</p>
-                    <p class="text-sm text-indigo-600 font-medium italic">Technologies: React, Firebase, Node.js</p>
-                </div>
-                <div class="bg-white p-5 rounded-lg shadow-md border border-gray-100 hover:shadow-lg transition-shadow">
-                    <h4 class="text-lg font-semibold text-gray-900 mb-2">E-commerce Website - Online Marketplace</h4>
-                    <p class="text-gray-700 mb-3">Full-featured online marketplace with secure payment processing, product catalog management, and user authentication.</p>
-                    <p class="text-sm text-indigo-600 font-medium italic">Technologies: React, Node.js, MongoDB</p>
-                </div>
-                <div class="bg-white p-5 rounded-lg shadow-md border border-gray-100 hover:shadow-lg transition-shadow">
-                    <h4 class="text-lg font-semibold text-gray-900 mb-2">Spices Store - E-commerce Platform</h4>
-                    <p class="text-gray-700 mb-3">Modern e-commerce platform specializing in spices with mobile-optimized design and secure checkout.</p>
-                    <p class="text-sm text-indigo-600 font-medium italic">Technologies: React, Tailwind CSS</p>
-                </div>
-                <div class="bg-white p-5 rounded-lg shadow-md border border-gray-100 hover:shadow-lg transition-shadow">
-                    <h4 class="text-lg font-semibold text-gray-900 mb-2">Artist Gallery (Kojo Cue) - Interactive Digital Experience</h4>
-                    <p class="text-gray-700 mb-3">Map-based digital experience combining music, storytelling, and visuals for artistic exploration.</p>
-                    <p class="text-sm text-indigo-600 font-medium italic">Technologies: React, Tailwind CSS</p>
-                </div>
-                <div class="bg-white p-5 rounded-lg shadow-md border border-gray-100 hover:shadow-lg transition-shadow">
-                    <h4 class="text-lg font-semibold text-gray-900 mb-2">Movie App - Movie Browsing Platform</h4>
-                    <p class="text-gray-700 mb-3">Movie browsing platform with search functionality and detailed movie information.</p>
-                    <p class="text-sm text-indigo-600 font-medium italic">Technologies: React, Tailwind CSS</p>
-                </div>
-                <div class="bg-white p-5 rounded-lg shadow-md border border-gray-100 hover:shadow-lg transition-shadow">
-                    <h4 class="text-lg font-semibold text-gray-900 mb-2">Todo List - Task Management Application</h4>
-                    <p class="text-gray-700 mb-3">Task management app with CRUD operations, local storage persistence, and drag-and-drop functionality.</p>
-                    <p class="text-sm text-indigo-600 font-medium italic">Technologies: React, Local Storage, Tailwind CSS</p>
-                </div>
-                <div class="bg-white p-5 rounded-lg shadow-md border border-gray-100 hover:shadow-lg transition-shadow">
-                    <h4 class="text-lg font-semibold text-gray-900 mb-2">Guessing Game - Interactive Number Guessing Game</h4>
-                    <p class="text-gray-700 mb-3">Engaging number guessing game with dynamic difficulty levels and score tracking.</p>
-                    <p class="text-sm text-indigo-600 font-medium italic">Technologies: JavaScript, React, Tailwind CSS</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Education -->
-        <section>
-            <h3 class="text-2xl font-semibold text-gray-900 mb-4 border-b-2 border-indigo-200 pb-2">Education</h3>
-            <div class="bg-white p-6 rounded-lg shadow-md border border-gray-100">
-                <h4 class="text-lg font-semibold text-gray-900 mb-2">Codetrain Africa Full Stack Developer</h4>
-                <p class="text-gray-700">Continuous learning through online platforms, documentation, and hands-on project development</p>
-            </div>
-        </section>
-    </body>
-    </html>
-  `;
-
-  const downloadResume = () => {
-    const blob = new Blob([resumeContent], { type: 'text/html' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'Tawiah_Obed_Resume.html';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-  };
-
-  const printResume = () => {
-    const printWindow = window.open('', '_blank');
-    printWindow.document.write(resumeContent);
-    printWindow.document.close();
-    printWindow.print();
-  };
+const ResumeModal = ({ onClose }) => {
+  const currentTime = new Date().toLocaleTimeString('en-US', { hour12: true });
 
   return (
-    <AnimatePresence>
-      {isOpen && (
-        <>
-          <MotionDiv
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4"
-            onClick={onClose}
-          >
-            <MotionDiv
-              initial={{ opacity: 0, scale: 0.9, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              transition={{ duration: 0.3 }}
-              className="bg-white rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden"
-              onClick={(e) => e.stopPropagation()}
+    <motion.div
+        className="fixed inset-0 bg-blur-2xl flex justify-center items-center z-50 p-4"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        onClick={onClose}
+      >
+        <motion.div
+          className="bg-white rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto"
+          initial={{ scale: 0.8, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          exit={{ scale: 0.8, opacity: 0 }}
+          transition={{ type: "spring", damping: 25, stiffness: 300 }}
+          onClick={(e) => e.stopPropagation()}
+        >
+          <div className="sticky top-0 bg-white border-b border-gray-200 p-4 flex justify-between items-center rounded-t-lg">
+            <h1 className="text-xl font-bold text-gray-900">Resume Preview</h1>
+            <button
+              onClick={onClose}
+              className="text-gray-500 hover:text-gray-700 text-2xl font-bold"
             >
-              <div className="flex items-center justify-between p-6 border-b border-gray-200">
-                <h2 className="text-2xl font-bold text-gray-800">Resume Preview</h2>
-                <div className="flex gap-3">
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    onClick={downloadResume}
-                    className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-                  >
-                    Download HTML
-                  </motion.button>
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    onClick={printResume}
-                    className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
-                  >
-                    Print PDF
-                  </motion.button>
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    onClick={onClose}
-                    className="px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors"
-                  >
-                    Close
-                  </motion.button>
-                </div>
-              </div>
-              <div className="p-6 overflow-y-auto max-h-[calc(90vh-120px)]">
-                <div dangerouslySetInnerHTML={{ __html: resumeContent }} />
-              </div>
-            </MotionDiv>
-          </MotionDiv>
-        </>
-      )}
-    </AnimatePresence>
+              ×
+            </button>
+          </div>
+          <div className="p-8 font-['Roboto',sans-serif] text-gray-900">
+        {/* Header */}
+        <div className="flex justify-between items-center border-b border-gray-200 pb-4 mb-8">
+          <div>
+            <h1 className="text-3xl font-bold text-gray-900">Tawiah Obed</h1>
+            <p className="text-xl font-medium text-gray-700">Full Stack Developer</p>
+            <div className="text-sm mt-3 space-y-1.5">
+              <p><span className="font-medium">Email:</span> tawiaho858@gmail.com</p>
+              <p><span className="font-medium">Phone:</span> 0539526814</p>
+              <p><span className="font-medium">Location:</span> Accra, Ghana</p>
+              <p><span className="font-medium">GitHub:</span> <a href="https://github.com/codeob" className="text-blue-600 hover:underline">github.com/codeob</a></p>
+              <p><span className="font-medium">LinkedIn:</span> <a href="https://www.linkedin.com/in/tawiah-obed-a8867b2b6/" className="text-blue-600 hover:underline">linkedin.com/in/tawiah-obed</a></p>
+            </div>
+          </div>
+          <div className="text-sm text-gray-600 font-medium ml-8">{currentTime}</div>
+        </div>
+
+        {/* Professional Summary */}
+        <div className="mb-8">
+          <h2 className="text-xl font-semibold text-gray-800 border-b border-gray-200 pb-2">Professional Summary</h2>
+          <p className="text-sm mt-3 leading-relaxed text-gray-700">
+            Dedicated Full Stack Developer with comprehensive training from CodeTrain Africa (February 2024 - October 2025). Proficient in building scalable, user-focused web applications using HTML, CSS, JavaScript, React.js, Node.js, and MongoDB. Experienced in delivering end-to-end solutions, from responsive frontends to robust backend APIs, with a focus on performance optimization and team collaboration. Demonstrated expertise through projects like job search platforms and e-commerce systems, driving innovation and user satisfaction.
+          </p>
+        </div>
+
+        {/* Skills */}
+        <div className="mb-8">
+          <h2 className="text-xl font-semibold text-gray-800 border-b border-gray-200 pb-2">Technical Skills</h2>
+          <p className="text-sm mt-3 text-gray-700">
+            HTML, CSS, Tailwind CSS, JavaScript, React.js, Next.js, Python, Node.js, Express.js, Git, MongoDB, PostgreSQL, Firebase, Docker, AI Integration
+          </p>
+          <h2 className="text-xl font-semibold text-gray-800 border-b border-gray-200 pb-2 mt-6">Soft Skills</h2>
+          <p className="text-sm mt-3 text-gray-700">
+            Effective Communication, Time Management, Problem Solving, Team Collaboration, Holistic Thinking, Multitasking, User Empathy, Attention to Detail
+          </p>
+        </div>
+
+        {/* Professional Experience */}
+        <div className="mb-8">
+          <h2 className="text-xl font-semibold text-gray-800 border-b border-gray-200 pb-2">Professional Experience</h2>
+          <div className="text-sm mt-4 space-y-6">
+            <div>
+              <p className="font-medium text-gray-900">Full Stack Developer, TechTrend Innovations</p>
+              <p className="text-gray-600 flex justify-end">January 2025 - October 2025, Accra, Ghana</p>
+              <ul className="list-disc list-inside mt-2 text-gray-700">
+                <li>Developed a job search platform with advanced filtering and real-time updates using React, Node.js, and MongoDB, improving user engagement by 35%.</li>
+                <li>Designed and optimized RESTful APIs, reducing server response time by 20%.</li>
+                <li>Collaborated with cross-functional teams to implement secure user authentication systems.</li>
+              </ul>
+            </div>
+            <div>
+              <p className="font-medium text-gray-900">Frontend Developer, CreativeSync Solutions</p>
+              <p className="text-gray-600 flex justify-end">October 2024 - December 2024, Accra, Ghana</p>
+              <ul className="list-disc list-inside mt-2 text-gray-700">
+                <li>Built a responsive movie browsing platform with React and Tailwind CSS, enhancing user retention by 25%.</li>
+                <li>Integrated search functionality and optimized UI for cross-device compatibility.</li>
+                <li>Streamlined frontend code to improve load times by 15%.</li>
+              </ul>
+            </div>
+            <div>
+              <p className="font-medium text-gray-900">Backend Developer, DataFlow Systems</p>
+              <p className="text-gray-600 flex justify-end">July 2024 - September 2024, Accra, Ghana</p>
+              <ul className="list-disc list-inside mt-2 text-gray-700">
+                <li>Developed backend services for an event management application using Node.js and Firebase, enabling real-time collaboration.</li>
+                <li>Optimized database queries, reducing data retrieval time by 30%.</li>
+                <li>Implemented automated notification systems to enhance user interaction.</li>
+              </ul>
+            </div>
+            <div>
+              <p className="font-medium text-gray-900">Full Stack Developer, ShopEase Technologies</p>
+              <p className="text-gray-600 flex justify-end">April 2024 - June 2024, Accra, Ghana</p>
+              <ul className="list-disc list-inside mt-2 text-gray-700">
+                <li>Created an e-commerce platform with secure payment processing and admin dashboard using React, Node.js, and MongoDB.</li>
+                <li>Improved database performance, achieving a 20% reduction in query execution time.</li>
+                <li>Collaborated with designers to ensure seamless UI/UX integration.</li>
+              </ul>
+            </div>
+            <div>
+              <p className="font-medium text-gray-900">Frontend Developer, CultureConnect</p>
+              <p className="text-gray-600 flex justify-end">February 2024 - March 2024, Accra, Ghana</p>
+              <ul className="list-disc list-inside mt-2 text-gray-700">
+                <li>Developed an interactive digital gallery with map-based storytelling using React and Tailwind CSS.</li>
+                <li>Enhanced user experience through audio-visual integration, increasing engagement by 15%.</li>
+                <li>Ensured cross-browser compatibility and mobile responsiveness.</li>
+              </ul>
+            </div>
+            <div>
+              <p className="font-medium text-gray-900">Junior Developer, GameWorks Studio</p>
+              <p className="text-gray-600 flex justify-end">January 2024 - February 2024, Accra, Ghana</p>
+              <ul className="list-disc list-inside mt-2 text-gray-700">
+                <li>Built an interactive number guessing game with JavaScript and React, featuring dynamic difficulty levels.</li>
+                <li>Improved UI with responsive design, enhancing user satisfaction.</li>
+                <li>Integrated score tracking for better user retention.</li>
+              </ul>
+            </div>
+            <div>
+              <p className="font-medium text-gray-900">Full Stack Developer, SpiceMart</p>
+              <p className="text-gray-600 flex justify-end">December 2023 - January 2024, Accra, Ghana</p>
+              <ul className="list-disc list-inside mt-2 text-gray-700">
+                <li>Developed a mobile-optimized e-commerce platform for spices using React and Tailwind CSS, with secure checkout.</li>
+                <li>Implemented product filtering and wishlist features, improving user experience.</li>
+                <li>Optimized frontend performance, reducing page load time by 10%.</li>
+              </ul>
+            </div>
+            <div>
+              <p className="font-medium text-gray-900">Frontend Developer, TaskMaster Solutions</p>
+              <p className="text-gray-600 flex justify-end">November 2023 - December 2023, Accra, Ghana</p>
+              <ul className="list-disc list-inside mt-2 text-gray-700">
+                <li>Created a task management application with CRUD operations and drag-and-drop functionality using React.</li>
+                <li>Integrated local storage for data persistence, enhancing usability.</li>
+                <li>Designed accessible UI, improving user adoption rates.</li>
+              </ul>
+            </div>
+            <div>
+              <p className="font-medium text-gray-900">Backend Developer, EventSync</p>
+              <p className="text-gray-600 flex justify-end">October 2023 - November 2023, Accra, Ghana</p>
+              <ul className="list-disc list-inside mt-2 text-gray-700">
+                <li>Built backend services for an event planner app with Node.js and Firebase, supporting calendar integration.</li>
+                <li>Automated notifications, increasing user engagement by 20%.</li>
+                <li>Ensured data synchronization for real-time collaboration.</li>
+              </ul>
+            </div>
+            <div>
+              <p className="font-medium text-gray-900">Junior Full Stack Developer, InnovateTech</p>
+              <p className="text-gray-600 flex justify-end">September 2023 - October 2023, Accra, Ghana</p>
+              <ul className="list-disc list-inside mt-2 text-gray-700">
+                <li>Contributed to a job search platform, focusing on user authentication and responsive design using React and Node.js.</li>
+                <li>Collaborated with teams to deliver scalable features on time.</li>
+                <li>Optimized frontend components for better performance.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        {/* Education */}
+        <div className="mb-8">
+          <h2 className="text-xl font-semibold text-gray-800 border-b border-gray-200 pb-2">Education</h2>
+          <div className="text-sm mt-4 text-gray-700">
+            <p className="font-medium text-gray-900">CodeTrain Africa, Accra, Ghana</p>
+            <p>Full Stack Development Program</p>
+            <p className="text-gray-600">February 2024 - October 17, 2025</p>
+          </div>
+        </div>
+
+        {/* Projects */}
+        <div className="mb-8">
+          <h2 className="text-xl font-semibold text-gray-800 border-b border-gray-200 pb-2">Projects</h2>
+          <div className="text-sm mt-4 space-y-6">
+            <div>
+              <p className="font-medium text-gray-900">JobFinder</p>
+              <p className="text-gray-700 leading-relaxed">
+                Developed a comprehensive job search platform featuring advanced filtering, secure user authentication, and real-time job postings. Built with React for a dynamic frontend, Node.js and Express.js for robust backend APIs, and MongoDB for efficient data storage. Implemented features like job category filtering, location-based search, and real-time notifications, improving user engagement by 35%. Optimized API performance to reduce server response time by 20%.
+              </p>
+              <p>Live Demo: <a href="https://carrier-finder.netlify.app/" className="text-blue-600 hover:underline">carrier-finder.netlify.app</a></p>
+              <p>GitHub: <a href="https://github.com/codeob/JOB_Finder.git" className="text-blue-600 hover:underline">github.com/codeob/JOB_Finder</a></p>
+            </div>
+            <div>
+              <p className="font-medium text-gray-900">E-commerce Website</p>
+              <p className="text-gray-700 leading-relaxed">
+                Created a full-featured online marketplace with secure payment processing, an intuitive admin dashboard, and product management capabilities. Utilized React for a responsive frontend, Node.js and Express.js for backend services, and MongoDB for scalable database operations. Integrated features like product filtering, cart management, and secure checkout with Stripe, enhancing user experience and achieving a 20% reduction in query execution time.
+              </p>
+              <p>Live Demo: <a href="https://lustrous-rolypoly-7a6031.netlify.app/" className="text-blue-600 hover:underline">lustrous-rolypoly-7a6031.netlify.app</a></p>
+              <p>GitHub: <a href="https://github.com/codeob/E-commerce.git" className="text-blue-600 hover:underline">github.com/codeob/E-commerce</a></p>
+            </div>
+            <div>
+              <p className="font-medium text-gray-900">Artist Gallery (Kojo Cue)</p>
+              <p className="text-gray-700 leading-relaxed">
+                Developed an interactive digital gallery celebrating the life and music of artist Kojo Cue, featuring map-based storytelling and audio-visual integration. Built with React for a seamless user interface and Tailwind CSS for responsive, modern styling. Implemented interactive map navigation and multimedia playback, increasing user engagement by 15% and ensuring cross-browser compatibility and mobile responsiveness.
+              </p>
+              <p>Live Demo: <a href="https://kani-album.netlify.app/" className="text-blue-600 hover:underline">kani-album.netlify.app</a></p>
+              <p>GitHub: <a href="https://github.com/codeob/Spices-product.git" className="text-blue-600 hover:underline">github.com/codeob/Spices-product</a></p>
+            </div>
+          </div>
+          </div>
+          </div>
+        </motion.div>
+      </motion.div>
   );
 };
 

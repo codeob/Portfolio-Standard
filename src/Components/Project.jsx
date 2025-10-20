@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const projects = [
@@ -10,7 +10,7 @@ const projects = [
     tech:['React','Tailwind','Node.js','Express.js','Local Storage','MongoDB'],
     category:'Full Stack',
     liveLink:' https://carrier-finder.netlify.app/',
-    github:'https://github.com/codeob/JOB_Finder.git'
+    githubLink:'https://github.com/codeob/JOB_Finder.git'
   },
   {
     id: 2,
@@ -157,25 +157,25 @@ const titleVariants = {
 };
 
 const buttonVariants = {
-  hidden: { 
-    opacity: 0, 
+  hidden: {
+    opacity: 0,
     scale: 0.8,
     y: 20
   },
-  visible: { 
-    opacity: 1, 
+  visible: {
+    opacity: 1,
     scale: 1,
     y: 0,
-    transition: { 
-      duration: 0.6, 
+    transition: {
+      duration: 0.6,
       ease: [0.4, 0, 0.2, 1],
       delay: 0.5
-    } 
+    }
   },
-  hover: { 
+  hover: {
     scale: 1.05,
     y: -2,
-    transition: { duration: 0.3, ease: [0.4, 0, 0.2, 1] } 
+    transition: { duration: 0.3, ease: [0.4, 0, 0.2, 1] }
   },
   tap: {
     scale: 0.95,
@@ -183,61 +183,17 @@ const buttonVariants = {
   }
 };
 
-const imageVariants = {
-  hidden: { 
-    opacity: 0, 
-    scale: 1.1
-  },
-  visible: { 
-    opacity: 1, 
-    scale: 1,
-    transition: { 
-      duration: 0.8, 
-      ease: [0.4, 0, 0.2, 1],
-      delay: 0.3
-    } 
-  },
-  hover: {
-    scale: 1.1,
-    transition: { duration: 0.4 }
-  }
-};
-
 function Project() {
   const [filter, setFilter] = useState('All');
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const carouselRef = useRef(null);
 
   const categories = ['All', 'Frontend', 'Full Stack', 'Game Development'];
   const filteredProjects = filter === 'All' ? projects : projects.filter((project) => project.category === filter);
-
-  const handleDragEnd = (event, info) => {
-    if (info.offset.x < -100) {
-      setCurrentIndex((prev) => (prev + 1) % filteredProjects.length);
-    } else if (info.offset.x > 100) {
-      setCurrentIndex((prev) => (prev - 1 + filteredProjects.length) % filteredProjects.length);
-    }
-  };
-
-  const handleKeyDown = (event) => {
-    if (event.key === 'ArrowRight') {
-      setCurrentIndex((prev) => (prev + 1) % filteredProjects.length);
-    } else if (event.key === 'ArrowLeft') {
-      setCurrentIndex((prev) => (prev - 1 + filteredProjects.length) % filteredProjects.length);
-    }
-  };
-
-  useEffect(() => {
-    setCurrentIndex(0);
-  }, [filter]);
 
   return (
     <section
       id="projects"
       className="py-20 relative overflow-hidden"
       style={{ background: '#0A0E27' }}
-      onKeyDown={handleKeyDown}
-      tabIndex={0}
     >
       {/* Decorative background elements */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -339,10 +295,7 @@ function Project() {
             exit={{ opacity: 0, y: 20 }}
             viewport={{ once: true, amount: 0.2 }}
           >
-            {filteredProjects.map((project, index) => {
-              const primaryTech = project.tech[0];
-              const primaryColor = techColors[primaryTech] || '#3B82F6';
-              
+            {filteredProjects.map((project) => {
               return (
               <motion.div
                 key={project.id}

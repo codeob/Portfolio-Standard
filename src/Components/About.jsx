@@ -25,7 +25,7 @@ const skillsData = [
   { name: 'Tailwind CSS', level: 92, color: '#06B6D4' },
 ];
 
-function About() {
+function About({ onResumeClick }) {
   const [isResumeModalOpen, setIsResumeModalOpen] = useState(false);
 
   return (
@@ -180,7 +180,7 @@ function About() {
                 Get In Touch
               </motion.a>
               <motion.button
-                onClick={() => setIsResumeModalOpen(true)}
+                onClick={onResumeClick}
                 className="inline-flex items-center px-6 py-3 text-base font-semibold rounded-xl"
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
@@ -191,17 +191,18 @@ function About() {
                   border: '2px solid var(--primary-blue)'
                 }}
               >
-                Download CV
+                View Resume
               </motion.button>
             </motion.div>
           </motion.div>
         </motion.div>
       </div>
 
-      <ResumeModal
-        isOpen={isResumeModalOpen}
-        onClose={() => setIsResumeModalOpen(false)}
-      />
+      {isResumeModalOpen && (
+        <ResumeModal
+          onClose={() => setIsResumeModalOpen(false)}
+        />
+      )}
     </section>
   );
 }

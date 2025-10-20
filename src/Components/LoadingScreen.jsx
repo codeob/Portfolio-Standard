@@ -32,7 +32,7 @@ const LoadingScreen = ({ onComplete }) => {
       clearInterval(interval);
       clearInterval(textInterval);
     };
-  }, [onComplete]);
+  }, [onComplete, loadingTexts.length]);
 
   return (
     <AnimatePresence>

@@ -28,7 +28,7 @@ const linkVariants = {
   },
 };
 
-function Navbar() {
+function Navbar({ onResumeClick }) {
   const [isOpen, setIsOpen] = useState(false);
   const [activeLink, setActiveLink] = useState('Home');
   const [scrolled, setScrolled] = useState(false);
@@ -103,9 +103,8 @@ function Navbar() {
               )}
             </motion.a>
           ))}
-          <motion.a
-            href="/resume.pdf"
-            download
+          <motion.button
+            onClick={onResumeClick}
             className="px-5 py-2.5 rounded-lg font-semibold transition-all duration-300"
             whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.95 }}
@@ -113,11 +112,13 @@ function Navbar() {
               fontFamily: 'var(--font-body)',
               background: 'var(--primary-blue)',
               color: '#FFFFFF',
-              boxShadow: '0 2px 12px rgba(59, 130, 246, 0.3)'
+              boxShadow: '0 2px 12px rgba(59, 130, 246, 0.3)',
+              border: 'none',
+              cursor: 'pointer'
             }}
           >
             Resume
-          </motion.a>
+          </motion.button>
         </div>
 
         {/* Mobile Menu Button */}
@@ -162,19 +163,19 @@ function Navbar() {
               {link.name}
             </a>
           ))}
-          <a
-            href="/resume.pdf"
-            download
+          <button
+            onClick={onResumeClick}
             className="block text-base font-medium py-2 px-4 rounded-lg text-center"
             style={{
               fontFamily: 'var(--font-body)',
               border: '2px solid var(--primary-blue)',
               color: 'var(--primary-blue)',
-              background: 'transparent'
+              background: 'transparent',
+              cursor: 'pointer'
             }}
           >
-            Download Resume
-          </a>
+            Resume
+          </button>
         </div>
       </motion.div>
     </motion.nav>
