@@ -2,21 +2,21 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const skills = [
-  { name: 'React', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/react.svg', color: '#61DAFB', proficiency: '1/2 years', category: 'Frontend' },
-  { name: 'HTML5', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/html5.svg', color: '#E34F26', proficiency: '1/2 years', category: 'Frontend' },
-  { name: 'CSS3', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/css3.svg', color: '#1572B6', proficiency: '1/2 years', category: 'Frontend' },
-  { name: 'JavaScript', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/javascript.svg', color: '#F7DF1E', proficiency: '1/2 years', category: 'Language' },
-  { name: 'TypeScript', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/typescript.svg', color: '#3178C6', proficiency: '1/2 years', category: 'Language' },
-  { name: 'Node.js', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/nodedotjs.svg', color: '#339933', proficiency: '1/2 years', category: 'Backend' },
-  { name: 'Next.js', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/nextdotjs.svg', color: '#FFFFFF', proficiency: '1/2 years', category: 'Framework' },
-  { name: 'Tailwind CSS', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/tailwindcss.svg', color: '#06B6D4', proficiency: '1/2 years', category: 'Styling' },
-  { name: 'MongoDB', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/mongodb.svg', color: '#47A248', proficiency: '1/2 years', category: 'Database' },
-  { name: 'PostgreSQL', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/postgresql.svg', color: '#4169E1', proficiency: '1/2 years', category: 'Database' },
-  { name: 'Express.js', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/express.svg', color: '#FFFFFF', proficiency: '1/2 years', category: 'Backend' },
-  { name: 'Git', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/git.svg', color: '#F05032', proficiency: '1/2 years', category: 'Tools' },
-  { name: 'Firebase', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/firebase.svg', color: '#FFCA28', proficiency: '1/2 years', category: 'Backend' },
-  { name: 'Docker', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/docker.svg', color: '#2496ED', proficiency: '1/2 years', category: 'DevOps' },
-  { name: 'Python', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/python.svg', color: '#3776AB', proficiency: '2 weeks', category: 'Language' },
+  { name: 'React', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/react.svg', color: '#61DAFB', proficiency: '1/2 years', category: 'Frontend',percentage: '95%' },
+  { name: 'HTML5', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/html5.svg', color: '#E34F26', proficiency: '1/2 years', category: 'Frontend',percentage: '100%' },
+  { name: 'CSS3', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/css3.svg', color: '#1572B6', proficiency: '1/2 years', category: 'Frontend',percentage: '90%' },
+  { name: 'JavaScript', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/javascript.svg', color: '#F7DF1E', proficiency: '1/2 years', category: 'Language',percentage: '70%' },
+  { name: 'TypeScript', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/typescript.svg', color: '#3178C6', proficiency: '1/2 years', category: 'Language',percentage: '70%' },
+  { name: 'Node.js', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/nodedotjs.svg', color: '#339933', proficiency: '1/2 years', category: 'Backend',percentage: '79%' },
+  { name: 'Next.js', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/nextdotjs.svg', color: '#FFFFFF', proficiency: '1/2 years', category: 'Framework',percentage: '95%' },
+  { name: 'Tailwind CSS', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/tailwindcss.svg', color: '#06B6D4', proficiency: '1/2 years', category: 'Styling',percentage: '100%' },
+  { name: 'MongoDB', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/mongodb.svg', color: '#47A248', proficiency: '1/2 years', category: 'Database',percentage: '80%' },
+  { name: 'PostgreSQL', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/postgresql.svg', color: '#4169E1', proficiency: '1/2 years', category: 'Database',percentage: '70%' },
+  { name: 'Express.js', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/express.svg', color: '#FFFFFF', proficiency: '1/2 years', category: 'Backend',percentage: '80%' },
+  { name: 'Git', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/git.svg', color: '#F05032', proficiency: '1/2 years', category: 'Tools',percentage: '100%' },
+  { name: 'Firebase', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/firebase.svg', color: '#FFCA28', proficiency: '1/2 years', category: 'Backend',percentage: '70%' },
+  { name: 'Docker', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/docker.svg', color: '#2496ED', proficiency: '1/2 years', category: 'DevOps',percentage: '50%' },
+  { name: 'Python', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/python.svg', color: '#3776AB', proficiency: '2 weeks', category: 'Language',percentage: '50%' },
 ];
 
 const containerVariants = {
@@ -286,7 +286,7 @@ function Skills() {
                     className="h-full rounded-full"
                     style={{ background: skill.color }}
                     initial={{ width: 0 }}
-                    whileInView={{ width: '100%' }}
+                    whileInView={{ width: skill.percentage }}
                     viewport={{ once: true }}
                     transition={{ duration: 1, delay: index * 0.05 }}
                   />

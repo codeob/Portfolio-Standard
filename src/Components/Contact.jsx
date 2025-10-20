@@ -138,7 +138,7 @@ function Contact() {
                 </div>
                 <div>
                   <p className="text-xs" style={{ color: 'var(--text-secondary)' }}>Email</p>
-                  <p className="text-sm font-medium" style={{ color: 'var(--text-primary)' }}>obed@example.com</p>
+                  <p className="text-sm font-medium" style={{ color: 'var(--text-primary)' }}>tawiaho858@gmail.com</p>
                 </div>
               </motion.div>
 
@@ -158,7 +158,7 @@ function Contact() {
                 </div>
                 <div>
                   <p className="text-xs" style={{ color: 'var(--text-secondary)' }}>Location</p>
-                  <p className="text-sm font-medium" style={{ color: 'var(--text-primary)' }}>Available Remotely</p>
+                  <p className="text-sm font-medium" style={{ color: 'var(--text-primary)' }}>Accra Ghana/Lakeside</p>
                 </div>
               </motion.div>
             </div>
