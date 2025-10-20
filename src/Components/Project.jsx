@@ -80,7 +80,17 @@ const projects = [
     tech: ['React', 'Tailwind'],
     category: 'Frontend',
     liveLink: 'https://kani-album.netlify.app/',
-    githubLink: 'https://github.com/codeob/Spices-product.git',
+    githubLink: 'https://github.com/codeob/KANI-KOJO-CUE-PROJECT.git',
+  },
+    {
+    id: 9,
+    title: `Decentralized voting system (Ballot)`,
+    description: 'An interactive, map-based digital experience that takes users on a nostalgic journey through Ko-Jo Cue’s life, blending music, storytelling, and visuals across key childhood locations in Kumasi. The project combines exploration, reflection, and audio-visual immersion to celebrate his formative years and artistic evolution.',
+    screenshot: 'https://i.pinimg.com/1200x/3f/52/02/3f5202c1d50a1f57bca0880b7eb9dd32.jpg',
+    tech: ['React', 'Tailwind','Node.js','Express.js','Local storage'],
+    category: 'Frontend',
+    liveLink: '',
+    githubLink: 'https://github.com/codeob/Decentralized-Voting-System-main-nodejs-version.gitt',
   },
 ];
 

@@ -181,7 +181,7 @@ function About({ onResumeClick }) {
               </motion.a>
               <motion.button
                 onClick={onResumeClick}
-                className="inline-flex items-center px-6 py-3 text-base font-semibold rounded-xl"
+                className="inline-flex items-center px-6 py-3 text-base font-semibold rounded-xl cursor-pointer"
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
                 style={{
