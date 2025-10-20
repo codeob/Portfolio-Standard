@@ -27,7 +27,7 @@ const projects = [
     title: 'Guessing Game',
     description: 'An engaging interactive number guessing game with dynamic difficulty levels, score tracking, and responsive design. Implements game logic with JavaScript and features a clean, intuitive React-based user interface.',
     screenshot: 'https://i.pinimg.com/1200x/19/d8/88/19d888eafaf67437f6cab03f7f85bb7d.jpg',
-    tech: ['JavaScript', 'React'],
+    tech: ['JavaScript', 'React','Tailwind'],
     category: 'Game Development',
     liveLink: 'https://polite-cajeta-65e913.netlify.app/',
     githubLink: 'https://github.com/codeob/Game.git',
@@ -75,11 +75,11 @@ const projects = [
   {
     id: 8,
     title: `Artist Gallery (Kojo Cue)`,
-    description: 'A modern e-commerce platform specializing in spices with mobile-optimized design, product filtering, and secure checkout. Features include product reviews, wishlist functionality, and responsive design using Tailwind CSS.',
+    description: 'An interactive, map-based digital experience that takes users on a nostalgic journey through Ko-Jo Cue’s life, blending music, storytelling, and visuals across key childhood locations in Kumasi. The project combines exploration, reflection, and audio-visual immersion to celebrate his formative years and artistic evolution.',
     screenshot: 'https://i.pinimg.com/1200x/3d/3a/11/3d3a11114458e0099cb1e616e8c31d2f.jpg',
     tech: ['React', 'Tailwind'],
     category: 'Frontend',
-    liveLink: 'https://startling-speculoos-5080dd.netlify.app/',
+    liveLink: 'https://kani-album.netlify.app/',
     githubLink: 'https://github.com/codeob/Spices-product.git',
   },
 ];

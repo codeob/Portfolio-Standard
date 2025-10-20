@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import MyProfile from '../assets/MyProfile.jpg';
+import ResumeModal from './ResumeModal';
 
 const containerVariants = {
   hidden: { opacity: 0, y: 30 },
@@ -25,6 +26,8 @@ const skillsData = [
 ];
 
 function About() {
+  const [isResumeModalOpen, setIsResumeModalOpen] = useState(false);
+
   return (
     <section id="about" className="py-20 relative overflow-hidden" style={{ background: '#0A0E27' }}>
 
@@ -176,13 +179,12 @@ function About() {
               >
                 Get In Touch
               </motion.a>
-              <motion.a
-                href="/resume.pdf"
-                download
+              <motion.button
+                onClick={() => setIsResumeModalOpen(true)}
                 className="inline-flex items-center px-6 py-3 text-base font-semibold rounded-xl"
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
-                style={{ 
+                style={{
                   fontFamily: 'var(--font-body)',
                   background: 'transparent',
                   color: 'var(--text-primary)',
@@ -190,11 +192,16 @@ function About() {
                 }}
               >
                 Download CV
-              </motion.a>
+              </motion.button>
             </motion.div>
           </motion.div>
         </motion.div>
       </div>
+
+      <ResumeModal
+        isOpen={isResumeModalOpen}
+        onClose={() => setIsResumeModalOpen(false)}
+      />
     </section>
   );
 }

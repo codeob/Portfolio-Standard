@@ -74,7 +74,7 @@ function Navbar() {
           }}
         >
           <AiOutlineRuby style={{ color: 'var(--primary-blue)', fontSize: '2rem' }} />
-          <span>Obed</span>
+          <span>Tawiah Obed "CodeX" </span>
         </motion.a>
 
         {/* Desktop Navigation */}
