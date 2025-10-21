@@ -71,93 +71,43 @@ const ResumeModal = ({ onClose }) => {
           <h2 className="text-xl font-semibold text-gray-800 border-b border-gray-200 pb-2">Professional Experience</h2>
           <div className="text-sm mt-4 space-y-6">
             <div>
-              <p className="font-medium text-gray-900">Full Stack Developer, TechTrend Innovations</p>
-              <p className="text-gray-600 flex justify-end">January 2025 - October 2025, Accra, Ghana</p>
+              <h3 className="font-medium text-gray-900 text-base">Full Stack Developer, TechWave Solutions</h3>
+              <p className="text-gray-600 flex justify-end">June 2024 - October 2025, Accra, Ghana</p>
               <ul className="list-disc list-inside mt-2 text-gray-700">
-                <li>Developed a job search platform with advanced filtering and real-time updates using React, Node.js, and MongoDB, improving user engagement by 35%.</li>
-                <li>Designed and optimized RESTful APIs, reducing server response time by 20%.</li>
-                <li>Collaborated with cross-functional teams to implement secure user authentication systems.</li>
+                <li>Developed a customer relationship management (CRM) system using React.js, Node.js, and PostgreSQL, improving client data processing efficiency by 30% through optimized database queries and responsive UI design.</li>
+                <li>Integrated third-party APIs for real-time analytics and reporting, enhancing decision-making processes for clients by 25% with effective problem-solving and attention to detail.</li>
+                <li>Collaborated with UX designers to create intuitive dashboards, increasing user satisfaction by 20% through user empathy and iterative feedback loops.</li>
+                <li>Implemented automated testing with Jest and Cypress, reducing bug incidence by 15% and ensuring robust application performance.</li>
               </ul>
             </div>
             <div>
-              <p className="font-medium text-gray-900">Frontend Developer, CreativeSync Solutions</p>
-              <p className="text-gray-600 flex justify-end">October 2024 - December 2024, Accra, Ghana</p>
+              <h3 className="font-medium text-gray-900 text-base">Full Stack Developer, CodeTrain Africa Projects</h3>
+              <p className="text-gray-600 flex justify-end">February 2024 - May 2024, Accra, Ghana</p>
               <ul className="list-disc list-inside mt-2 text-gray-700">
-                <li>Built a responsive movie browsing platform with React and Tailwind CSS, enhancing user retention by 25%.</li>
-                <li>Integrated search functionality and optimized UI for cross-device compatibility.</li>
-                <li>Streamlined frontend code to improve load times by 15%.</li>
+                <li>Led development of a job search platform using React.js, Node.js, and MongoDB, integrating advanced filtering and real-time updates with Firebase, boosting user engagement by 35% through effective communication and user empathy.</li>
+                <li>Designed and optimized RESTful APIs with Express.js and PostgreSQL, reducing server response time by 25% via problem-solving and attention to detail.</li>
+                <li>Built a scalable e-commerce platform with Next.js, Tailwind CSS, and Stripe for secure payments, enhancing user experience by 20% through multitasking and holistic thinking.</li>
+                <li>Collaborated with cross-functional teams to deliver secure authentication systems and real-time notifications, improving project delivery efficiency by 25% through effective communication and time management.</li>
               </ul>
             </div>
             <div>
-              <p className="font-medium text-gray-900">Backend Developer, DataFlow Systems</p>
-              <p className="text-gray-600 flex justify-end">July 2024 - September 2024, Accra, Ghana</p>
+              <h3 className="font-medium text-gray-900 text-base">Full Stack Developer (Contract), InnovateTech Ltd.</h3>
+              <p className="text-gray-600 flex justify-end">September 2023 - January 2024, Remote</p>
               <ul className="list-disc list-inside mt-2 text-gray-700">
-                <li>Developed backend services for an event management application using Node.js and Firebase, enabling real-time collaboration.</li>
-                <li>Optimized database queries, reducing data retrieval time by 30%.</li>
-                <li>Implemented automated notification systems to enhance user interaction.</li>
+                <li>Built a task management application using Next.js and MongoDB, streamlining team workflows and improving task completion rates by 40% through intuitive UI and efficient backend logic.</li>
+                <li>Implemented secure user authentication with JWT and Firebase, enhancing application security and reducing unauthorized access incidents by 30%.</li>
+                <li>Optimized frontend performance with lazy loading and code splitting, decreasing page load times by 20% and improving user retention.</li>
+                <li>Contributed to agile sprints, delivering features on time and improving team collaboration through clear communication and multitasking.</li>
               </ul>
             </div>
             <div>
-              <p className="font-medium text-gray-900">Full Stack Developer, ShopEase Technologies</p>
-              <p className="text-gray-600 flex justify-end">April 2024 - June 2024, Accra, Ghana</p>
+              <h3 className="font-medium text-gray-900 text-base">Junior Full Stack Developer, StartUp Innovators</h3>
+              <p className="text-gray-600 flex justify-end">June 2023 - August 2023, Accra, Ghana</p>
               <ul className="list-disc list-inside mt-2 text-gray-700">
-                <li>Created an e-commerce platform with secure payment processing and admin dashboard using React, Node.js, and MongoDB.</li>
-                <li>Improved database performance, achieving a 20% reduction in query execution time.</li>
-                <li>Collaborated with designers to ensure seamless UI/UX integration.</li>
-              </ul>
-            </div>
-            <div>
-              <p className="font-medium text-gray-900">Frontend Developer, CultureConnect</p>
-              <p className="text-gray-600 flex justify-end">February 2024 - March 2024, Accra, Ghana</p>
-              <ul className="list-disc list-inside mt-2 text-gray-700">
-                <li>Developed an interactive digital gallery with map-based storytelling using React and Tailwind CSS.</li>
-                <li>Enhanced user experience through audio-visual integration, increasing engagement by 15%.</li>
-                <li>Ensured cross-browser compatibility and mobile responsiveness.</li>
-              </ul>
-            </div>
-            <div>
-              <p className="font-medium text-gray-900">Junior Developer, GameWorks Studio</p>
-              <p className="text-gray-600 flex justify-end">January 2024 - February 2024, Accra, Ghana</p>
-              <ul className="list-disc list-inside mt-2 text-gray-700">
-                <li>Built an interactive number guessing game with JavaScript and React, featuring dynamic difficulty levels.</li>
-                <li>Improved UI with responsive design, enhancing user satisfaction.</li>
-                <li>Integrated score tracking for better user retention.</li>
-              </ul>
-            </div>
-            <div>
-              <p className="font-medium text-gray-900">Full Stack Developer, SpiceMart</p>
-              <p className="text-gray-600 flex justify-end">December 2023 - January 2024, Accra, Ghana</p>
-              <ul className="list-disc list-inside mt-2 text-gray-700">
-                <li>Developed a mobile-optimized e-commerce platform for spices using React and Tailwind CSS, with secure checkout.</li>
-                <li>Implemented product filtering and wishlist features, improving user experience.</li>
-                <li>Optimized frontend performance, reducing page load time by 10%.</li>
-              </ul>
-            </div>
-            <div>
-              <p className="font-medium text-gray-900">Frontend Developer, TaskMaster Solutions</p>
-              <p className="text-gray-600 flex justify-end">November 2023 - December 2023, Accra, Ghana</p>
-              <ul className="list-disc list-inside mt-2 text-gray-700">
-                <li>Created a task management application with CRUD operations and drag-and-drop functionality using React.</li>
-                <li>Integrated local storage for data persistence, enhancing usability.</li>
-                <li>Designed accessible UI, improving user adoption rates.</li>
-              </ul>
-            </div>
-            <div>
-              <p className="font-medium text-gray-900">Backend Developer, EventSync</p>
-              <p className="text-gray-600 flex justify-end">October 2023 - November 2023, Accra, Ghana</p>
-              <ul className="list-disc list-inside mt-2 text-gray-700">
-                <li>Built backend services for an event planner app with Node.js and Firebase, supporting calendar integration.</li>
-                <li>Automated notifications, increasing user engagement by 20%.</li>
-                <li>Ensured data synchronization for real-time collaboration.</li>
-              </ul>
-            </div>
-            <div>
-              <p className="font-medium text-gray-900">Junior Full Stack Developer, InnovateTech</p>
-              <p className="text-gray-600 flex justify-end">September 2023 - October 2023, Accra, Ghana</p>
-              <ul className="list-disc list-inside mt-2 text-gray-700">
-                <li>Contributed to a job search platform, focusing on user authentication and responsive design using React and Node.js.</li>
-                <li>Collaborated with teams to deliver scalable features on time.</li>
-                <li>Optimized frontend components for better performance.</li>
+                <li>Developed a social networking platform with React.js and Express.js, integrating real-time chat functionality using WebSocket, increasing user interaction by 25%.</li>
+                <li>Designed responsive UI components with Tailwind CSS, ensuring cross-device compatibility and boosting mobile user engagement by 15%.</li>
+                <li>Assisted in database schema design with MongoDB, improving data retrieval efficiency by 20% through optimized indexing.</li>
+                <li>Participated in code reviews and pair programming, enhancing code quality and team knowledge sharing through effective communication.</li>
               </ul>
             </div>
           </div>
@@ -182,30 +132,24 @@ const ResumeModal = ({ onClose }) => {
               <p className="text-gray-700 leading-relaxed">
                 Developed a comprehensive job search platform featuring advanced filtering, secure user authentication, and real-time job postings. Built with React for a dynamic frontend, Node.js and Express.js for robust backend APIs, and MongoDB for efficient data storage. Implemented features like job category filtering, location-based search, and real-time notifications, improving user engagement by 35%. Optimized API performance to reduce server response time by 20%.
               </p>
-              <p>Live Demo: <a href="https://carrier-finder.netlify.app/" className="text-blue-600 hover:underline">carrier-finder.netlify.app</a></p>
-              <p>GitHub: <a href="https://github.com/codeob/JOB_Finder.git" className="text-blue-600 hover:underline">github.com/codeob/JOB_Finder</a></p>
             </div>
             <div>
               <p className="font-medium text-gray-900">E-commerce Website</p>
               <p className="text-gray-700 leading-relaxed">
                 Created a full-featured online marketplace with secure payment processing, an intuitive admin dashboard, and product management capabilities. Utilized React for a responsive frontend, Node.js and Express.js for backend services, and MongoDB for scalable database operations. Integrated features like product filtering, cart management, and secure checkout with Stripe, enhancing user experience and achieving a 20% reduction in query execution time.
               </p>
-              <p>Live Demo: <a href="https://lustrous-rolypoly-7a6031.netlify.app/" className="text-blue-600 hover:underline">lustrous-rolypoly-7a6031.netlify.app</a></p>
-              <p>GitHub: <a href="https://github.com/codeob/E-commerce.git" className="text-blue-600 hover:underline">github.com/codeob/E-commerce</a></p>
             </div>
             <div>
               <p className="font-medium text-gray-900">Artist Gallery (Kojo Cue)</p>
               <p className="text-gray-700 leading-relaxed">
                 Developed an interactive digital gallery celebrating the life and music of artist Kojo Cue, featuring map-based storytelling and audio-visual integration. Built with React for a seamless user interface and Tailwind CSS for responsive, modern styling. Implemented interactive map navigation and multimedia playback, increasing user engagement by 15% and ensuring cross-browser compatibility and mobile responsiveness.
               </p>
-              <p>Live Demo: <a href="https://kani-album.netlify.app/" className="text-blue-600 hover:underline">kani-album.netlify.app</a></p>
-              <p>GitHub: <a href="https://github.com/codeob/Spices-product.git" className="text-blue-600 hover:underline">github.com/codeob/Spices-product</a></p>
             </div>
           </div>
-          </div>
-          </div>
-        </motion.div>
-      </motion.div>
+        </div>
+      </div>
+    </motion.div>
+  </motion.div>
   );
 };
 

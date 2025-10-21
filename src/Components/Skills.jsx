@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const skills = [
-  { name: 'React', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/react.svg', color: '#61DAFB', proficiency: '1/2 years', category: 'Frontend',percentage: '95%' },
+  { name: 'React', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/react.svg', color: '#61DAFB', proficiency: '1/2 years', category: 'Framework',percentage: '95%' },
   { name: 'HTML5', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/html5.svg', color: '#E34F26', proficiency: '1/2 years', category: 'Frontend',percentage: '100%' },
   { name: 'CSS3', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/css3.svg', color: '#1572B6', proficiency: '1/2 years', category: 'Frontend',percentage: '90%' },
   { name: 'JavaScript', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/javascript.svg', color: '#F7DF1E', proficiency: '1/2 years', category: 'Language',percentage: '70%' },
@@ -15,91 +15,32 @@ const skills = [
   { name: 'Express.js', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/express.svg', color: '#FFFFFF', proficiency: '1/2 years', category: 'Backend',percentage: '80%' },
   { name: 'Git', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/git.svg', color: '#F05032', proficiency: '1/2 years', category: 'Tools',percentage: '100%' },
   { name: 'Firebase', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/firebase.svg', color: '#FFCA28', proficiency: '1/2 years', category: 'Backend',percentage: '70%' },
-  { name: 'Docker', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/docker.svg', color: '#2496ED', proficiency: '1/2 years', category: 'DevOps',percentage: '50%' },
+  { name: 'Docker', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/docker.svg', color: '#2496ED', proficiency: '5 months', category: 'DevOps',percentage: '45%' },
   { name: 'Python', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/python.svg', color: '#3776AB', proficiency: '2 weeks', category: 'Language',percentage: '50%' },
+  { name: 'Github', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/github.svg', color: '#2496ED', proficiency: '1/2 years', category: 'Tools',percentage: '90%' },
+  { name: 'Vercel', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/vercel.svg', color: '#2496ED', proficiency: '1/2 years', category: 'DevOps',percentage: '85%' },
+  { name: 'Netlify', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/netlify.svg', color: '#00C58E', proficiency: '1/2 years', category: 'DevOps',percentage: '85%' },
+  { name: 'AWS', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/amazonwebservices.svg', color: '#FF9900', proficiency: '1/2 years', category: 'DevOps',percentage: '80%' },
+  { name: 'Render', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@13.1.0/icons/render.svg', color: '#2496ED', proficiency: '1/2 years', category: 'Tools',percentage: '80%' },
 ];
 
-const containerVariants = {
-  hidden: { opacity: 0, y: 50 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { 
-      duration: 1, 
-      ease: [0.4, 0, 0.2, 1], 
-      staggerChildren: 0.15,
-      delayChildren: 0.2
-    },
-  },
-};
-
-const cardVariants = {
-  hidden: { 
-    opacity: 0, 
-    y: 50, 
-    scale: 0.8,
-    rotateY: -15
-  },
-  visible: { 
-    opacity: 1, 
-    y: 0, 
-    scale: 1,
-    rotateY: 0,
-    transition: { 
-      duration: 0.8, 
-      ease: [0.4, 0, 0.2, 1] 
-    } 
-  },
-  hover: {
-    scale: 1.1,
-    y: -10,
-    rotateY: 5,
-    transition: { 
-      duration: 0.4, 
-      ease: [0.4, 0, 0.2, 1] 
-    },
-  },
-};
 
 const titleVariants = {
-  hidden: { 
-    opacity: 0, 
+  hidden: {
+    opacity: 0,
     y: -30,
     scale: 0.9
   },
-  visible: { 
-    opacity: 1, 
+  visible: {
+    opacity: 1,
     y: 0,
     scale: 1,
-    transition: { 
-      duration: 0.8, 
+    transition: {
+      duration: 0.8,
       ease: [0.4, 0, 0.2, 1],
       delay: 0.3
-    } 
+    }
   },
-};
-
-const iconVariants = {
-  hidden: { 
-    opacity: 0, 
-    scale: 0,
-    rotate: -180
-  },
-  visible: { 
-    opacity: 1, 
-    scale: 1,
-    rotate: 0,
-    transition: { 
-      duration: 0.6, 
-      ease: [0.4, 0, 0.2, 1],
-      delay: 0.5
-    } 
-  },
-  hover: {
-    scale: 1.2,
-    rotate: 10,
-    transition: { duration: 0.3 }
-  }
 };
 
 function Skills() {
@@ -107,7 +48,7 @@ function Skills() {
   const [selectedCategory, setSelectedCategory] = useState('All');
 
   // Group skills by category
-  const categories = ['All', 'Frontend', 'Backend', 'Language', 'Database', 'Tools', 'DevOps'];
+  const categories = ['All', 'Frontend', 'Backend', 'Language', 'Database', 'Tools', 'DevOps','Framework'];
   const filteredSkills = selectedCategory === 'All' 
     ? skills 
     : skills.filter(skill => skill.category === selectedCategory);
