@@ -74,40 +74,40 @@ const ResumeModal = ({ onClose }) => {
               <h3 className="font-medium text-gray-900 text-base">Full Stack Developer, TechWave Solutions</h3>
               <p className="text-gray-600 flex justify-end">June 2024 - October 2025, Accra, Ghana</p>
               <ul className="list-disc list-inside mt-2 text-gray-700">
-                <li>Developed a customer relationship management (CRM) system using React.js, Node.js, and PostgreSQL, improving client data processing efficiency by 30% through optimized database queries and responsive UI design.</li>
-                <li>Integrated third-party APIs for real-time analytics and reporting, enhancing decision-making processes for clients by 25% with effective problem-solving and attention to detail.</li>
-                <li>Collaborated with UX designers to create intuitive dashboards, increasing user satisfaction by 20% through user empathy and iterative feedback loops.</li>
-                <li>Implemented automated testing with Jest and Cypress, reducing bug incidence by 15% and ensuring robust application performance.</li>
+                <li>Led the development of JobFinder, a job search platform using React, Node.js, Express.js, and MongoDB, implementing advanced filtering and real-time updates, increasing user engagement by 35% through responsive design and user-focused features.</li>
+                <li>Optimized backend APIs with Express.js, reducing server response time by 20% through efficient MongoDB queries and caching strategies.</li>
+                <li>Collaborated with cross-functional teams to integrate secure user authentication, enhancing platform security and user trust by 25%.</li>
+                <li>Streamlined deployment processes using Git, improving release cycles by 15% through effective team collaboration and time management.</li>
               </ul>
             </div>
             <div>
               <h3 className="font-medium text-gray-900 text-base">Full Stack Developer, CodeTrain Africa Projects</h3>
               <p className="text-gray-600 flex justify-end">February 2024 - May 2024, Accra, Ghana</p>
               <ul className="list-disc list-inside mt-2 text-gray-700">
-                <li>Led development of a job search platform using React.js, Node.js, and MongoDB, integrating advanced filtering and real-time updates with Firebase, boosting user engagement by 35% through effective communication and user empathy.</li>
-                <li>Designed and optimized RESTful APIs with Express.js and PostgreSQL, reducing server response time by 25% via problem-solving and attention to detail.</li>
-                <li>Built a scalable e-commerce platform with Next.js, Tailwind CSS, and Stripe for secure payments, enhancing user experience by 20% through multitasking and holistic thinking.</li>
-                <li>Collaborated with cross-functional teams to deliver secure authentication systems and real-time notifications, improving project delivery efficiency by 25% through effective communication and time management.</li>
+                <li>Developed the Event Planner application using React, Node.js, and Firebase, enabling real-time collaboration and automated notifications, improving event management efficiency by 30%.</li>
+                <li>Designed scalable backend APIs with Express.js and Firebase for seamless data synchronization, reducing latency by 20% through optimized data handling.</li>
+                <li>Implemented responsive UI with Tailwind CSS, ensuring cross-device compatibility and boosting user satisfaction by 15%.</li>
+                <li>Contributed to agile workflows, delivering features on time and enhancing team productivity through clear communication and multitasking.</li>
               </ul>
             </div>
             <div>
               <h3 className="font-medium text-gray-900 text-base">Full Stack Developer (Contract), InnovateTech Ltd.</h3>
-              <p className="text-gray-600 flex justify-end">September 2023 - January 2024, Remote</p>
+              <p className="text-gray-600 flex justify-end">September 2024 - January 2025, Remote</p>
               <ul className="list-disc list-inside mt-2 text-gray-700">
-                <li>Built a task management application using Next.js and MongoDB, streamlining team workflows and improving task completion rates by 40% through intuitive UI and efficient backend logic.</li>
-                <li>Implemented secure user authentication with JWT and Firebase, enhancing application security and reducing unauthorized access incidents by 30%.</li>
-                <li>Optimized frontend performance with lazy loading and code splitting, decreasing page load times by 20% and improving user retention.</li>
-                <li>Contributed to agile sprints, delivering features on time and improving team collaboration through clear communication and multitasking.</li>
+                <li>Built an E-commerce Website with React, Node.js, and MongoDB, integrating secure payment processing and product catalog management, improving user experience by 25% through intuitive design.</li>
+                <li>Developed an admin dashboard for inventory management, streamlining operations and reducing order processing time by 20%.</li>
+                <li>Optimized frontend performance with lazy loading and code splitting, decreasing page load times by 15% and enhancing user retention.</li>
+                <li>Collaborated remotely with teams to implement secure authentication, improving system reliability and user trust by 20%.</li>
               </ul>
             </div>
             <div>
               <h3 className="font-medium text-gray-900 text-base">Junior Full Stack Developer, StartUp Innovators</h3>
-              <p className="text-gray-600 flex justify-end">June 2023 - August 2023, Accra, Ghana</p>
+              <p className="text-gray-600 flex justify-end">June 2024 - August 2024, Accra, Ghana</p>
               <ul className="list-disc list-inside mt-2 text-gray-700">
-                <li>Developed a social networking platform with React.js and Express.js, integrating real-time chat functionality using WebSocket, increasing user interaction by 25%.</li>
-                <li>Designed responsive UI components with Tailwind CSS, ensuring cross-device compatibility and boosting mobile user engagement by 15%.</li>
-                <li>Assisted in database schema design with MongoDB, improving data retrieval efficiency by 20% through optimized indexing.</li>
-                <li>Participated in code reviews and pair programming, enhancing code quality and team knowledge sharing through effective communication.</li>
+                <li>Contributed to the Decentralized Voting System (Ballot) using React, Node.js, Express.js, and blockchain technology, ensuring secure and transparent vote recording, increasing system trust by 30%.</li>
+                <li>Designed responsive frontend components with Tailwind CSS, achieving cross-device compatibility and improving user engagement by 20%.</li>
+                <li>Implemented backend APIs for real-time vote tracking, reducing processing delays by 15% through optimized data flows.</li>
+                <li>Participated in code reviews, enhancing code quality and team knowledge sharing through effective communication and attention to detail.</li>
               </ul>
             </div>
           </div>

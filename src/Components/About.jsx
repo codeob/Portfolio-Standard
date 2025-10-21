@@ -191,7 +191,7 @@ function About({ onResumeClick }) {
                   border: '2px solid var(--primary-blue)'
                 }}
               >
-                View Resume
+                View My Resume
               </motion.button>
             </motion.div>
           </motion.div>
