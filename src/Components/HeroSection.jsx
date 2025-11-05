@@ -216,7 +216,7 @@ function HeroSection() {
             >
               {[
                 { number: '1/2+', label: 'Years Experience' },
-                { number: '7+', label: 'Projects Completed' },
+                { number: '9+', label: 'Projects Completed' },
                 { number: '20+', label: 'Technologies' }
               ].map((stat, index) => (
                 <div key={index}>
