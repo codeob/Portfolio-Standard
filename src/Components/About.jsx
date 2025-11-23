@@ -1,6 +1,9 @@
+// Import necessary React hooks and libraries
 import React, { useState } from 'react';
+// Import profile image and ResumeModal component
 import { motion } from 'framer-motion';
 import MyProfile from '../assets/MyProfile.jpg';
+// Animation variants for the main container with staggered children
 import ResumeModal from './ResumeModal';
 
 const containerVariants = {
@@ -9,10 +12,12 @@ const containerVariants = {
     opacity: 1,
     y: 0,
     transition: { duration: 0.8, ease: 'easeOut', staggerChildren: 0.2 },
+// Animation variants for child elements
   },
 };
 
 const childVariants = {
+// Array of skills data with proficiency levels and colors
   hidden: { opacity: 0, y: 20 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
 };
@@ -20,11 +25,17 @@ const childVariants = {
 const skillsData = [
   { name: 'React & Next.js', level: 95, color: '#3B82F6' },
   { name: 'Node.js & Express', level: 90, color: '#10B981' },
+// Main About component function that receives onResumeClick prop
   { name: 'TypeScript', level: 85, color: '#06B6D4' },
+// State to manage resume modal visibility (though not used in this component)
   { name: 'MongoDB & PostgreSQL', level: 88, color: '#3B82F6' },
+// Main section with about id, dark background, and overflow hidden
   { name: 'Tailwind CSS', level: 92, color: '#06B6D4' },
 ];
 
+// Container with max width and responsive padding
+// Section header with centered text and bottom margin
+// Animated comment-style label for the section
 function About({ onResumeClick }) {
   const [isResumeModalOpen, setIsResumeModalOpen] = useState(false);
 

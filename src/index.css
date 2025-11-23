@@ -1,29 +1,38 @@
+/* Import Tailwind CSS framework for utility classes */
 @import "tailwindcss";
+/* Import Google Fonts for typography: Poppins for headings, Inter for body text, Space Mono for code */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
+/* CSS Custom Properties (Variables) for consistent theming */
 
+/* Dark background colors for the professional theme */
 :root {
   /* Professional Dark Theme */
   --background: #0A0E27;
+/* Professional blue accent colors */
   --background-secondary: #141B2D;
   --background-card: #1A2332;
   
   /* Professional Accent Colors */
   --primary-blue: #3B82F6;
+/* Text color variables for hierarchy */
   --secondary-blue: #60A5FA;
   --accent-cyan: #06B6D4;
   --accent-green: #10B981;
   
+/* Utility variables for borders, shadows, and spacing */
   /* Text Colors */
   --text-primary: #F8FAFC;
   --text-secondary: #94A3B8;
   --text-muted: #64748B;
   
   /* Utility */
+/* Font family variables for consistent typography */
   --divider-border: rgba(59, 130, 246, 0.15);
   --shadow: rgba(59, 130, 246, 0.1);
   --hover-bg: rgba(59, 130, 246, 0.08);
   --card-bg: rgba(26, 35, 50, 0.8);
   --border-radius: 0.75rem;
+/* Global styles for html and body elements */
   
   /* Typography */
   --font-heading: 'Poppins', sans-serif;
@@ -35,9 +44,11 @@ html, body {
   margin: 0;
   padding: 0;
   scroll-behavior: smooth;
+/* Universal box-sizing for consistent layout */
   overflow-x: hidden;
   background-color: var(--background);
   color: var(--text-primary);
+/* Default padding for all section elements */
   font-family: var(--font-body);
   line-height: 1.6;
   letter-spacing: 0.01em;
@@ -48,6 +59,7 @@ html, body {
 }
 
 section {
+/* Gradient text classes for special styling */
   padding: 5rem 1.5rem;
   position: relative;
 }
@@ -57,6 +69,7 @@ section {
     padding: 5rem 5rem;
   }
 }
+/* Card component styling with glassmorphism effect */
 
 /* Professional text colors */
 .text-gradient {
@@ -67,6 +80,7 @@ section {
 .text-gradient-coral {
   color: var(--accent-cyan);
 }
+/* Shimmer effect pseudo-element for card hover */
 
 .card {
   background: var(--card-bg);
@@ -80,12 +94,14 @@ section {
 }
 
 .card::before {
+/* Hover effects for cards with transform and shadow */
   content: '';
   position: absolute;
   top: 0;
   left: -100%;
   width: 100%;
   height: 100%;
+/* Primary button styling with gradient background */
   background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.05), transparent);
   transition: left 0.5s;
 }
@@ -99,6 +115,7 @@ section {
   box-shadow: 0 20px 60px rgba(0, 255, 209, 0.2), 0 0 40px rgba(155, 89, 182, 0.1);
   border-color: var(--vibrant-teal);
 }
+/* Shimmer effect for primary button hover */
 
 .btn-primary {
   background: linear-gradient(135deg, var(--vibrant-teal), var(--electric-purple));
@@ -118,6 +135,7 @@ section {
   content: '';
   position: absolute;
   top: 0;
+/* Outline button styling with border animation */
   left: -100%;
   width: 100%;
   height: 100%;
@@ -130,6 +148,7 @@ section {
 }
 
 .btn-primary:hover {
+/* Background fill animation for outline button */
   transform: translateY(-2px) scale(1.05);
   box-shadow: 0 10px 25px rgba(37, 99, 235, 0.4);
 }
@@ -152,7 +171,9 @@ section {
   position: absolute;
   top: 0;
   left: 0;
+/* CSS animations for smooth transitions */
   width: 0;
+/* Fade-in animation for elements appearing on scroll */
   height: 100%;
   background: var(--accent-blue);
   transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -166,6 +187,7 @@ section {
 .btn-outline:hover {
   color: white;
   border-color: var(--accent-blue);
+/* Slide-in from left animation */
   transform: translateY(-2px);
   box-shadow: 0 8px 20px rgba(37, 99, 235, 0.2);
 }
@@ -179,6 +201,7 @@ section {
   from { 
     opacity: 0; 
     transform: translateY(30px) scale(0.95); 
+/* Slide-in from right animation */
   }
   to { 
     opacity: 1; 
@@ -194,6 +217,7 @@ section {
   from {
     opacity: 0;
     transform: translateX(-50px);
+/* Scale-in animation for elements */
   }
   to {
     opacity: 1;
@@ -207,6 +231,7 @@ section {
 
 @keyframes slideInRight {
   from {
+/* Rotate-in animation for dramatic entries */
     opacity: 0;
     transform: translateX(50px);
   }
@@ -222,6 +247,7 @@ section {
 
 @keyframes scaleIn {
   from {
+/* Floating animation for decorative elements */
     opacity: 0;
     transform: scale(0.8);
   }
@@ -235,6 +261,7 @@ section {
   animation: rotateIn 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* Pulse animation for call-to-action elements */
 @keyframes rotateIn {
   from {
     opacity: 0;
@@ -248,6 +275,7 @@ section {
 
 /* Floating animation for hero elements */
 .float {
+/* Glow effect for special interactive elements */
   animation: float 6s ease-in-out infinite;
 }
 
@@ -261,6 +289,7 @@ section {
 }
 
 /* Pulse animation for CTAs */
+/* Hover effects for icons */
 .pulse {
   animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
@@ -270,6 +299,7 @@ section {
     opacity: 1;
   }
   50% {
+/* Text reveal animation for dramatic text appearances */
     opacity: 0.8;
   }
 }
@@ -287,7 +317,9 @@ section {
     box-shadow: 0 0 30px rgba(37, 99, 235, 0.6);
   }
 }
+/* Mobile-first responsive design approach */
 
+/* Extra small devices (phones, 320px and up) */
 /* Icon hover animations */
 .icon-hover {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -304,6 +336,7 @@ section {
 }
 
 .text-reveal span {
+/* Small devices (landscape phones, 576px and up) */
   display: inline-block;
   animation: textReveal 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
   opacity: 0;
@@ -314,6 +347,7 @@ section {
   to {
     opacity: 1;
     transform: translateY(0);
+/* Medium devices (tablets, 768px and up) */
   }
 }
 
@@ -329,6 +363,7 @@ section {
     transform: translateY(-2px) scale(1.01);
   }
   
+/* Large devices (desktops, 992px and up) */
   .btn-primary, .btn-outline {
     padding: 0.5rem 1rem;
     font-size: 0.875rem;
@@ -339,18 +374,21 @@ section {
 @media (min-width: 576px) {
   section {
     padding: 3rem 1.5rem;
+/* Extra large devices (large desktops, 1200px and up) */
   }
   
   .card:hover {
     transform: translateY(-4px) scale(1.02);
   }
 }
+/* Extra extra large devices (larger desktops, 1400px and up) */
 
 /* Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) {
   section {
     padding: 4rem 2rem;
   }
+/* Mobile-specific optimizations */
   
   .card:hover {
     transform: translateY(-6px) scale(1.02);
@@ -386,6 +424,7 @@ section {
     padding: 6rem 6rem;
   }
 }
+/* Landscape mobile optimization */
 
 /* Mobile-specific optimizations */
 @media (max-width: 767px) {
@@ -396,6 +435,7 @@ section {
   .text-4xl {
     font-size: 2rem;
   }
+/* High DPI displays optimization */
   
   .text-3xl {
     font-size: 1.75rem;
